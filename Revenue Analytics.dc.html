@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Arsenal:wght@400;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:'Manrope',system-ui,sans-serif;background:#0D110D;color:#FFFFFF}
+  a{color:#D2FF00;text-decoration:none}
+  a:hover{color:#e8ff3a}
+  ::selection{background:#D2FF00;color:#0D110D}
+  @keyframes rvRise{from{transform:scaleY(.2);opacity:0}to{transform:scaleY(1);opacity:1}}
+  @keyframes rvFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  @media (max-width:1080px){.rv-grid{grid-template-columns:1fr !important}}
+  @media (max-width:640px){.rv-root{padding:20px !important}}
+</style>
+</helmet>
+<div class="rv-root" style="min-height:100%;background:#0D110D;padding:34px;display:flex;flex-direction:column;gap:16px">
+
+  <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:18px;flex-wrap:wrap">
+    <div>
+      <div style="font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#D2FF00;margin-bottom:8px">Finance</div>
+      <h1 style="font-family:'Arsenal',serif;font-weight:700;font-size:34px;line-height:1;letter-spacing:-.015em;margin:0;text-transform:uppercase">Revenue &amp; Balance</h1>
+    </div>
+    <div style="font-size:12.5px;font-weight:500;color:#8E9B8E">SahaX Sports · updated 2 min ago</div>
+  </div>
+
+  <div class="rv-grid" style="display:grid;grid-template-columns:1.55fr 1fr;gap:16px;align-items:start">
+
+    <!-- Chart -->
+    <div style="background:#151B15;border:1px solid rgba(255,255,255,.07);border-radius:22px;padding:24px 24px 18px">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:26px">
+        <div>
+          <div style="font-family:'Arsenal',serif;font-weight:700;font-size:19px;line-height:1.1">Monthly Revenue &amp; Trend</div>
+          <div style="font-size:12px;font-weight:500;color:#8E9B8E;margin-top:4px">{{ rangeCaption }}</div>
+        </div>
+        <div style="position:relative;display:flex;align-items:center;gap:8px">
+          <span style="font-size:11.5px;font-weight:700;color:#8E9B8E;letter-spacing:.02em">{{ rangeLabel }}</span>
+          <button onClick="{{ toggleMenu }}" style="width:32px;height:32px;flex:none;border-radius:10px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03);color:#8E9B8E;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:color .18s ease,border-color .18s ease" style-hover="color:#D2FF00;border-color:rgba(210,255,0,.4)">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="1.9"></circle><circle cx="12" cy="12" r="1.9"></circle><circle cx="12" cy="19" r="1.9"></circle></svg>
+          </button>
+          <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+            <div style="position:absolute;top:40px;right:0;z-index:20;min-width:160px;background:#1B231B;border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:6px;box-shadow:0 18px 40px rgba(0,0,0,.5);animation:rvFade .18s ease both">
+              <sc-for list="{{ rangeOptions }}" as="o" hint-placeholder-count="2">
+                <button onClick="{{ o.onClick }}" style="{{ o.style }}" style-hover="background:rgba(255,255,255,.05)">{{ o.label }}<span style="{{ o.tickStyle }}">✓</span></button>
+              </sc-for>
+            </div>
+          </sc-if>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:14px">
+        <div style="display:flex;flex-direction:column-reverse;justify-content:space-between;height:250px;padding-bottom:26px;flex:none">
+          <sc-for list="{{ yTicks }}" as="t" hint-placeholder-count="5">
+            <span style="font-size:10.5px;font-weight:600;color:#8E9B8E;line-height:1">{{ t }}</span>
+          </sc-for>
+        </div>
+        <div style="flex:1;min-width:0;position:relative;height:250px">
+          <div style="position:absolute;inset:0 0 26px 0;display:flex;flex-direction:column;justify-content:space-between;pointer-events:none">
+            <sc-for list="{{ yTicks }}" as="t" hint-placeholder-count="5">
+              <div style="height:1px;background:rgba(255,255,255,.06)"></div>
+            </sc-for>
+          </div>
+          <sc-if value="{{ showTrend }}" hint-placeholder-val="{{ true }}">
+            <svg viewBox="0 0 600 224" preserveAspectRatio="none" style="position:absolute;left:0;right:0;top:0;height:224px;width:100%;overflow:visible;pointer-events:none">
+              <path d="{{ trendPath }}" fill="none" stroke="#D2FF00" stroke-width="2" stroke-linecap="round" vector-effect="non-scaling-stroke" opacity=".85"></path>
+            </svg>
+          </sc-if>
+          <div style="position:absolute;inset:0;display:flex;align-items:flex-end;gap:10px">
+            <sc-for list="{{ bars }}" as="b" hint-placeholder-count="6">
+              <button onClick="{{ b.onClick }}" style="flex:1;min-width:0;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:0;background:none;border:none;padding:0;cursor:pointer">
+                <div style="position:relative;width:100%;display:flex;align-items:flex-end;justify-content:center;height:224px">
+                  <sc-if value="{{ b.active }}" hint-placeholder-val="{{ false }}">
+                    <span style="{{ b.badgeStyle }}">{{ b.badge }}</span>
+                  </sc-if>
+                  <div style="{{ b.barStyle }}" style-hover="{{ b.barHover }}"></div>
+                  <sc-if value="{{ showTrend }}" hint-placeholder-val="{{ true }}">
+                    <span style="{{ b.dotStyle }}"></span>
+                  </sc-if>
+                </div>
+                <span style="{{ b.labelStyle }}">{{ b.label }}</span>
+              </button>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right column -->
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <div style="background:#151B15;border:1px solid rgba(255,255,255,.07);border-radius:22px;padding:24px">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+          <div style="font-size:12.5px;font-weight:600;color:#8E9B8E">Net Monthly Revenue</div>
+          <span style="display:inline-flex;align-items:center;gap:4px;padding:6px 11px;border-radius:100px;background:rgba(210,255,0,.13);color:#D2FF00;font-size:11.5px;font-weight:800;letter-spacing:.01em">{{ netDelta }}</span>
+        </div>
+        <div style="font-family:'Arsenal',serif;font-weight:700;font-size:clamp(30px,3.4vw,42px);line-height:1.05;margin:16px 0 6px;letter-spacing:-.02em">{{ netValue }}</div>
+        <div style="font-size:12px;font-weight:500;color:#8E9B8E">{{ netCaption }}</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px">
+          <sc-for list="{{ miniStats }}" as="s" hint-placeholder-count="2">
+            <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:13px 14px">
+              <div style="font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#8E9B8E">{{ s.label }}</div>
+              <div style="font-family:'Arsenal',serif;font-weight:700;font-size:19px;margin-top:6px">{{ s.value }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="background:#151B15;border:1px solid rgba(255,255,255,.07);border-radius:22px;padding:24px 24px 10px">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+          <div style="font-family:'Arsenal',serif;font-weight:700;font-size:17px">Monthly Balance</div>
+          <span style="font-size:11px;font-weight:600;color:#8E9B8E">Inflow / Refunds</span>
+        </div>
+        <sc-for list="{{ months }}" as="m" hint-placeholder-count="4">
+          <div style="display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:12px;padding:14px 0;border-top:1px solid rgba(255,255,255,.06)">
+            <div style="min-width:0">
+              <div style="font-size:13.5px;font-weight:700">{{ m.name }}</div>
+              <div style="display:flex;align-items:center;gap:10px;margin-top:5px">
+                <span style="display:inline-flex;align-items:center;gap:3px;font-size:11.5px;font-weight:700;color:#7FE38C">↗ {{ m.inflow }}</span>
+                <span style="display:inline-flex;align-items:center;gap:3px;font-size:11.5px;font-weight:700;color:#FF7A6B">↘ {{ m.refunds }}</span>
+              </div>
+            </div>
+            <div style="font-family:'Arsenal',serif;font-weight:700;font-size:15.5px;text-align:right;white-space:nowrap">{{ m.net }}</div>
+            <span style="{{ m.marginStyle }}">{{ m.margin }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:760},&quot;accentColor&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#9BE870&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#D2FF00&quot;,&quot;#C4F700&quot;,&quot;#E8FF3A&quot;,&quot;#9BE870&quot;]},&quot;range&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;6M&quot;,&quot;options&quot;:[&quot;6M&quot;,&quot;1Y&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;showTrend&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+const DATA = {
+  '6M': {
+    caption: 'Last 6 months (USD)',
+    bars: [
+      { label: 'Apr', v: 42, trend: 26 },
+      { label: 'May', v: 62, trend: 54 },
+      { label: 'Jun', v: 31, trend: 25 },
+      { label: 'Jul', v: 55, trend: 47 },
+      { label: 'Aug', v: 78, trend: 63 },
+      { label: 'Sep', v: 50, trend: 45 }
+    ],
+    months: [
+      { name: 'September', inflow: '$11,896.25', refunds: '$12,526.25', net: '−$630.00', margin: '48%' },
+      { name: 'August', inflow: '$12,440.25', refunds: '$8,563.25', net: '+$3,877.00', margin: '68%' },
+      { name: 'July', inflow: '$9,204.80', refunds: '$4,110.40', net: '+$5,094.40', margin: '61%' },
+      { name: 'June', inflow: '$7,860.00', refunds: '$5,402.10', net: '+$2,457.90', margin: '54%' }
+    ]
+  },
+  '1Y': {
+    caption: 'Last 12 months (USD)',
+    bars: [
+      { label: 'Q1', v: 38, trend: 30 },
+      { label: 'Q2', v: 45, trend: 41 },
+      { label: 'Q3', v: 61, trend: 52 },
+      { label: 'Q4', v: 72, trend: 66 },
+      { label: 'Q1+', v: 58, trend: 63 },
+      { label: 'Q2+', v: 78, trend: 70 }
+    ],
+    months: [
+      { name: 'Q2 · 2026', inflow: '$34,120.60', refunds: '$21,004.80', net: '+$13,115.80', margin: '64%' },
+      { name: 'Q1 · 2026', inflow: '$28,940.00', refunds: '$18,220.50', net: '+$10,719.50', margin: '59%' },
+      { name: 'Q4 · 2025', inflow: '$31,708.40', refunds: '$14,880.20', net: '+$16,828.20', margin: '71%' },
+      { name: 'Q3 · 2025', inflow: '$25,410.90', refunds: '$16,003.10', net: '+$9,407.80', margin: '52%' }
+    ]
+  }
+};
+
+class Component extends DCLogic {
+  state = { range: null, active: null, menu: false };
+
+  get accent(){ return this.props.accentColor || '#D2FF00'; }
+  get range(){ return this.state.range || this.props.range || '6M'; }
+  get set(){ return DATA[this.range] || DATA['6M']; }
+  get activeIdx(){ return this.state.active === null ? 4 : this.state.active; }
+
+  renderVals(){
+    const a = this.accent, set = this.set, max = 80, PH = 224;
+    const showTrend = this.props.showTrend !== false;
+
+    const bars = set.bars.map((b, i) => {
+      const on = i === this.activeIdx;
+      return {
+        label: b.label,
+        active: on,
+        badge: '$' + b.v + 'K',
+        onClick: () => this.setState({ active: i }),
+        barStyle: 'width:100%;max-width:46px;border-radius:12px 12px 6px 6px;transform-origin:bottom;animation:rvRise .55s cubic-bezier(.2,.8,.2,1) both;animation-delay:' + (i * 60) + 'ms;transition:background .2s ease,box-shadow .25s ease;height:' + ((b.v / max) * PH).toFixed(1) + 'px;'
+          + (on
+            ? 'background:' + a + ';box-shadow:0 0 26px ' + a + '55, 0 0 0 1px ' + a + ';'
+            : 'background:rgba(210,255,0,.16);box-shadow:none;'),
+        barHover: on ? 'box-shadow:0 0 34px ' + a + '77, 0 0 0 1px ' + a + ';' : 'background:rgba(210,255,0,.28);',
+        badgeStyle: 'position:absolute;bottom:' + (((b.v / max) * PH) + 14).toFixed(1) + 'px;left:50%;transform:translateX(-50%);padding:5px 10px;border-radius:8px;background:' + a + ';color:#0D110D;font-size:11.5px;font-weight:800;white-space:nowrap;box-shadow:0 8px 20px rgba(0,0,0,.45);animation:rvFade .3s ease both',
+        dotStyle: 'position:absolute;bottom:' + ((b.trend / max) * PH - 4).toFixed(1) + 'px;left:50%;transform:translateX(-50%);width:8px;height:8px;border-radius:50%;background:#0D110D;border:2px solid ' + a,
+        labelStyle: 'height:26px;display:flex;align-items:center;font-size:11.5px;font-weight:' + (on ? '800' : '600') + ';color:' + (on ? a : '#8E9B8E') + ';line-height:1'
+      };
+    });
+
+    const n = set.bars.length, W = 600;
+    const pts = set.bars.map((b, i) => [((i + 0.5) / n) * W, PH - (b.trend / max) * PH]);
+    let d = 'M' + pts[0][0].toFixed(1) + ',' + pts[0][1].toFixed(1);
+    for (let i = 1; i < pts.length; i++) {
+      const p = pts[i - 1], c = pts[i], mx = (p[0] + c[0]) / 2;
+      d += ' C' + mx.toFixed(1) + ',' + p[1].toFixed(1) + ' ' + mx.toFixed(1) + ',' + c[1].toFixed(1) + ' ' + c[0].toFixed(1) + ',' + c[1].toFixed(1);
+    }
+
+    const rangeOptions = [['6M', '6 Months'], ['1Y', '1 Year']].map(([id, label]) => ({
+      label,
+      onClick: () => this.setState({ range: id, menu: false, active: null }),
+      style: 'display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;padding:10px 12px;border-radius:10px;border:none;background:transparent;cursor:pointer;font-family:Manrope,sans-serif;font-size:12.5px;font-weight:700;text-align:left;transition:background .15s ease;color:' + (this.range === id ? a : 'rgba(255,255,255,.8)'),
+      tickStyle: 'color:' + a + ';font-size:11px;opacity:' + (this.range === id ? '1' : '0')
+    }));
+
+    const months = set.months.map(m => {
+      const pct = parseInt(m.margin, 10);
+      const good = pct >= 60;
+      return Object.assign({}, m, {
+        marginStyle: 'padding:5px 9px;border-radius:100px;font-size:11px;font-weight:800;white-space:nowrap;'
+          + (good ? 'background:rgba(210,255,0,.13);color:' + a : 'background:rgba(142,155,142,.14);color:#8E9B8E')
+      });
+    });
+
+    const net = set.bars[this.activeIdx];
+    return {
+      bars, months, rangeOptions, showTrend,
+      trendPath: d,
+      menuOpen: this.state.menu,
+      toggleMenu: () => this.setState(s => ({ menu: !s.menu })),
+      rangeLabel: this.range === '1Y' ? '1 Year' : '6 Months',
+      rangeCaption: set.caption,
+      yTicks: ['$0', '$20K', '$40K', '$60K', '$80K'],
+      netValue: '+ $' + (net.v * 108).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }),
+      netDelta: '+18% vs last month',
+      netCaption: net.label + ' · after refunds and platform fees',
+      miniStats: [
+        { label: 'Bookings', value: (net.v * 4) + '' },
+        { label: 'Avg. slot', value: '$' + (24 + (net.v % 9)) }
+      ]
+    };
+  }
+}
+
+</script>
+</body>
+</html>

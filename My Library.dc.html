@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Arsenal:wght@400;700&family=Manrope:wght@400;500;600;700;800&family=Permanent+Marker&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:'Manrope',system-ui,sans-serif;background:#070d0a;color:#f3f6f2}
+  a{color:inherit;text-decoration:none}
+  a:hover{color:#e8ff3a}
+  ::selection{background:#e8ff3a;color:#0a1410}
+  .lib-inp::placeholder{color:rgba(243,246,242,.4)}
+  .lib-inp:focus{border-color:#e8ff3a;outline:none}
+  @keyframes libFade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+  .lib-fade{animation:libFade .4s ease both}
+  @media(max-width:860px){.lib-podium{grid-template-columns:1fr!important;padding-top:26px!important}.lib-pcard{transform:none!important}.lib-head{flex-direction:column!important;align-items:flex-start!important}}
+  @media(max-width:620px){.lib-grid{grid-template-columns:1fr!important}}
+  .lib-tabs{scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.18) transparent}
+  .lib-tabs::-webkit-scrollbar{height:5px}
+  .lib-tabs::-webkit-scrollbar-thumb{background:rgba(255,255,255,.18);border-radius:100px}
+  .lib-tabs::-webkit-scrollbar-track{background:transparent}
+  .lib-tabs button{flex:none;white-space:nowrap}
+</style>
+<script src="./image-slot.js"></script>
+</helmet>
+<div style="position:relative;min-height:100vh;width:100%;overflow-x:hidden;background:#070d0a">
+
+  <div style="position:fixed;inset:0;z-index:0;background-image:url('uploads/photo-1546608235-3310a2494cdf.avif');background-size:cover;background-position:center;filter:saturate(1.05)"></div>
+  <div style="position:fixed;inset:0;z-index:0;background:linear-gradient(180deg,rgba(7,13,10,.9) 0%,rgba(7,13,10,.78) 32%,rgba(6,12,9,.94) 100%)"></div>
+  <div style="position:fixed;inset:0;z-index:0;background:radial-gradient(120% 90% at 20% 0%,rgba(6,14,10,.5) 0%,rgba(6,14,10,0) 55%)"></div>
+
+  <div style="position:relative;z-index:2;max-width:1180px;margin:0 auto;padding:24px clamp(20px,4vw,48px) 100px">
+
+  <nav style="display:flex;align-items:center;gap:16px;margin-bottom:34px">
+    <a href="Salaxsports Hero.dc.html" style="font-family:'Permanent Marker',cursive;font-size:20px;text-transform:uppercase;color:#f3f6f2;white-space:nowrap">SALA<span style="color:#29c5f6">X</span>SPORTS</a>
+    <a href="Salaxsports Hero.dc.html" style="margin-left:auto;display:inline-flex;align-items:center;gap:7px;padding:9px 17px;border-radius:100px;border:1px solid rgba(255,255,255,.16);background:rgba(10,20,15,.4);backdrop-filter:blur(10px);font-size:12.5px;font-weight:700" style-hover="border-color:rgba(232,255,58,.55)"><span style="font-size:14px">‹</span>Back to booking</a>
+  </nav>
+
+  <!-- Title + segmented tabs -->
+  <div class="lib-head" style="display:flex;flex-direction:column;gap:20px;margin-bottom:34px">
+    <div>
+      <div style="display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#e8ff3a;margin-bottom:10px"><span style="width:6px;height:6px;border-radius:50%;background:#e8ff3a"></span>Your Highlights</div>
+      <h1 style="font-family:'Arsenal';font-weight:700;font-size:clamp(30px,4.4vw,46px);text-transform:uppercase;letter-spacing:-.015em;line-height:.95;margin:0">My Library</h1>
+    </div>
+    <div class="lib-tabs" style="display:flex;gap:5px;padding:5px;border-radius:100px;background:rgba(9,17,12,.55);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(12px);overflow-x:auto;flex-wrap:nowrap;max-width:100%;min-width:0;align-self:center">
+      <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="7">
+        <button onClick="{{ t.onClick }}" style="{{ t.style }}">{{ t.label }}<span style="{{ t.badgeStyle }}">{{ t.count }}</span></button>
+      </sc-for>
+    </div>
+  </div>
+
+  <!-- ============ CLIPS ============ -->
+  <sc-if value="{{ isClips }}" hint-placeholder-val="{{ true }}">
+  <div class="lib-fade">
+
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:6px;flex-wrap:wrap">
+      <div>
+        <div style="display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#e8ff3a;margin-bottom:8px"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.2 6.8.9-5 4.7 1.3 6.7L12 18.9 5.9 21.4l1.3-6.7-5-4.7 6.8-.9z"/></svg>Goal of the Week</div>
+        <h2 style="font-family:'Arsenal';font-weight:700;font-size:clamp(22px,2.8vw,30px);text-transform:uppercase;letter-spacing:-.01em;line-height:1;margin:0">Top 3 most liked</h2>
+        <p style="font-size:13px;font-weight:500;opacity:.55;margin:9px 0 0;max-width:46ch">Ranked automatically by community likes. Upload your goal and climb the podium.</p>
+      </div>
+      <button onClick="{{ addClip }}" style="display:inline-flex;align-items:center;gap:9px;padding:12px 20px;border-radius:100px;border:none;background:#e8ff3a;color:#0a1410;font-family:'Manrope',sans-serif;font-size:13.5px;font-weight:800;cursor:pointer;box-shadow:0 8px 22px rgba(232,255,58,.28);flex:none" style-hover="transform:translateY(-2px)"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>Upload clip</button>
+    </div>
+
+    <!-- Podium -->
+    <div class="lib-podium" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:end;padding-top:38px;margin-top:14px">
+      <sc-for list="{{ podium }}" as="p" hint-placeholder-count="3">
+        <div class="lib-pcard" style="{{ p.cardStyle }}">
+          <div style="{{ p.medalStyle }}">{{ p.rank }}</div>
+          <div style="position:relative;aspect-ratio:16/10;border-radius:13px;overflow:hidden;background:#05090c">
+            <image-slot id="{{ p.slotId }}" shape="rect" placeholder="Winning goal"></image-slot>
+            <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,9,12,0) 55%,rgba(5,9,12,.55))"></div>
+            <span style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.16);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;pointer-events:none;z-index:2"><span style="width:0;height:0;border-top:8px solid transparent;border-bottom:8px solid transparent;border-left:13px solid #fff;margin-left:4px"></span></span>
+          </div>
+          <div style="display:flex;align-items:center;gap:7px;margin:15px 2px 0">
+            <span style="font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;{{ p.wordColor }}">{{ p.rankWord }}</span>
+            <sc-if value="{{ p.mine }}" hint-placeholder-val="{{ false }}"><span style="padding:2px 8px;border-radius:100px;border:1px solid rgba(41,197,246,.5);color:#7fd8f6;font-size:9px;font-weight:800;letter-spacing:.04em;text-transform:uppercase">You</span></sc-if>
+          </div>
+          <div style="font-family:'Arsenal';font-weight:700;font-size:18px;margin:6px 2px 2px;line-height:1.1;text-wrap:pretty">{{ p.title }}</div>
+          <div style="font-size:12px;font-weight:500;opacity:.55;margin:3px 2px 0">{{ p.player }} · {{ p.field }}</div>
+          <div style="display:flex;align-items:center;gap:10px;margin:15px 2px 2px">
+            <button onClick="{{ p.onLike }}" style="{{ p.likeStyle }}"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.6-10-9.3C.6 8.5 2 5 5.2 5c2 0 3.3 1.1 4 2.2C9.8 6.1 11.2 5 13.2 5c3.2 0 4.6 3.5 3.2 6.7C21 16.4 12 21 12 21z"/></svg>{{ p.likeLabel }}</button>
+            <span style="font-family:'Arsenal';font-weight:700;font-size:18px;color:#f3f6f2">{{ p.likes }}</span>
+            <span style="font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;opacity:.4">likes</span>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+
+    <!-- Feed -->
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin:48px 0 20px;flex-wrap:wrap">
+      <div>
+        <div style="display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#e8ff3a;margin-bottom:8px"><span style="width:6px;height:6px;border-radius:50%;background:#e8ff3a"></span>All Clips</div>
+        <h2 style="font-family:'Arsenal';font-weight:700;font-size:clamp(20px,2.4vw,26px);text-transform:uppercase;letter-spacing:-.01em;line-height:1;margin:0">Like your favourites</h2>
+      </div>
+      <div style="position:relative;flex:1;max-width:300px;min-width:190px">
+        <span style="position:absolute;left:15px;top:50%;transform:translateY(-50%);opacity:.45;display:flex"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg></span>
+        <input class="lib-inp" placeholder="Search goals…" style="width:100%;padding:11px 16px 11px 40px;border-radius:100px;border:1px solid rgba(255,255,255,.14);background:rgba(9,17,12,.55);backdrop-filter:blur(10px);color:#f3f6f2;font-family:'Manrope',sans-serif;font-size:13.5px;font-weight:500">
+      </div>
+    </div>
+
+    <div class="lib-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px">
+      <button onClick="{{ addClip }}" style="min-height:230px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;border:2px dashed rgba(232,255,58,.32);border-radius:18px;background:rgba(232,255,58,.03);color:#e8ff3a;cursor:pointer;font-family:'Manrope',sans-serif" style-hover="background:rgba(232,255,58,.08);border-color:rgba(232,255,58,.6)">
+        <span style="width:50px;height:50px;border-radius:50%;background:rgba(232,255,58,.13);display:flex;align-items:center;justify-content:center"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span>
+        <span style="font-family:'Arsenal';font-weight:700;font-size:16px;text-transform:uppercase">Upload your goal</span>
+        <span style="font-size:11.5px;font-weight:500;color:rgba(243,246,242,.5);max-width:22ch;text-align:center">Enter the race and get liked</span>
+      </button>
+      <sc-for list="{{ feed }}" as="c" hint-placeholder-count="5">
+        <div style="background:rgba(9,17,12,.6);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:14px;backdrop-filter:blur(14px);transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease" style-hover="transform:translateY(-4px);box-shadow:0 20px 48px rgba(0,0,0,.45);border-color:rgba(232,255,58,.22)">
+          <div style="position:relative;aspect-ratio:16/10;border-radius:12px;overflow:hidden;background:#05090c">
+            <image-slot id="{{ c.slotId }}" shape="rect" placeholder="Goal clip"></image-slot>
+            <span style="position:absolute;left:10px;top:10px;z-index:3;font-family:'Arsenal';font-weight:700;font-size:12px;padding:3px 9px;border-radius:8px;background:rgba(5,9,12,.72);color:rgba(243,246,242,.85)">{{ c.pos }}</span>
+            <span style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;pointer-events:none;z-index:2"><span style="width:0;height:0;border-top:7px solid transparent;border-bottom:7px solid transparent;border-left:12px solid #fff;margin-left:3px"></span></span>
+            <sc-if value="{{ c.mine }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;right:10px;top:10px;z-index:3;padding:3px 9px;border-radius:100px;background:rgba(41,197,246,.92);color:#04121a;font-size:9.5px;font-weight:800;letter-spacing:.04em;text-transform:uppercase">Your clip</span></sc-if>
+          </div>
+          <div style="font-family:'Arsenal';font-weight:700;font-size:16px;margin:12px 2px 2px;line-height:1.1;text-wrap:pretty">{{ c.title }}</div>
+          <div style="font-size:11.5px;font-weight:500;opacity:.55;margin:3px 2px 0">{{ c.player }} · {{ c.field }}</div>
+          <div style="display:flex;align-items:center;gap:10px;margin:14px 2px 2px;padding-top:13px;border-top:1px solid rgba(255,255,255,.08)">
+            <button onClick="{{ c.onLike }}" style="{{ c.likeStyle }}"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.6-10-9.3C.6 8.5 2 5 5.2 5c2 0 3.3 1.1 4 2.2C9.8 6.1 11.2 5 13.2 5c3.2 0 4.6 3.5 3.2 6.7C21 16.4 12 21 12 21z"/></svg>{{ c.likeLabel }}</button>
+            <span style="font-family:'Arsenal';font-weight:700;font-size:16px;color:#f3f6f2;margin-left:auto">{{ c.likes }}</span>
+            <span style="font-size:9.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;opacity:.4">likes</span>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+  </sc-if>
+
+  <!-- ============ BOOKINGS ============ -->
+  <sc-if value="{{ isBookings }}" hint-placeholder-val="{{ false }}">
+  <div class="lib-fade">
+    <div style="margin-bottom:22px">
+      <div style="display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#e8ff3a;margin-bottom:8px"><span style="width:6px;height:6px;border-radius:50%;background:#e8ff3a"></span>Reserved Slots</div>
+      <h2 style="font-family:'Arsenal';font-weight:700;font-size:clamp(22px,2.8vw,30px);text-transform:uppercase;letter-spacing:-.01em;line-height:1;margin:0">My Bookings</h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <sc-for list="{{ bookings }}" as="b" hint-placeholder-count="3">
+        <div style="display:flex;align-items:center;gap:16px;padding:18px 22px;background:rgba(9,17,12,.6);border:1px solid rgba(255,255,255,.1);border-radius:14px;backdrop-filter:blur(14px)">
+          <div style="width:44px;height:44px;border-radius:12px;background:rgba(232,255,58,.12);color:#e8ff3a;display:flex;align-items:center;justify-content:center;flex:none"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div>
+          <div style="min-width:0;flex:1"><div style="font-size:16px;font-weight:700;line-height:1.2">{{ b.venue }}</div><div style="font-size:12.5px;font-weight:500;opacity:.55;margin-top:3px">{{ b.when }}</div></div>
+          <span style="flex:none;padding:6px 14px;border:1px solid rgba(232,255,58,.4);border-radius:8px;color:#e8ff3a;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase">{{ b.status }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+  </sc-if>
+
+  <!-- ============ TAGGED ============ -->
+  <sc-if value="{{ isTagged }}" hint-placeholder-val="{{ false }}">
+  <div class="lib-fade">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:22px;flex-wrap:wrap">
+      <div>
+        <div style="display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#e8ff3a;margin-bottom:8px"><span style="width:6px;height:6px;border-radius:50%;background:#e8ff3a"></span>You're in these</div>
+        <h2 style="font-family:'Arsenal';font-weight:700;font-size:clamp(22px,2.8vw,30px);text-transform:uppercase;letter-spacing:-.01em;line-height:1;margin:0">Tagged Clips</h2>
+        <p style="font-size:13px;font-weight:500;opacity:.55;margin:9px 0 0;max-width:52ch">Clips other players tagged you in appear here automatically. Remove a tag and it leaves your library.</p>
+      </div>
+    </div>
+    <div class="lib-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px">
+      <sc-for list="{{ tagged }}" as="t" hint-placeholder-count="3">
+        <div style="background:rgba(9,17,12,.6);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:14px;backdrop-filter:blur(14px);transition:transform .2s ease,border-color .2s ease" style-hover="transform:translateY(-4px);border-color:rgba(232,255,58,.22)">
+          <div style="position:relative;aspect-ratio:16/10;border-radius:12px;overflow:hidden;background:#05090c">
+            <image-slot id="{{ t.slotId }}" shape="rect" placeholder="Tagged clip"></image-slot>
+            <span style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;pointer-events:none;z-index:2"><span style="width:0;height:0;border-top:7px solid transparent;border-bottom:7px solid transparent;border-left:12px solid #fff;margin-left:3px"></span></span>
+            <span style="position:absolute;right:10px;top:10px;z-index:3;padding:3px 9px;border-radius:100px;background:rgba(41,197,246,.92);color:#04121a;font-size:9.5px;font-weight:800;letter-spacing:.04em;text-transform:uppercase">{{ t.role }}</span>
+          </div>
+          <div style="font-family:'Arsenal';font-weight:700;font-size:16px;margin:12px 2px 2px;line-height:1.1;text-wrap:pretty">{{ t.title }}</div>
+          <div style="font-size:11.5px;font-weight:500;opacity:.55;margin:3px 2px 0">Tagged by {{ t.by }} · {{ t.field }}</div>
+          <div style="display:flex;align-items:center;gap:10px;margin:14px 2px 2px;padding-top:13px;border-top:1px solid rgba(255,255,255,.08)">
+            <span style="font-size:11.5px;font-weight:600;opacity:.5">{{ t.when }}</span>
+            <button onClick="{{ t.onRemove }}" style="margin-left:auto;padding:7px 14px;border-radius:100px;border:1px solid rgba(255,255,255,.18);background:transparent;color:rgba(243,246,242,.75);font-family:Manrope,sans-serif;font-size:12px;font-weight:700;cursor:pointer" style-hover="border-color:rgba(255,120,120,.6);color:#ff9a9a">Remove tag</button>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+  </sc-if>
+
+  <!-- ============ SQUADS ============ -->
+  <sc-if value="{{ isSquads }}" hint-placeholder-val="{{ false }}">
+  <div class="lib-fade">
+    <div style="margin-bottom:22px">
+      <div style="display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#e8ff3a;margin-bottom:8px"><span style="width:6px;height:6px;border-radius:50%;background:#e8ff3a"></span>Season record</div>
+      <h2 style="font-family:'Arsenal';font-weight:700;font-size:clamp(22px,2.8vw,30px);text-transform:uppercase;letter-spacing:-.01em;line-height:1;margin:0">My Squads</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px">
+      <sc-for list="{{ squads }}" as="s" hint-placeholder-count="2">
+        <div style="background:rgba(9,17,12,.62);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:22px;backdrop-filter:blur(14px)">
+          <div style="display:flex;align-items:center;gap:14px">
+            <span style="{{ s.crestStyle }}">{{ s.initials }}</span>
+            <span style="display:flex;flex-direction:column;gap:4px;min-width:0">
+              <span style="font-family:'Arsenal';font-weight:700;font-size:20px;line-height:1.1;text-transform:uppercase">{{ s.name }}</span>
+              <span style="font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;opacity:.45">{{ s.league }}</span>
+            </span>
+          </div>
+          <div style="display:flex;margin-top:20px;padding:16px 0;border-top:1px solid rgba(255,255,255,.09);border-bottom:1px solid rgba(255,255,255,.09)">
+            <span style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px">
+              <span style="font-family:'Arsenal';font-weight:700;font-size:30px;line-height:1;color:#e8ff3a">{{ s.wins }}</span>
+              <span style="font-size:10px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;opacity:.45">Wins</span>
+            </span>
+            <span style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;border-left:1px solid rgba(255,255,255,.09)">
+              <span style="font-family:'Arsenal';font-weight:700;font-size:30px;line-height:1;color:#e8ff3a">{{ s.goals }}</span>
+              <span style="font-size:10px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;opacity:.45">Goals</span>
+            </span>
+            <span style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;border-left:1px solid rgba(255,255,255,.09)">
+              <span style="font-family:'Arsenal';font-weight:700;font-size:30px;line-height:1">{{ s.played }}</span>
+              <span style="font-size:10px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;opacity:.45">Played</span>
+            </span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;margin-top:18px">
+            <span style="width:38px;height:38px;border-radius:50%;background:rgba(232,255,58,.13);color:#e8ff3a;display:flex;align-items:center;justify-content:center;flex:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.2 6.8.9-5 4.7 1.3 6.7L12 18.9 5.9 21.4l1.3-6.7-5-4.7 6.8-.9z"/></svg></span>
+            <span style="display:flex;flex-direction:column;gap:3px">
+              <span style="font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;opacity:.45">Top scorer</span>
+              <span style="font-size:14.5px;font-weight:800">{{ s.topScorer }} · {{ s.topGoals }} goals</span>
+            </span>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+  </sc-if>
+
+  <!-- ============ PAYMENTS ============ -->
+  <sc-if value="{{ isPayments }}" hint-placeholder-val="{{ false }}">
+  <div class="lib-fade">
+    <div style="margin-bottom:22px">
+      <div style="display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#e8ff3a;margin-bottom:8px"><span style="width:6px;height:6px;border-radius:50%;background:#e8ff3a"></span>Shared cost</div>
+      <h2 style="font-family:'Arsenal';font-weight:700;font-size:clamp(22px,2.8vw,30px);text-transform:uppercase;letter-spacing:-.01em;line-height:1;margin:0">Split a Booking</h2>
+      <p style="font-size:13px;font-weight:500;opacity:.55;margin:9px 0 0;max-width:54ch">Every booking is divided across the squad. Nudge whoever hasn't paid yet.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <sc-for list="{{ splits }}" as="sp" hint-placeholder-count="2">
+        <div style="background:rgba(9,17,12,.62);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:22px;backdrop-filter:blur(14px)">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap">
+            <div style="display:flex;flex-direction:column;gap:5px">
+              <span style="font-family:'Arsenal';font-weight:700;font-size:19px;line-height:1.15">{{ sp.venue }}</span>
+              <span style="font-size:12px;font-weight:600;opacity:.55">{{ sp.when }}</span>
+            </div>
+            <div style="display:flex;gap:26px;flex-wrap:wrap">
+              <span style="display:flex;flex-direction:column;gap:4px">
+                <span style="font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;opacity:.45">Total</span>
+                <span style="font-family:'Arsenal';font-weight:700;font-size:22px;line-height:1">{{ sp.total }}</span>
+              </span>
+              <span style="display:flex;flex-direction:column;gap:4px">
+                <span style="font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;opacity:.45">Per player</span>
+                <span style="font-family:'Arsenal';font-weight:700;font-size:22px;line-height:1;color:#e8ff3a">{{ sp.each }}</span>
+              </span>
+            </div>
+          </div>
+          <div style="height:7px;border-radius:100px;background:rgba(255,255,255,.08);margin:20px 0 12px;overflow:hidden">
+            <div style="{{ sp.barStyle }}"></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+            <span style="font-size:12px;font-weight:700;opacity:.6">{{ sp.progressLabel }}</span>
+            <button onClick="{{ sp.onRemind }}" style="{{ sp.remindStyle }}">{{ sp.remindLabel }}</button>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;padding-top:18px;border-top:1px solid rgba(255,255,255,.09)">
+            <sc-for list="{{ sp.members }}" as="m" hint-placeholder-count="6">
+              <span style="{{ m.chipStyle }}">{{ m.name }} · {{ m.state }}</span>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+  </sc-if>
+
+  <!-- ============ DOWNLOADS ============ -->
+  <sc-if value="{{ isDownloads }}" hint-placeholder-val="{{ false }}">
+  <div class="lib-fade">
+    <div style="margin-bottom:22px">
+      <div style="display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#e8ff3a;margin-bottom:8px"><span style="width:6px;height:6px;border-radius:50%;background:#e8ff3a"></span>Offline &amp; shared</div>
+      <h2 style="font-family:'Arsenal';font-weight:700;font-size:clamp(22px,2.8vw,30px);text-transform:uppercase;letter-spacing:-.01em;line-height:1;margin:0">Downloads</h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:11px">
+      <sc-for list="{{ downloads }}" as="d" hint-placeholder-count="4">
+        <div style="display:flex;align-items:center;gap:16px;padding:16px 20px;background:rgba(9,17,12,.6);border:1px solid rgba(255,255,255,.1);border-radius:14px;flex-wrap:wrap;position:relative;z-index:{{ d.layer }}">
+          <span style="position:relative;flex:none;width:86px;height:52px;border-radius:9px;overflow:hidden;background:#05090c;display:block">
+            <image-slot id="{{ d.slotId }}" shape="rect" placeholder="Clip"></image-slot>
+          </span>
+          <span style="min-width:0;flex:1;display:flex;flex-direction:column;gap:4px">
+            <span style="font-size:15px;font-weight:700;line-height:1.2">{{ d.title }}</span>
+            <span style="font-size:11.5px;font-weight:600;opacity:.5">{{ d.meta }}</span>
+          </span>
+          <span style="{{ d.stateStyle }}">{{ d.stateLabel }}</span>
+          <span style="display:flex;gap:8px;flex:none;position:relative">
+            <button onClick="{{ d.onDownload }}" style="{{ d.dlStyle }}">{{ d.dlLabel }}</button>
+            <button onClick="{{ d.onShare }}" style="{{ d.shareStyle }}">{{ d.shareLabel }}</button>
+            <sc-if value="{{ d.shareOpen }}" hint-placeholder-val="{{ false }}">
+              <span style="{{ d.popStyle }}">
+                <span style="font-size:9.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;opacity:.42;padding:5px 9px 7px">Share to</span>
+                <button onClick="{{ d.onInstagram }}" style="{{ d.platformStyle }}" style-hover="background:rgba(255,255,255,.07)">
+                  <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#e1306c" stroke-width="1.9" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.4 6.6h.01"/></svg>
+                  Instagram
+                </button>
+                <button onClick="{{ d.onWhatsapp }}" style="{{ d.platformStyle }}" style-hover="background:rgba(255,255,255,.07)">
+                  <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#25d366" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 11.6a8.5 8.5 0 01-12.6 7.4L3.5 20.5l1.5-4.4A8.5 8.5 0 1120.5 11.6z"/><path d="M9 9.2c0 3 2.2 5.2 5.2 5.2.6 0 1.1-.5 1.1-1.1l-1.7-.8-.8.9c-1-.5-1.9-1.4-2.4-2.4l.9-.8-.8-1.7c-.6 0-1.5.2-1.5 1.7z" fill="#25d366" stroke="none"/></svg>
+                  WhatsApp
+                </button>
+                <button onClick="{{ d.onTiktok }}" style="{{ d.platformStyle }}" style-hover="background:rgba(255,255,255,.07)">
+                  <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#f3f6f2" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14.2 3.2v10.6a3.4 3.4 0 11-3.4-3.4c.3 0 .6 0 .9.1"/><path d="M14.2 3.2c.4 2.4 2.1 4 4.5 4.2" stroke="#25f4ee"/></svg>
+                  TikTok
+                </button>
+                <span style="height:1px;background:rgba(255,255,255,.1);margin:5px 4px"></span>
+                <button onClick="{{ d.onCopy }}" style="{{ d.copyStyle }}" style-hover="background:rgba(255,255,255,.07)">
+                  <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 14.5l5-5M8.6 12.3l-1.7 1.7a3 3 0 004.3 4.3l1.7-1.7M15.4 11.7l1.7-1.7a3 3 0 00-4.3-4.3l-1.7 1.7"/></svg>
+                  {{ d.copyLabel }}
+                </button>
+              </span>
+            </sc-if>
+          </span>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+  </sc-if>
+
+  <!-- ============ NOTIFICATIONS ============ -->
+  <sc-if value="{{ isNotifs }}" hint-placeholder-val="{{ false }}">
+  <div class="lib-fade">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:22px;flex-wrap:wrap">
+      <div>
+        <div style="display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#e8ff3a;margin-bottom:8px"><span style="width:6px;height:6px;border-radius:50%;background:#e8ff3a"></span>Activity</div>
+        <h2 style="font-family:'Arsenal';font-weight:700;font-size:clamp(22px,2.8vw,30px);text-transform:uppercase;letter-spacing:-.01em;line-height:1;margin:0">Notifications</h2>
+      </div>
+      <button onClick="{{ markAllRead }}" style="padding:10px 18px;border-radius:100px;border:1px solid rgba(255,255,255,.18);background:transparent;color:rgba(243,246,242,.8);font-family:Manrope,sans-serif;font-size:12.5px;font-weight:700;cursor:pointer" style-hover="border-color:rgba(232,255,58,.55);color:#e8ff3a">Mark all read</button>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:9px">
+      <sc-for list="{{ notifs }}" as="n" hint-placeholder-count="5">
+        <div style="{{ n.rowStyle }}">
+          <span style="{{ n.iconWrapStyle }}">{{ n.icon }}</span>
+          <span style="min-width:0;flex:1;display:flex;flex-direction:column;gap:4px">
+            <span style="{{ n.titleStyle }}">{{ n.title }}</span>
+            <span style="font-size:12px;font-weight:500;opacity:.55;line-height:1.45">{{ n.body }}</span>
+          </span>
+          <span style="flex:none;font-size:11px;font-weight:700;opacity:.4;white-space:nowrap">{{ n.when }}</span>
+          <sc-if value="{{ n.unread }}" hint-placeholder-val="{{ false }}"><span style="flex:none;width:8px;height:8px;border-radius:50%;background:#e8ff3a"></span></sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+  </sc-if>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:940},&quot;podiumLayout&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;staggered&quot;,&quot;options&quot;:[&quot;staggered&quot;,&quot;level&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Podium&quot;},&quot;accentGlow&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Podium&quot;}}">
+class Component extends DCLogic {
+  state = {
+    tab: 'clips',
+    liked: {},
+    untagged: {}, read: {}, reminded: {}, gotFile: {}, copied: {},
+    shareOpen: null, sharedTo: {},
+    clips: [
+      { id:'g1', title:'Last-minute winner', player:'Ahmed Nur', field:'Downtown Arena', likes:342, mine:false },
+      { id:'g2', title:'Trivela top corner', player:'Ibrahim Ethem', field:'Coast 5-a-side', likes:287, mine:false },
+      { id:'g3', title:'Bicycle kick finish', player:'Mertcan', field:'Elite Futsal Dome', likes:231, mine:false },
+      { id:'g4', title:'Solo run & finish', player:'You', field:'Hodan Sports Park', likes:198, mine:true },
+      { id:'g5', title:'Free-kick missile', player:'Halil İbrahim', field:'Waberi Turf', likes:176, mine:false },
+      { id:'g6', title:'Rabona assist', player:'Ridvan Bozkurt', field:'Wadajir Arena', likes:154, mine:false },
+      { id:'g7', title:'Panenka penalty', player:'Yusuf Demir', field:'Coast 5-a-side', likes:121, mine:false },
+      { id:'g8', title:'Volley from the edge', player:'Emre Karanfil', field:'Downtown Arena', likes:98, mine:true },
+    ],
+  };
+
+  toggleLike(id) {
+    const on = !!this.state.liked[id];
+    this.setState(s => ({
+      liked: { ...s.liked, [id]: !on },
+      clips: s.clips.map(c => c.id === id ? { ...c, likes: c.likes + (on ? -1 : 1) } : c),
+    }));
+  }
+  addClip() {
+    const id = 'u' + Date.now();
+    this.setState(s => ({
+      clips: [...s.clips, { id, title:'My new goal', player:'You', field:'Your upload', likes:0, mine:true }],
+    }));
+  }
+
+  share(id, platform) {
+    this.setState(s => ({ sharedTo: { ...s.sharedTo, [id]: platform }, shareOpen: null }));
+  }
+
+  likeMeta(c) {
+    const on = !!this.state.liked[c.id];
+    const base = 'display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:100px;font-family:Manrope,sans-serif;font-size:12.5px;font-weight:700;cursor:pointer;transition:all .15s ease;';
+    return {
+      likeLabel: on ? 'Liked' : 'Like',
+      onLike: () => this.toggleLike(c.id),
+      likeStyle: on
+        ? base + 'border:none;background:#e8ff3a;color:#0a1410;'
+        : base + 'border:1px solid rgba(232,255,58,.5);background:transparent;color:#e8ff3a;',
+    };
+  }
+
+  renderVals() {
+    const layout = this.props.podiumLayout ?? 'staggered';
+    const glow = this.props.accentGlow ?? true;
+    const MED = {
+      1:{ word:'Gold',   dot:'#e8ff3a', txt:'#0a1410', wc:'color:#e8ff3a' },
+      2:{ word:'Silver', dot:'#d5dcd8', txt:'#0a1410', wc:'color:#c9d2cd' },
+      3:{ word:'Bronze', dot:'#d0894e', txt:'#160b03', wc:'color:#d0894e' },
+    };
+
+    const sorted = [...this.state.clips].sort((a,b) => b.likes - a.likes);
+
+    const mkPod = (c, rank) => {
+      const m = MED[rank];
+      const lifted = layout === 'staggered' && rank === 1;
+      let cardStyle = 'position:relative;background:rgba(9,17,12,.62);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:16px;backdrop-filter:blur(14px);transition:transform .2s ease;';
+      if (lifted) cardStyle += 'transform:translateY(-26px);';
+      if (rank === 1) cardStyle += 'border-color:rgba(232,255,58,.5);';
+      if (rank === 1 && glow) cardStyle += 'box-shadow:0 26px 60px rgba(232,255,58,.14);';
+      return {
+        ...c,
+        rank,
+        rankWord: m.word,
+        wordColor: m.wc,
+        slotId: 'lib-' + c.id,
+        cardStyle,
+        medalStyle: 'position:absolute;top:-19px;left:50%;transform:translateX(-50%);z-index:5;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:Arsenal,sans-serif;font-weight:700;font-size:18px;background:' + m.dot + ';color:' + m.txt + ';box-shadow:0 8px 20px rgba(0,0,0,.4)',
+        ...this.likeMeta(c),
+      };
+    };
+
+    const topRanked = sorted.slice(0, 3).map((c, i) => mkPod(c, i + 1));
+    // display order: 2nd, 1st, 3rd — classic podium
+    const podium = [topRanked[1], topRanked[0], topRanked[2]].filter(Boolean);
+
+    const feed = sorted.slice(3).map((c, i) => ({
+      ...c,
+      pos: '#' + (i + 4),
+      slotId: 'lib-' + c.id,
+      ...this.likeMeta(c),
+    }));
+
+    const bookings = [
+      { venue:'Spondias Salax', when:'7/30/2026, 3:00 AM – 4:00 AM', status:'Confirmed' },
+      { venue:'Spondias Salax', when:'7/30/2026, 6:00 PM – 7:00 PM', status:'Confirmed' },
+      { venue:'Downtown Arena', when:'8/02/2026, 8:00 PM – 9:00 PM', status:'Confirmed' },
+    ];
+
+    const st = this.state;
+    const tab = st.tab;
+    const tabOn = 'display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:100px;border:none;background:#e8ff3a;color:#0a1410;font-family:Manrope,sans-serif;font-size:13.5px;font-weight:800;cursor:pointer;';
+    const tabOff = 'display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:100px;border:none;background:transparent;color:rgba(243,246,242,.7);font-family:Manrope,sans-serif;font-size:13.5px;font-weight:700;cursor:pointer;';
+    const badgeOn = 'min-width:22px;height:20px;padding:0 6px;border-radius:100px;background:rgba(10,20,16,.2);color:#0a1410;font-size:11px;font-weight:800;display:inline-flex;align-items:center;justify-content:center';
+    const badgeOff = 'min-width:22px;height:20px;padding:0 6px;border-radius:100px;background:rgba(232,255,58,.16);color:#e8ff3a;font-size:11px;font-weight:800;display:inline-flex;align-items:center;justify-content:center';
+
+    // ---- Tagged ----
+    const taggedAll = [
+      { id:'t1', title:'Team move, tap-in finish', by:'Ibrahim Ethem', field:'Coast 5-a-side', when:'2 days ago', role:'Assist' },
+      { id:'t2', title:'Header off the corner', by:'Mertcan', field:'Downtown Arena', when:'5 days ago', role:'Goal' },
+      { id:'t3', title:'Double save, then counter', by:'Yusuf Demir', field:'Elite Futsal Dome', when:'1 week ago', role:'In frame' },
+    ];
+    const tagged = taggedAll.filter(t => !st.untagged[t.id]).map(t => ({
+      ...t, slotId: 'lib-tag-' + t.id,
+      onRemove: () => this.setState(s => ({ untagged: { ...s.untagged, [t.id]: true } })),
+    }));
+
+    // ---- Squads ----
+    const squads = [
+      { id:'s1', name:'Waberi United', league:'Saturday 7-a-side league', wins:14, goals:63, played:19, topScorer:'You', topGoals:17, crest:'#e8ff3a' },
+      { id:'s2', name:'Coast Rangers', league:'Midweek friendly circuit', wins:8, goals:41, played:15, topScorer:'Mertcan', topGoals:12, crest:'#29c5f6' },
+    ].map(s => ({
+      ...s,
+      initials: s.name.split(' ').map(w => w.charAt(0)).join(''),
+      crestStyle: 'flex:none;width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-family:Arsenal,sans-serif;font-weight:700;font-size:19px;background:' + s.crest + '22;color:' + s.crest + ';border:1px solid ' + s.crest + '55',
+    }));
+
+    // ---- Payments: split a booking ----
+    const chip = (state) => {
+      const paid = state === 'Paid';
+      return 'display:inline-flex;align-items:center;padding:6px 12px;border-radius:100px;font-size:11.5px;font-weight:700;background:' + (paid ? 'rgba(232,255,58,.13)' : 'rgba(255,255,255,.05)') + ';color:' + (paid ? '#e8ff3a' : 'rgba(243,246,242,.55)') + ';border:1px solid ' + (paid ? 'rgba(232,255,58,.35)' : 'rgba(255,255,255,.12)');
+    };
+    const splitsRaw = [
+      { id:'p1', venue:'Spondias Salax · Pitch 2', when:'7/30/2026, 6:00 PM – 7:00 PM', total:900, squad:'Waberi United',
+        members:[['You','Paid'],['Ahmed Nur','Paid'],['Mertcan','Paid'],['Ibrahim Ethem','Pending'],['Yusuf Demir','Pending'],['Halil İbrahim','Paid']] },
+      { id:'p2', venue:'Downtown Arena · Pitch 1', when:'8/02/2026, 8:00 PM – 9:00 PM', total:750, squad:'Coast Rangers',
+        members:[['You','Paid'],['Emre Karanfil','Pending'],['Ridvan Bozkurt','Pending'],['Mertcan','Paid'],['Yusuf Demir','Pending']] },
+    ];
+    const splits = splitsRaw.map(sp => {
+      const paidCount = sp.members.filter(m => m[1] === 'Paid').length;
+      const pct = Math.round((paidCount / sp.members.length) * 100);
+      const sent = !!st.reminded[sp.id];
+      return {
+        ...sp,
+        total: sp.total + '₺',
+        each: Math.round(sp.total / sp.members.length) + '₺',
+        members: sp.members.map(m => ({ name: m[0], state: m[1], chipStyle: chip(m[1]) })),
+        barStyle: 'height:100%;width:' + pct + '%;border-radius:100px;background:#e8ff3a;transition:width .3s ease',
+        progressLabel: paidCount + ' of ' + sp.members.length + ' paid · ' + sp.squad,
+        remindLabel: sent ? 'Reminder sent' : 'Remind ' + (sp.members.length - paidCount) + ' players',
+        onRemind: () => this.setState(s => ({ reminded: { ...s.reminded, [sp.id]: true } })),
+        remindStyle: 'margin-left:auto;padding:9px 17px;border-radius:100px;font-family:Manrope,sans-serif;font-size:12.5px;font-weight:800;cursor:pointer;' + (sent
+          ? 'border:1px solid rgba(255,255,255,.18);background:transparent;color:rgba(243,246,242,.6);'
+          : 'border:none;background:#e8ff3a;color:#0a1410;'),
+      };
+    });
+
+    // ---- Downloads ----
+    const btn = 'flex:none;padding:9px 16px;border-radius:100px;font-family:Manrope,sans-serif;font-size:12.5px;font-weight:800;cursor:pointer;';
+    const downloads = [
+      { id:'d1', title:'Solo run & finish', meta:'1080p · 22 s · 14.2 MB', ready:true },
+      { id:'d2', title:'Volley from the edge', meta:'1080p · 18 s · 11.8 MB', ready:true },
+      { id:'d3', title:'Free-kick missile', meta:'720p · 25 s · 9.4 MB', ready:true },
+      { id:'d4', title:'Saturday full match', meta:'1080p · 92 min · 1.6 GB', ready:false },
+    ].map((d, di, arr) => {
+      const got = !!st.gotFile[d.id];
+      const copied = !!st.copied[d.id];
+      const open = st.shareOpen === d.id;
+      const flip = di >= arr.length - 2;
+      return {
+        ...d, slotId: 'lib-dl-' + d.id,
+        layer: open ? 40 : 1,
+        popStyle: 'position:absolute;' + (flip ? 'bottom:calc(100% + 10px);' : 'top:calc(100% + 10px);')
+          + 'right:0;z-index:41;display:flex;flex-direction:column;gap:4px;padding:9px;min-width:212px;border-radius:16px;background:rgba(10,19,13,.97);border:1px solid rgba(255,255,255,.14);box-shadow:0 22px 50px rgba(0,0,0,.55)',
+        stateLabel: d.ready ? (got ? 'On device' : 'Ready') : 'Processing',
+        stateStyle: 'flex:none;padding:6px 13px;border-radius:100px;font-size:10.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;' + (d.ready
+          ? 'background:rgba(232,255,58,.12);color:#e8ff3a;border:1px solid rgba(232,255,58,.32);'
+          : 'background:rgba(255,255,255,.05);color:rgba(243,246,242,.5);border:1px solid rgba(255,255,255,.12);'),
+        dlLabel: got ? 'Saved' : 'Download',
+        onDownload: () => { if (d.ready) this.setState(s => ({ gotFile: { ...s.gotFile, [d.id]: true } })); },
+        dlStyle: btn + (d.ready && !got ? 'border:none;background:#e8ff3a;color:#0a1410;' : 'border:1px solid rgba(255,255,255,.18);background:transparent;color:rgba(243,246,242,.55);'),
+        shareOpen: st.shareOpen === d.id,
+        shareLabel: st.sharedTo[d.id] ? 'Shared' : 'Share',
+        onShare: () => this.setState(s => ({ shareOpen: s.shareOpen === d.id ? null : d.id })),
+        shareStyle: btn + 'border:1px solid ' + (st.shareOpen === d.id || st.sharedTo[d.id] ? 'rgba(232,255,58,.5);background:transparent;color:#e8ff3a;' : 'rgba(255,255,255,.2);background:transparent;color:rgba(243,246,242,.85);'),
+        platformStyle: 'display:flex;align-items:center;gap:11px;width:100%;padding:10px 10px;border-radius:11px;border:none;background:transparent;color:#f3f6f2;font-family:Manrope,sans-serif;font-size:13px;font-weight:700;cursor:pointer;text-align:left;transition:background .15s ease',
+        onInstagram: () => this.share(d.id, 'Instagram'),
+        onWhatsapp: () => this.share(d.id, 'WhatsApp'),
+        onTiktok: () => this.share(d.id, 'TikTok'),
+        copyLabel: copied ? 'Link copied' : 'Copy link',
+        onCopy: () => this.setState(s => ({ copied: { ...s.copied, [d.id]: true } })),
+        copyStyle: 'display:flex;align-items:center;gap:11px;width:100%;padding:10px;border-radius:11px;border:none;background:transparent;font-family:Manrope,sans-serif;font-size:13px;font-weight:700;cursor:pointer;text-align:left;transition:background .15s ease;color:' + (copied ? '#e8ff3a' : 'rgba(243,246,242,.75)'),
+      };
+    });
+
+    // ---- Notifications ----
+    const ico = (d) => React.createElement('svg', { width:17, height:17, viewBox:'0 0 24 24', fill:'none', stroke:'currentColor', strokeWidth:2, strokeLinecap:'round', strokeLinejoin:'round' }, React.createElement('path', { d }));
+    const notifsRaw = [
+      { id:'n1', title:'Your goal moved to #2', body:'“Solo run & finish” passed Bicycle kick finish with 12 new likes.', when:'12m', kind:'star', unread:true },
+      { id:'n2', title:'Ibrahim Ethem tagged you', body:'Team move, tap-in finish — Coast 5-a-side.', when:'2h', kind:'tag', unread:true },
+      { id:'n3', title:'Saturday recording is ready', body:'Waberi United vs Coast Rangers, 92 minutes, 6 camera angles.', when:'5h', kind:'film', unread:true },
+      { id:'n4', title:'Split payment received', body:'Mertcan paid 150₺ toward Spondias Salax, Pitch 2.', when:'1d', kind:'card', unread:false },
+      { id:'n5', title:'Booking confirmed', body:'Downtown Arena, 8/02/2026 at 8:00 PM.', when:'2d', kind:'cal', unread:false },
+    ];
+    const PATHS = {
+      star:'M12 2l2.9 6.2 6.8.9-5 4.7 1.3 6.7L12 18.9 5.9 21.4l1.3-6.7-5-4.7 6.8-.9z',
+      tag:'M12.5 3.5H20.5v8L11 21 3.5 13.5 12.5 3.5zM17 7.2h.01',
+      film:'M3.5 5.5h17v13h-17zM8 5.5v13M16 5.5v13M3.5 12h17',
+      card:'M3 7h18v11H3zM3 11h18',
+      cal:'M4 5h16v16H4zM16 3v4M8 3v4M4 11h16',
+    };
+    const notifs = notifsRaw.map(n => {
+      const unread = n.unread && !st.read[n.id];
+      return {
+        ...n, unread,
+        icon: ico(PATHS[n.kind]),
+        rowStyle: 'display:flex;align-items:flex-start;gap:15px;padding:17px 20px;border-radius:14px;backdrop-filter:blur(14px);background:' + (unread ? 'rgba(232,255,58,.05)' : 'rgba(9,17,12,.6)') + ';border:1px solid ' + (unread ? 'rgba(232,255,58,.22)' : 'rgba(255,255,255,.1)'),
+        iconWrapStyle: 'flex:none;width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;background:rgba(232,255,58,.12);color:#e8ff3a',
+        titleStyle: 'font-size:14.5px;font-weight:' + (unread ? '800' : '700') + ';line-height:1.25',
+      };
+    });
+
+    const TABS = [
+      ['clips','Clips', this.state.clips.length],
+      ['tagged','Tagged', tagged.length],
+      ['squads','Squads', squads.length],
+      ['bookings','Bookings', bookings.length],
+      ['payments','Split', splits.length],
+      ['downloads','Downloads', downloads.length],
+      ['notifs','Notifications', notifs.filter(n => n.unread).length],
+    ];
+
+    return {
+      isClips: tab === 'clips', isBookings: tab === 'bookings', isTagged: tab === 'tagged',
+      isSquads: tab === 'squads', isPayments: tab === 'payments',
+      isDownloads: tab === 'downloads', isNotifs: tab === 'notifs',
+      tabs: TABS.map(([key, label, count]) => {
+        const active = tab === key;
+        return {
+          label, count,
+          onClick: () => this.setState({ tab: key }),
+          style: active ? tabOn : tabOff,
+          badgeStyle: active ? badgeOn : badgeOff,
+        };
+      }),
+      podium, feed, bookings, tagged, squads, splits, downloads, notifs,
+      markAllRead: () => this.setState(() => {
+        const read = {};
+        notifsRaw.forEach(n => { read[n.id] = true; });
+        return { read };
+      }),
+      addClip: () => this.addClip(),
+    };
+  }
+}
+</script>
+</body>
+</html>

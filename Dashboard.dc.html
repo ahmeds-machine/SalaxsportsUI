@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Arsenal:wght@400;700&family=Manrope:wght@400;500;600;700;800&family=Permanent+Marker&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:'Manrope',system-ui,sans-serif;background:#070d0a;color:#f3f6f2}
+  a{color:inherit;text-decoration:none}
+  a:hover{color:#e8ff3a}
+  ::selection{background:#e8ff3a;color:#0a1410}
+  .dsh-inp{width:100%;padding:11px 14px;border-radius:11px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);color:#f3f6f2;font-family:'Manrope',sans-serif;font-size:14px;font-weight:500;outline:none}
+  .dsh-inp:focus{border-color:#e8ff3a}
+  .dsh-inp::placeholder{color:rgba(243,246,242,.38)}
+  select.dsh-inp{appearance:none;cursor:pointer;padding-right:36px}
+  .dsh-inp option{background:#0d1712}
+  .dsh-lbl{display:block;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;opacity:.5;margin-bottom:7px}
+  @keyframes dshFade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes dshBar{from{height:0}}
+  @keyframes dshGrow{from{transform:scaleX(0)}}
+  @keyframes dshRow{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:translateX(0)}}
+  .dsh-fade{animation:dshFade .38s ease both}
+  .dsh-bar{animation:dshBar .7s cubic-bezier(.22,1,.36,1) both}
+  .dsh-grow{transform-origin:left;animation:dshGrow .85s cubic-bezier(.22,1,.36,1) both}
+  .dsh-tr{animation:dshRow .4s ease both}
+  @media(max-width:1180px){.dsh-bkgrid{grid-template-columns:1fr!important}}
+  @media(max-width:1000px){.dsh-shell{grid-template-columns:1fr!important}.dsh-side{height:auto!important}.dsh-navlist{flex-direction:row!important;overflow-x:auto}.dsh-foot{flex-direction:row!important;align-items:center!important}}
+  @media(max-width:820px){.dsh-kpis{grid-template-columns:repeat(2,1fr)!important}.dsh-split{grid-template-columns:1fr!important}.dsh-hdr{flex-wrap:wrap!important}.dsh-search{flex:1 1 100%!important;order:3}}
+  @media(max-width:640px){.dsh-tr,.dsh-thead{grid-template-columns:1.4fr 92px!important}.dsh-col-sched,.dsh-col-amt{display:none!important}}
+  @media(max-width:520px){.dsh-kpis{grid-template-columns:1fr!important}}
+</style>
+<script src="./image-slot.js"></script>
+</helmet>
+<div style="position:relative;min-height:100vh;padding:16px">
+
+  <div style="position:fixed;inset:0;z-index:0;background-image:url('uploads/photo-1546608235-3310a2494cdf-a6b74b18.avif');background-size:cover;background-position:center"></div>
+  <div style="position:fixed;inset:0;z-index:0;background:linear-gradient(180deg,rgba(8,18,12,.78) 0%,rgba(8,18,12,.42) 34%,rgba(8,18,12,.58) 70%,rgba(6,14,10,.9) 100%)"></div>
+  <div style="position:fixed;inset:0;z-index:0;background:radial-gradient(120% 80% at 18% 42%,rgba(6,14,10,.6) 0%,rgba(6,14,10,0) 55%)"></div>
+
+  <div class="dsh-shell" style="position:relative;z-index:2;display:grid;grid-template-columns:252px 1fr;min-height:calc(100vh - 32px);border:1px solid rgba(255,255,255,.1);border-radius:26px;overflow:hidden;background:rgba(8,14,11,.5);backdrop-filter:blur(22px);box-shadow:0 40px 110px rgba(0,0,0,.55)">
+
+    <!-- Sidebar -->
+    <aside class="dsh-side" style="display:flex;flex-direction:column;padding:24px 18px;border-right:1px solid rgba(255,255,255,.08)">
+      <a href="Salaxsports Hero.dc.html" style="display:flex;align-items:center;gap:9px;padding:0 8px 26px"><span style="font-family:'Permanent Marker',cursive;font-size:19px;text-transform:uppercase;color:#f3f6f2;white-space:nowrap">SALA<span style="color:#29c5f6">X</span>SPORTS</span></a>
+      <nav class="dsh-navlist" style="display:flex;flex-direction:column;gap:4px">
+        <sc-for list="{{ navTop }}" as="n" hint-placeholder-count="3">
+          <button onClick="{{ n.onClick }}" style="{{ n.style }}" style-hover="transform:translateX(3px);filter:brightness(1.12);background:rgba(255,255,255,.06);color:#f3f6f2"><span style="display:flex;flex:none">{{ n.icon }}</span><span style="flex:1;text-align:left">{{ n.label }}</span><sc-if value="{{ n.badge }}" hint-placeholder-val="{{ false }}"><span style="{{ n.badgeStyle }}">{{ n.badge }}</span></sc-if></button>
+        </sc-for>
+      </nav>
+      <div class="dsh-foot" style="margin-top:auto;display:flex;flex-direction:column;gap:4px;padding-top:16px;border-top:1px solid rgba(255,255,255,.08)">
+        <button onClick="{{ settingsNav.onClick }}" style="{{ settingsNav.style }}" style-hover="transform:translateX(3px);filter:brightness(1.12);background:rgba(255,255,255,.06);color:#f3f6f2"><span style="display:flex;flex:none">{{ settingsNav.icon }}</span><span style="flex:1;text-align:left">{{ settingsNav.label }}</span></button>
+        <button onClick="{{ logout }}" style="display:flex;align-items:center;gap:12px;width:100%;padding:11px 13px;border-radius:12px;border:none;background:transparent;color:#ff6b6b;font-family:Manrope,sans-serif;font-size:13.5px;font-weight:700;cursor:pointer" style-hover="background:rgba(255,92,92,.1)"><span style="display:flex;flex:none"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5M21 12H9"/></svg></span>Logout</button>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <div style="min-width:0;display:flex;flex-direction:column">
+
+      <!-- Topbar -->
+      <div style="display:flex;align-items:center;gap:14px;padding:18px 28px;border-bottom:1px solid rgba(255,255,255,.08)">
+        <span style="display:flex;color:#e8ff3a">{{ crumbIcon }}</span>
+        <span style="font-size:16px;font-weight:700">{{ pageTitle }}</span>
+        <div style="display:flex;align-items:center;gap:12px;margin-left:auto">
+          <button style="width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.03);color:#f3f6f2;display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;transition:border-color .18s ease,transform .18s cubic-bezier(.22,1,.36,1),background .18s ease" style-hover="border-color:rgba(232,255,58,.5);background:rgba(232,255,58,.08);transform:translateY(-2px)"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg><span style="position:absolute;top:9px;right:11px;width:7px;height:7px;border-radius:50%;background:#e8ff3a;border:1.5px solid #0d1712"></span></button>
+          <button style="display:flex;align-items:center;gap:8px;padding:5px 10px 5px 5px;border-radius:100px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.03);color:#f3f6f2;cursor:pointer;transition:border-color .18s ease,transform .18s cubic-bezier(.22,1,.36,1)" style-hover="border-color:rgba(232,255,58,.5);transform:translateY(-2px)"><span style="width:30px;height:30px;border-radius:50%;background:#29c5f6;color:#04121a;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px">S</span><span style="font-size:9px;opacity:.6">▼</span></button>
+        </div>
+      </div>
+
+      <!-- Content -->
+      <main style="min-width:0;flex:1;padding:26px clamp(20px,3vw,36px) 60px;overflow-x:hidden">
+
+        <!-- Page header -->
+        <div class="dsh-hdr" style="display:flex;align-items:center;gap:16px;margin-bottom:26px">
+          <div style="min-width:0">
+            <div style="font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#e8ff3a;margin-bottom:7px">{{ eyebrow }}</div>
+            <h1 style="font-family:'Arsenal';font-weight:700;font-size:clamp(28px,3.4vw,40px);text-transform:uppercase;letter-spacing:-.015em;line-height:.95;margin:0">{{ pageTitle }}</h1>
+          </div>
+          <sc-if value="{{ showHeaderBar }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;align-items:center;gap:12px;margin-left:auto">
+            <sc-if value="{{ showSearch }}" hint-placeholder-val="{{ false }}">
+            <div class="dsh-search" style="position:relative">
+              <span style="position:absolute;left:15px;top:50%;transform:translateY(-50%);opacity:.45;display:flex"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg></span>
+              <input class="dsh-inp" placeholder="{{ searchPlaceholder }}" style="width:280px;max-width:100%;padding-left:40px;border-radius:12px;background:rgba(9,17,12,.6)">
+            </div>
+            </sc-if>
+            <button onClick="{{ actionClick }}" style="display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border-radius:12px;border:none;background:#e8ff3a;color:#0a1410;font-family:Manrope,sans-serif;font-size:13.5px;font-weight:800;cursor:pointer;white-space:nowrap;box-shadow:0 8px 20px rgba(232,255,58,.24)" style-hover="transform:translateY(-2px)">{{ actionLabel }}<span style="display:flex">{{ actionIcon }}</span></button>
+          </div>
+          </sc-if>
+        </div>
+
+        <!-- ===== OVERVIEW ===== -->
+        <sc-if value="{{ isOverview }}" hint-placeholder-val="{{ true }}">
+        <div class="dsh-fade">
+          <div class="dsh-kpis" style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:16px">
+            <sc-for list="{{ kpis }}" as="k" hint-placeholder-count="4">
+              <div style="background:rgba(9,17,12,.62);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:18px;transition:transform .2s ease,border-color .2s ease" style-hover="transform:translateY(-3px);border-color:rgba(232,255,58,.28)">
+                <div style="display:flex;align-items:center;justify-content:space-between"><span style="width:36px;height:36px;border-radius:10px;background:rgba(232,255,58,.12);color:#e8ff3a;display:flex;align-items:center;justify-content:center">{{ k.icon }}</span><span style="{{ k.trendStyle }}">{{ k.trend }}</span></div>
+                <div style="font-family:'Arsenal';font-weight:700;font-size:30px;margin:14px 0 2px;line-height:1">{{ k.value }}</div>
+                <div style="font-size:12px;font-weight:500;opacity:.55">{{ k.label }}</div>
+              </div>
+            </sc-for>
+          </div>
+
+          <!-- Today's pitch schedule -->
+          <div style="background:rgba(9,17,12,.62);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:22px;margin-bottom:16px;transition:border-color .25s ease,box-shadow .25s ease" style-hover="border-color:rgba(232,255,58,.28);box-shadow:0 18px 44px rgba(0,0,0,.35)">
+            <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:18px">
+              <div>
+                <div style="font-size:10.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#e8ff3a;margin-bottom:7px">Today · {{ todayLabel }}</div>
+                <div style="font-family:'Arsenal';font-weight:700;font-size:18px">Pitch schedule</div>
+              </div>
+              <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+                <sc-for list="{{ legend }}" as="l" hint-placeholder-count="3">
+                  <span style="display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:700;opacity:.6;transition:opacity .2s ease" style-hover="opacity:1"><span style="{{ l.swatch }}"></span>{{ l.label }}</span>
+                </sc-for>
+              </div>
+            </div>
+            <div>
+              <div>
+                <div style="display:grid;grid-template-columns:minmax(70px,88px) repeat({{ hourCount }},minmax(0,1fr));gap:6px;margin-bottom:7px">
+                  <span></span>
+                  <sc-for list="{{ hours }}" as="h" hint-placeholder-count="10">
+                    <span style="text-align:center;font-size:10px;font-weight:800;letter-spacing:.04em;opacity:.42">{{ h }}</span>
+                  </sc-for>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:6px">
+                  <sc-for list="{{ schedule }}" as="r" hint-placeholder-count="3">
+                    <div style="display:grid;grid-template-columns:minmax(70px,88px) repeat({{ hourCount }},minmax(0,1fr));gap:6px;align-items:center;padding:5px 8px;margin:0 -8px;border-radius:12px">
+                      <span style="display:flex;flex-direction:column;gap:2px;min-width:0;transition:color .22s ease" style-hover="color:#e8ff3a">
+                        <span style="font-size:12.5px;font-weight:800;white-space:nowrap">{{ r.name }}</span>
+                        <span style="font-size:9.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;opacity:.4">{{ r.meta }}</span>
+                      </span>
+                      <sc-for list="{{ r.cells }}" as="c" hint-placeholder-count="10">
+                        <button onClick="{{ c.onClick }}" style="{{ c.style }}" style-hover="transform:translateY(-3px) scale(1.06);filter:brightness(1.35);box-shadow:0 12px 26px rgba(0,0,0,.45);border-color:rgba(232,255,58,.7)">{{ c.label }}</button>
+                      </sc-for>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dsh-split" style="display:grid;grid-template-columns:1.45fr 1fr;gap:16px;align-items:start">
+            <div style="background:rgba(9,17,12,.62);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:22px;display:flex;flex-direction:column">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px"><div style="font-family:'Arsenal';font-weight:700;font-size:18px">Pending requests</div><button onClick="{{ goBookings }}" style="font-size:12px;font-weight:700;color:#e8ff3a;background:none;border:none;cursor:pointer;font-family:Manrope,sans-serif">View all</button></div>
+              <div style="display:flex;flex-direction:column;gap:10px">
+                <sc-for list="{{ pendingPreview }}" as="p" hint-placeholder-count="3">
+                  <div style="display:flex;align-items:center;gap:12px;padding:12px;border-radius:12px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);flex-wrap:wrap;transition:background .2s ease,border-color .2s ease,transform .2s cubic-bezier(.22,1,.36,1)" style-hover="background:rgba(255,255,255,.055);border-color:rgba(232,255,58,.28);transform:translateX(3px)">
+                    <span style="width:34px;height:34px;flex:none;border-radius:9px;background:{{ p.color }};color:#04121a;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px">{{ p.initials }}</span>
+                    <div style="min-width:0;flex:1"><div style="font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ p.name }}</div><div style="font-size:11px;font-weight:500;opacity:.5">{{ p.date }} · {{ p.time }} · {{ p.field }}</div></div>
+                    <span style="font-family:'Arsenal';font-weight:700;font-size:15px;color:#e8ff3a">{{ p.price }}</span>
+                    <span style="display:flex;gap:8px;flex:none">
+                      <button onClick="{{ p.onDecline }}" style="display:inline-flex;align-items:center;gap:6px;padding:8px 13px;border-radius:10px;border:1px solid rgba(255,255,255,.14);background:transparent;color:rgba(243,246,242,.72);font-family:Manrope,sans-serif;font-size:12px;font-weight:700;cursor:pointer;transition:all .18s ease" style-hover="border-color:rgba(255,92,92,.6);background:rgba(255,92,92,.1);color:#ff8f8f"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>Decline</button>
+                      <button onClick="{{ p.onAccept }}" style="display:inline-flex;align-items:center;gap:6px;padding:8px 15px;border-radius:10px;border:none;background:#e8ff3a;color:#0a1410;font-family:Manrope,sans-serif;font-size:12px;font-weight:800;cursor:pointer;box-shadow:0 6px 16px rgba(232,255,58,.24);transition:transform .18s ease" style-hover="transform:translateY(-2px)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Accept</button>
+                    </span>
+                  </div>
+                </sc-for>
+                <sc-if value="{{ noPending }}" hint-placeholder-val="{{ false }}">
+                  <div style="padding:26px 4px;font-size:13px;font-weight:500;opacity:.45">Every request is handled. Nothing waiting on you.</div>
+                </sc-if>
+              </div>
+            </div>
+
+            <div style="display:flex;flex-direction:column;gap:16px">
+              <div style="background:rgba(9,17,12,.62);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:22px">
+                <div style="font-family:'Arsenal';font-weight:700;font-size:18px;margin-bottom:2px">Unsold hours</div>
+                <div style="font-size:12px;font-weight:500;opacity:.5;margin-bottom:16px">{{ unsoldCaption }}</div>
+                <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:16px">
+                  <span style="font-family:'Arsenal';font-weight:700;font-size:38px;line-height:1;color:#e8ff3a">{{ unsoldHours }}</span>
+                  <span style="font-size:12px;font-weight:700;opacity:.5">hours · {{ unsoldValue }} unearned</span>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:8px">
+                  <sc-for list="{{ unsoldSlots }}" as="u" hint-placeholder-count="3">
+                    <div style="display:flex;align-items:center;gap:11px;padding:11px 13px;border-radius:12px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);transition:background .2s ease,border-color .2s ease,transform .2s cubic-bezier(.22,1,.36,1)" style-hover="background:rgba(255,255,255,.055);border-color:rgba(232,255,58,.28);transform:translateX(3px)">
+                      <span style="min-width:0;flex:1;display:flex;flex-direction:column;gap:2px">
+                        <span style="font-size:12.5px;font-weight:700">{{ u.slot }}</span>
+                        <span style="font-size:11px;font-weight:600;opacity:.45">{{ u.field }}</span>
+                      </span>
+                      <button onClick="{{ u.onDiscount }}" style="{{ u.btnStyle }}" style-hover="transform:translateY(-2px);box-shadow:0 8px 18px rgba(232,255,58,.3)">{{ u.btnLabel }}</button>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+
+              <div style="background:rgba(9,17,12,.62);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:22px">
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:4px">
+                  <div style="font-family:'Arsenal';font-weight:700;font-size:18px">Cameras</div>
+                  <span style="{{ camPillStyle }}">{{ camSummary }}</span>
+                </div>
+                <div style="font-size:12px;font-weight:500;opacity:.5;margin-bottom:16px">Recording hardware, checked a minute ago.</div>
+                <div style="display:flex;flex-direction:column;gap:2px">
+                  <sc-for list="{{ cameras }}" as="c" hint-placeholder-count="3">
+                    <div style="display:flex;align-items:center;gap:12px;padding:12px 8px;margin:0 -8px;border-radius:10px;border-top:1px solid rgba(255,255,255,.06);transition:background .2s ease" style-hover="background:rgba(255,255,255,.04)">
+                      <span style="{{ c.dotStyle }}"></span>
+                      <span style="min-width:0;flex:1;font-size:13px;font-weight:700">{{ c.field }}</span>
+                      <span style="{{ c.stateStyle }}">{{ c.state }}</span>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </sc-if>
+
+        <!-- ===== BOOKINGS ===== -->
+        <sc-if value="{{ isBookings }}" hint-placeholder-val="{{ false }}">
+        <div class="dsh-fade dsh-bkgrid" style="display:grid;grid-template-columns:300px 1fr;gap:16px;align-items:start">
+
+          <!-- Calendar rail -->
+          <div style="display:flex;flex-direction:column;gap:16px">
+            <div style="background:rgba(9,17,12,.62);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:18px">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+                <button onClick="{{ calPrev }}" style="width:28px;height:28px;border-radius:9px;border:1px solid rgba(255,255,255,.12);background:transparent;color:#f3f6f2;opacity:.65;cursor:pointer;display:flex;align-items:center;justify-content:center" style-hover="opacity:1;border-color:rgba(232,255,58,.5)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+                <div style="font-family:'Arsenal';font-weight:700;font-size:15.5px;letter-spacing:.01em">{{ calTitle }}</div>
+                <button onClick="{{ calNext }}" style="width:28px;height:28px;border-radius:9px;border:1px solid rgba(255,255,255,.12);background:transparent;color:#f3f6f2;opacity:.65;cursor:pointer;display:flex;align-items:center;justify-content:center" style-hover="opacity:1;border-color:rgba(232,255,58,.5)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+              </div>
+              <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px;margin-bottom:6px">
+                <sc-for list="{{ calDow }}" as="w" hint-placeholder-count="7">
+                  <span style="text-align:center;font-size:9.5px;font-weight:800;letter-spacing:.08em;opacity:.4">{{ w }}</span>
+                </sc-for>
+              </div>
+              <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px">
+                <sc-for list="{{ calDays }}" as="d" hint-placeholder-count="35">
+                  <button onClick="{{ d.onClick }}" style="{{ d.style }}">{{ d.num }}<span style="{{ d.dotStyle }}"></span></button>
+                </sc-for>
+              </div>
+              <button onClick="{{ calToday }}" style="width:100%;margin-top:14px;padding:9px;border-radius:11px;border:1px solid rgba(255,255,255,.12);background:transparent;color:rgba(243,246,242,.7);font-family:Manrope,sans-serif;font-size:12px;font-weight:700;cursor:pointer" style-hover="border-color:rgba(232,255,58,.5);color:#e8ff3a">Go to today</button>
+            </div>
+            <div style="background:rgba(9,17,12,.62);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:18px">
+              <div style="font-size:10.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;opacity:.45;margin-bottom:12px">Upcoming</div>
+              <div style="display:flex;flex-direction:column;gap:11px">
+                <sc-for list="{{ upcoming }}" as="u" hint-placeholder-count="3">
+                  <div style="display:flex;align-items:center;gap:11px">
+                    <span style="width:34px;height:34px;flex:none;border-radius:10px;background:rgba(232,255,58,.12);color:#e8ff3a;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1"><span style="font-size:12px;font-weight:800">{{ u.day }}</span><span style="font-size:8px;font-weight:700;opacity:.7">{{ u.mon }}</span></span>
+                    <div style="min-width:0"><div style="font-size:12.5px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ u.name }}</div><div style="font-size:11px;font-weight:500;opacity:.5;margin-top:2px">{{ u.time }}</div></div>
+                  </div>
+                </sc-for>
+                <sc-if value="{{ upcomingEmpty }}" hint-placeholder-val="{{ false }}"><div style="font-size:12px;font-weight:500;opacity:.4">No upcoming bookings</div></sc-if>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bookings column -->
+          <div style="min-width:0">
+          <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px">
+            <div style="display:flex;align-items:center;gap:4px;padding:4px;border-radius:100px;background:rgba(9,17,12,.6);border:1px solid rgba(255,255,255,.1)">
+              <sc-for list="{{ scopes }}" as="s" hint-placeholder-count="2">
+                <button onClick="{{ s.onClick }}" style="{{ s.style }}">{{ s.label }}</button>
+              </sc-for>
+            </div>
+            <div style="display:flex;align-items:center;gap:6px;padding:5px;border-radius:100px;background:rgba(9,17,12,.6);border:1px solid rgba(255,255,255,.1);width:max-content">
+              <sc-for list="{{ bkFilters }}" as="f" hint-placeholder-count="3">
+                <button onClick="{{ f.onClick }}" style="{{ f.style }}">{{ f.label }}<span style="{{ f.countStyle }}">{{ f.count }}</span></button>
+              </sc-for>
+            </div>
+            <div style="margin-left:auto;font-size:12px;font-weight:600;opacity:.5;white-space:nowrap">{{ scopeCaption }}</div>
+          </div>
+
+          <div style="background:rgba(9,17,12,.55);border:1px solid rgba(255,255,255,.1);border-radius:18px;overflow:hidden">
+            <div class="dsh-thead" style="display:grid;grid-template-columns:1.5fr 1fr 0.6fr 220px;gap:16px;padding:15px 22px;background:rgba(255,255,255,.035);font-size:11px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;opacity:.55">
+              <span>Requester</span><span class="dsh-col-sched">Schedule</span><span class="dsh-col-amt">Amount</span><span style="text-align:right">Action</span>
+            </div>
+            <sc-for list="{{ bookings }}" as="b" hint-placeholder-count="5">
+              <div class="dsh-tr" style="display:grid;grid-template-columns:1.5fr 1fr 0.6fr 220px;gap:16px;align-items:center;padding:14px 22px;border-top:1px solid rgba(255,255,255,.06);transition:background .18s ease" style-hover="background:rgba(255,255,255,.025)">
+                <div style="display:flex;align-items:center;gap:13px;min-width:0">
+                  <span style="width:42px;height:42px;flex:none;border-radius:12px;background:{{ b.color }};color:#04121a;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px">{{ b.initials }}</span>
+                  <div style="min-width:0"><div style="font-size:14.5px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ b.name }}</div><div style="font-size:12px;font-weight:500;opacity:.5;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ b.field }}</div></div>
+                </div>
+                <div class="dsh-col-sched" style="min-width:0"><div style="font-size:13px;font-weight:600">{{ b.date }}</div><div style="font-size:12px;font-weight:500;opacity:.5;margin-top:2px">{{ b.time }}</div></div>
+                <div class="dsh-col-amt" style="font-family:'Arsenal';font-weight:700;font-size:17px;color:#e8ff3a">{{ b.price }}</div>
+                <div style="display:flex;align-items:center;gap:9px;justify-content:flex-end">
+                  <sc-if value="{{ b.pending }}" hint-placeholder-val="{{ true }}">
+                    <button onClick="{{ b.onDecline }}" style="display:inline-flex;align-items:center;gap:6px;padding:9px 14px;border-radius:11px;border:1px solid rgba(255,255,255,.14);background:transparent;color:rgba(243,246,242,.72);font-family:Manrope,sans-serif;font-size:12.5px;font-weight:700;cursor:pointer;transition:all .18s ease" style-hover="border-color:rgba(255,92,92,.6);background:rgba(255,92,92,.1);color:#ff8f8f"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>Decline</button>
+                    <button onClick="{{ b.onAccept }}" style="display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border-radius:11px;border:none;background:#e8ff3a;color:#0a1410;font-family:Manrope,sans-serif;font-size:12.5px;font-weight:800;cursor:pointer;box-shadow:0 6px 16px rgba(232,255,58,.24);transition:transform .18s ease,box-shadow .18s ease" style-hover="transform:translateY(-2px);box-shadow:0 10px 22px rgba(232,255,58,.36)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Accept</button>
+                  </sc-if>
+                  <sc-if value="{{ b.resolved }}" hint-placeholder-val="{{ false }}"><span style="{{ b.statusStyle }}">{{ b.statusIcon }}{{ b.statusLabel }}</span></sc-if>
+                </div>
+              </div>
+            </sc-for>
+            <sc-if value="{{ bookingsEmpty }}" hint-placeholder-val="{{ false }}">
+              <div style="padding:56px 20px 60px;text-align:center">
+                <span style="width:54px;height:54px;margin:0 auto 18px;border-radius:16px;background:rgba(232,255,58,.1);color:#e8ff3a;display:flex;align-items:center;justify-content:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>
+                <div style="font-family:'Arsenal';font-weight:700;font-size:20px;margin-bottom:6px">{{ emptyTitle }}</div>
+                <div style="font-size:13px;font-weight:500;opacity:.5;max-width:320px;margin:0 auto 20px">{{ emptyBody }}</div>
+                <button onClick="{{ openNew }}" style="display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:12px;border:none;background:#e8ff3a;color:#0a1410;font-family:Manrope,sans-serif;font-size:13.5px;font-weight:800;cursor:pointer;box-shadow:0 8px 20px rgba(232,255,58,.24)" style-hover="transform:translateY(-2px)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>New booking</button>
+              </div>
+            </sc-if>
+          </div>
+          </div>
+        </div>
+
+        </sc-if>
+
+        <!-- ===== ANALYTICS ===== -->
+        <sc-if value="{{ isAnalytics }}" hint-placeholder-val="{{ false }}">
+        <div class="dsh-fade">
+          <div class="dsh-kpis" style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:22px">
+            <sc-for list="{{ anStats }}" as="k" hint-placeholder-count="4">
+              <div style="background:rgba(9,17,12,.62);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:18px;transition:transform .2s ease,border-color .2s ease" style-hover="transform:translateY(-3px);border-color:rgba(232,255,58,.28)">
+                <div style="font-size:12px;font-weight:600;opacity:.55">{{ k.label }}</div>
+                <div style="font-family:'Arsenal';font-weight:700;font-size:28px;margin:8px 0 2px;line-height:1">{{ k.value }}</div>
+                <span style="{{ k.trendStyle }}">{{ k.trend }}</span>
+              </div>
+            </sc-for>
+          </div>
+          <div class="dsh-split" style="display:grid;grid-template-columns:1.5fr 1fr;gap:16px;margin-bottom:16px">
+            <div style="background:rgba(9,17,12,.62);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:22px">
+              <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:22px">
+                <div>
+                  <div style="font-family:'Arsenal';font-weight:700;font-size:18px;margin-bottom:2px">Monthly Revenue &amp; Trend</div>
+                  <div style="font-size:12px;font-weight:500;opacity:.5">{{ revCaption }}</div>
+                </div>
+                <div style="position:relative;display:flex;align-items:center;gap:8px">
+                  <span style="font-size:11.5px;font-weight:700;opacity:.5;white-space:nowrap">{{ revRangeLabel }}</span>
+                  <button onClick="{{ revToggleMenu }}" style="width:32px;height:32px;flex:none;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.03);color:#f3f6f2;opacity:.6;cursor:pointer;display:flex;align-items:center;justify-content:center" style-hover="opacity:1;border-color:rgba(232,255,58,.5)"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="1.9"/><circle cx="12" cy="12" r="1.9"/><circle cx="12" cy="19" r="1.9"/></svg></button>
+                  <sc-if value="{{ revMenuOpen }}" hint-placeholder-val="{{ false }}">
+                    <div style="position:absolute;top:40px;right:0;z-index:20;min-width:158px;background:#111a14;border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:6px;box-shadow:0 18px 40px rgba(0,0,0,.55)">
+                      <sc-for list="{{ revRangeOptions }}" as="o" hint-placeholder-count="2">
+                        <button onClick="{{ o.onClick }}" style="{{ o.style }}" style-hover="background:rgba(255,255,255,.06)">{{ o.label }}<span style="{{ o.tickStyle }}">✓</span></button>
+                      </sc-for>
+                    </div>
+                  </sc-if>
+                </div>
+              </div>
+              <div style="display:flex;gap:14px">
+                <div style="display:flex;flex-direction:column-reverse;justify-content:space-between;height:226px;padding-bottom:26px;flex:none">
+                  <sc-for list="{{ revTicks }}" as="t" hint-placeholder-count="5">
+                    <span style="font-size:10.5px;font-weight:700;opacity:.4;line-height:1">{{ t }}</span>
+                  </sc-for>
+                </div>
+                <div style="flex:1;min-width:0;position:relative;height:226px">
+                  <div style="position:absolute;inset:0 0 26px 0;display:flex;flex-direction:column;justify-content:space-between;pointer-events:none">
+                    <sc-for list="{{ revTicks }}" as="t" hint-placeholder-count="5">
+                      <div style="height:1px;background:rgba(255,255,255,.07)"></div>
+                    </sc-for>
+                  </div>
+                  <svg viewBox="0 0 600 200" preserveAspectRatio="none" style="position:absolute;left:0;top:0;width:100%;height:200px;overflow:visible;pointer-events:none">
+                    <path d="{{ revTrendPath }}" fill="none" stroke="#e8ff3a" stroke-width="2" stroke-linecap="round" vector-effect="non-scaling-stroke" opacity=".85"></path>
+                  </svg>
+                  <div style="position:absolute;inset:0;display:flex;align-items:flex-end;gap:10px">
+                    <sc-for list="{{ revBars }}" as="b" hint-placeholder-count="6">
+                      <button onClick="{{ b.onClick }}" style="flex:1;min-width:0;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:0;background:none;border:none;padding:0;cursor:pointer">
+                        <div style="position:relative;width:100%;display:flex;align-items:flex-end;justify-content:center;height:200px">
+                          <sc-if value="{{ b.active }}" hint-placeholder-val="{{ false }}"><span style="{{ b.badgeStyle }}">{{ b.badge }}</span></sc-if>
+                          <div style="{{ b.barStyle }}" style-hover="filter:brightness(1.3);box-shadow:0 0 30px rgba(232,255,58,.45)"></div>
+                          <span style="{{ b.dotStyle }}"></span>
+                        </div>
+                        <span style="{{ b.labelStyle }}">{{ b.label }}</span>
+                      </button>
+                    </sc-for>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div style="background:rgba(9,17,12,.62);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:22px">
+              <div style="font-family:'Arsenal';font-weight:700;font-size:18px;margin-bottom:2px">Peak hours</div>
+              <div style="font-size:12px;font-weight:500;opacity:.5;margin-bottom:18px">Share of bookings by slot</div>
+              <div style="display:flex;flex-direction:column;gap:14px">
+                <sc-for list="{{ peaks }}" as="p" hint-placeholder-count="4">
+                  <div>
+                    <div style="display:flex;justify-content:space-between;font-size:12.5px;font-weight:600;margin-bottom:6px"><span>{{ p.slot }}</span><span style="opacity:.55">{{ p.pct }}%</span></div>
+                    <div style="height:9px;border-radius:100px;background:rgba(255,255,255,.07);overflow:hidden"><div class="dsh-grow" style="{{ p.fillStyle }}"></div></div>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+          <div style="background:rgba(9,17,12,.62);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:22px">
+            <div style="font-family:'Arsenal';font-weight:700;font-size:18px;margin-bottom:16px">Top performing fields</div>
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <sc-for list="{{ topFields }}" as="t" hint-placeholder-count="4">
+                <div style="display:flex;align-items:center;gap:14px;padding:12px 8px;margin:0 -8px;border-radius:10px;border-top:1px solid rgba(255,255,255,.06);transition:background .2s ease" style-hover="background:rgba(255,255,255,.04)">
+                  <span style="font-family:'Arsenal';font-weight:700;font-size:15px;opacity:.4;width:22px">{{ t.rank }}</span>
+                  <div style="flex:1;min-width:0"><div style="font-size:14px;font-weight:700">{{ t.name }}</div></div>
+                  <div style="width:38%;max-width:260px"><div style="height:8px;border-radius:100px;background:rgba(255,255,255,.07);overflow:hidden"><div class="dsh-grow" style="{{ t.fillStyle }}"></div></div></div>
+                  <span style="font-size:13px;font-weight:700;width:64px;text-align:right">{{ t.bookings }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+        </sc-if>
+
+        <!-- ===== SETTINGS ===== -->
+        <sc-if value="{{ isSettings }}" hint-placeholder-val="{{ false }}">
+        <div class="dsh-fade" style="max-width:820px">
+          <div style="background:rgba(9,17,12,.62);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:24px;margin-bottom:16px">
+            <div style="font-family:'Arsenal';font-weight:700;font-size:18px;margin-bottom:4px">Venue profile</div>
+            <div style="font-size:12.5px;font-weight:500;opacity:.5;margin-bottom:20px">Details shown to players when they book.</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+              <div style="grid-column:1/-1"><label class="dsh-lbl">Venue name</label><input class="dsh-inp" value="Spondias Salax"></div>
+              <div><label class="dsh-lbl">Contact phone</label><input class="dsh-inp" value="+90 555 018 4420"></div>
+              <div><label class="dsh-lbl">City</label><input class="dsh-inp" value="Mogadishu"></div>
+              <div style="grid-column:1/-1"><label class="dsh-lbl">Address</label><input class="dsh-inp" value="Maka Al Mukarama Rd, Hodan District"></div>
+            </div>
+          </div>
+          <div style="background:rgba(9,17,12,.62);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:24px;margin-bottom:16px">
+            <div style="font-family:'Arsenal';font-weight:700;font-size:18px;margin-bottom:4px">Booking rules</div>
+            <div style="font-size:12.5px;font-weight:500;opacity:.5;margin-bottom:20px">Control how reservations reach you.</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px">
+              <div><label class="dsh-lbl">Opening time</label><select class="dsh-inp"><option>06:00</option><option>07:00</option><option>08:00</option></select></div>
+              <div><label class="dsh-lbl">Closing time</label><select class="dsh-inp"><option>23:00</option><option>00:00</option><option>01:00</option></select></div>
+              <div><label class="dsh-lbl">Slot length</label><select class="dsh-inp"><option>60 minutes</option><option>90 minutes</option><option>120 minutes</option></select></div>
+              <div><label class="dsh-lbl">Price per slot (₺)</label><input class="dsh-inp" value="650"></div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:2px">
+              <sc-for list="{{ toggles }}" as="t" hint-placeholder-count="3">
+                <div style="display:flex;align-items:center;gap:14px;padding:14px 0;border-top:1px solid rgba(255,255,255,.06)">
+                  <div style="flex:1"><div style="font-size:14px;font-weight:700">{{ t.title }}</div><div style="font-size:12px;font-weight:500;opacity:.5;margin-top:2px">{{ t.desc }}</div></div>
+                  <button onClick="{{ t.onToggle }}" style="{{ t.trackStyle }}"><span style="{{ t.knobStyle }}"></span></button>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px">
+            <button style="display:inline-flex;align-items:center;gap:9px;padding:13px 24px;border-radius:100px;border:none;background:#e8ff3a;color:#0a1410;font-family:Manrope,sans-serif;font-size:14px;font-weight:800;cursor:pointer;box-shadow:0 8px 22px rgba(232,255,58,.24)" style-hover="transform:translateY(-2px)">Save changes</button>
+            <button style="padding:13px 22px;border-radius:100px;border:1px solid rgba(255,255,255,.16);background:transparent;color:rgba(243,246,242,.75);font-family:Manrope,sans-serif;font-size:14px;font-weight:700;cursor:pointer" style-hover="border-color:rgba(255,255,255,.35)">Discard</button>
+          </div>
+        </div>
+        </sc-if>
+
+      </main>
+    </div>
+  </div>
+  <!-- New booking sheet -->
+  <sc-if value="{{ nbOpen }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;padding:24px;background:rgba(4,9,7,.72);backdrop-filter:blur(8px)">
+    <div style="width:100%;max-width:560px;max-height:min(92vh,860px);overflow:auto;background:rgba(11,19,14,.96);border:1px solid rgba(255,255,255,.12);border-radius:22px;padding:26px;box-shadow:0 40px 100px rgba(0,0,0,.6)">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:22px">
+        <div>
+          <div style="font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#e8ff3a;margin-bottom:7px">New booking</div>
+          <div style="font-family:'Arsenal';font-weight:700;font-size:24px;line-height:1;text-transform:uppercase">{{ nbDateLabel }}</div>
+        </div>
+        <button onClick="{{ closeNew }}" style="width:34px;height:34px;flex:none;border-radius:11px;border:1px solid rgba(255,255,255,.12);background:transparent;color:#f3f6f2;opacity:.6;cursor:pointer;display:flex;align-items:center;justify-content:center" style-hover="opacity:1;border-color:rgba(255,92,92,.5);color:#ff8f8f"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px">
+        <label style="display:flex;flex-direction:column;gap:7px"><span style="font-size:11px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;opacity:.5">Player name</span><input class="dsh-inp" placeholder="e.g. Ahmed Nur" value="{{ nb.name }}" onChange="{{ nbSetName }}"></label>
+        <label style="display:flex;flex-direction:column;gap:7px"><span style="font-size:11px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;opacity:.5">Phone</span><input class="dsh-inp" placeholder="+90 5xx xxx xx xx" value="{{ nb.phone }}" onChange="{{ nbSetPhone }}"></label>
+      </div>
+      <div style="margin-bottom:18px">
+        <div style="font-size:11px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;opacity:.5;margin-bottom:9px">Field</div>
+        <div style="display:flex;gap:9px;flex-wrap:wrap">
+          <sc-for list="{{ nbFields }}" as="f" hint-placeholder-count="3">
+            <button onClick="{{ f.onClick }}" style="{{ f.style }}"><span style="font-weight:800">{{ f.name }}</span><span style="opacity:.6;font-weight:600">{{ f.meta }}</span></button>
+          </sc-for>
+        </div>
+      </div>
+      <div style="margin-bottom:18px">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:9px">
+          <div style="font-size:11px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;opacity:.5">Start time</div>
+          <div style="font-size:11px;font-weight:600;opacity:.4">Taken slots are disabled</div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(74px,1fr));gap:8px">
+          <sc-for list="{{ nbSlots }}" as="s" hint-placeholder-count="8">
+            <button onClick="{{ s.onClick }}" style="{{ s.style }}">{{ s.label }}</button>
+          </sc-for>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px">
+        <div>
+          <div style="font-size:11px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;opacity:.5;margin-bottom:9px">Duration</div>
+          <div style="display:flex;gap:8px">
+            <sc-for list="{{ nbDurations }}" as="d" hint-placeholder-count="3">
+              <button onClick="{{ d.onClick }}" style="{{ d.style }}">{{ d.label }}</button>
+            </sc-for>
+          </div>
+        </div>
+        <label style="display:flex;flex-direction:column;gap:7px"><span style="font-size:11px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;opacity:.5">Note (optional)</span><input class="dsh-inp" placeholder="Deposit paid, needs bibs…" value="{{ nb.note }}" onChange="{{ nbSetNote }}"></label>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:16px;background:rgba(232,255,58,.07);border:1px solid rgba(232,255,58,.18);margin-bottom:20px">
+        <div style="flex:1;min-width:0">
+          <div style="font-size:12px;font-weight:600;opacity:.6">{{ nbSummary }}</div>
+          <div style="font-size:11.5px;font-weight:500;opacity:.45;margin-top:3px">{{ nbSubSummary }}</div>
+        </div>
+        <div style="font-family:'Arsenal';font-weight:700;font-size:26px;color:#e8ff3a;line-height:1">{{ nbPrice }}</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;justify-content:flex-end">
+        <button onClick="{{ closeNew }}" style="padding:12px 20px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:transparent;color:rgba(243,246,242,.72);font-family:Manrope,sans-serif;font-size:13.5px;font-weight:700;cursor:pointer" style-hover="border-color:rgba(255,255,255,.3);color:#f3f6f2">Cancel</button>
+        <button onClick="{{ nbCreate }}" style="{{ nbCreateStyle }}"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>{{ nbCreateLabel }}</button>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:900}}">
+const IC = {
+  grid:'<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>',
+  cal:'<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>',
+  chart:'<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg>',
+  cog:'<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>',
+  dollar:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>',
+  clock:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+  star:'<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.2 6.8.9-5 4.7 1.3 6.7L12 18.9 5.9 21.4l1.3-6.7-5-4.7 6.8-.9z"/></svg>',
+  moon:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>',
+  plus:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>',
+  download:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>',
+};
+
+function svgEl(html){ return React.createElement('span', { style:{display:'flex',alignItems:'center',justifyContent:'center'}, dangerouslySetInnerHTML:{__html:html} }); }
+
+class Component extends DCLogic {
+  state = {
+    tab: 'overview',
+    selDay: 5,
+    bkFilter: 'pending',
+    status: { b9:'accepted', b10:'accepted', b11:'accepted', b12:'accepted', b4:'accepted' },
+    discounted: {},
+    toggles: { instant:false, notify:true, deposit:true },
+    bookings: [
+      { id:'b1', iso:'2026-08-04', name:'Ahmed Nur', field:'Field A · 5-a-side', date:'Aug 4, 2026', time:'18:00 – 19:00', price:'650₺', initials:'AN', color:'#29c5f6' },
+      { id:'b2', iso:'2026-08-04', name:'Ibrahim Ethem', field:'Field B · 7-a-side', date:'Aug 4, 2026', time:'20:00 – 21:00', price:'900₺', initials:'IE', color:'#e8ff3a' },
+      { id:'b3', iso:'2026-08-05', name:'Mertcan Yıldız', field:'Field A · 5-a-side', date:'Aug 5, 2026', time:'19:00 – 20:00', price:'650₺', initials:'MY', color:'#f0883e' },
+      { id:'b4', iso:'2026-08-05', name:'Halil İbrahim', field:'Field C · Futsal', date:'Aug 5, 2026', time:'21:00 – 22:00', price:'750₺', initials:'Hİ', color:'#a78bfa' },
+      { id:'b9', iso:'2026-08-05', name:'Emre Karanfil', field:'Field A · 5-a-side', date:'Aug 5, 2026', time:'20:00 – 21:00', price:'650₺', initials:'EK', color:'#38bdf8' },
+      { id:'b10', iso:'2026-08-05', name:'Waberi United', field:'Field B · 7-a-side', date:'Aug 5, 2026', time:'19:00 – 21:00', price:'1800₺', initials:'WU', color:'#e8ff3a' },
+      { id:'b11', iso:'2026-08-05', name:'Coast Rangers', field:'Field B · 7-a-side', date:'Aug 5, 2026', time:'16:00 – 17:00', price:'900₺', initials:'CR', color:'#34d399' },
+      { id:'b12', iso:'2026-08-05', name:'Kerem Aksoy', field:'Field C · Futsal', date:'Aug 5, 2026', time:'18:00 – 19:00', price:'750₺', initials:'KA', color:'#fb7185' },
+      { id:'b5', iso:'2026-08-06', name:'Yusuf Demir', field:'Field B · 7-a-side', date:'Aug 6, 2026', time:'17:00 – 18:00', price:'900₺', initials:'YD', color:'#34d399' },
+      { id:'b6', iso:'2026-08-06', name:'Ridvan Bozkurt', field:'Field A · 5-a-side', date:'Aug 6, 2026', time:'18:00 – 19:00', price:'650₺', initials:'RB', color:'#fb7185' },
+      { id:'b7', iso:'2026-08-09', name:'Kerem Aksoy', field:'Field B · 7-a-side', date:'Aug 9, 2026', time:'20:00 – 21:00', price:'900₺', initials:'KA', color:'#38bdf8' },
+      { id:'b8', iso:'2026-08-12', name:'Selim Karaca', field:'Field C · Futsal', date:'Aug 12, 2026', time:'19:00 – 20:00', price:'750₺', initials:'SK', color:'#facc15' },
+    ],
+    calMonth: 7, calYear: 2026, selIso: '2026-08-05', bkScope: 'day',
+    nbOpen: false,
+    nb: { name:'', phone:'', field:'A', slot:'19:00', dur:1, note:'' },
+  };
+
+  static get MONTHS(){ return ['January','February','March','April','May','June','July','August','September','October','November','December']; }
+  static get FIELDS(){ return { A:{ name:'Field A', meta:'5-a-side', price:650, color:'#29c5f6' }, B:{ name:'Field B', meta:'7-a-side', price:900, color:'#e8ff3a' }, C:{ name:'Field C', meta:'Futsal', price:750, color:'#a78bfa' } }; }
+
+  static get SLOTS(){ return ['15:00','16:00','17:00','18:00','19:00','20:00','21:00','22:00']; }
+
+  nbSet(k, v){
+    this.setState(s => {
+      const nb = { ...s.nb, [k]:v };
+      if(k==='field' || k==='dur'){
+        if(!this.rangeFree(s.selIso, nb.field, parseInt(nb.slot,10), nb.dur, s.bookings)){
+          const free = this.firstFree(s.selIso, nb.field, nb.dur, s.bookings);
+          if(free) nb.slot = free;
+        }
+      }
+      return { nb };
+    });
+  }
+
+  busyHours(iso, field, bookings){
+    const set = {};
+    (bookings||this.state.bookings).forEach(b=>{
+      if(b.iso!==iso || b.field.indexOf('Field '+field)!==0) return;
+      const sh = parseFloat(b.time.slice(0,2)) + (b.time.slice(3,5)==='30'?0.5:0);
+      const em = b.time.split('–')[1].trim();
+      const eh = parseFloat(em.slice(0,2)) + (em.slice(3,5)==='30'?0.5:0);
+      for(let h=sh; h<eh; h+=0.5) set[h.toFixed(1)] = true;
+    });
+    return set;
+  }
+  rangeFree(iso, field, startH, dur, bookings){
+    const busy = this.busyHours(iso, field, bookings);
+    for(let h=startH; h<startH+dur; h+=0.5) if(busy[h.toFixed(1)]) return false;
+    return true;
+  }
+  firstFree(iso, field, dur, bookings){
+    return Component.SLOTS.find(s => this.rangeFree(iso, field, parseInt(s,10), dur, bookings)) || null;
+  }
+  openSheet(){
+    this.setState(s => {
+      const free = this.firstFree(s.selIso, s.nb.field, s.nb.dur, s.bookings);
+      return { nbOpen:true, nb: free ? { ...s.nb, slot:free } : s.nb };
+    });
+  }
+  isoLabel(iso, opts){ const [y,m,d]=iso.split('-').map(Number); return new Date(y,m-1,d).toLocaleDateString('en-US', opts || { month:'short', day:'numeric', year:'numeric' }); }
+  slotTaken(iso, field, slot){ return this.state.bookings.some(b => b.iso===iso && b.field.indexOf('Field '+field)===0 && b.time.indexOf(slot)===0); }
+
+  createBooking(){
+    const f = Component.FIELDS[this.state.nb.field], nb = this.state.nb;
+    const name = (nb.name||'').trim(); if(!name) return;
+    const sh = parseInt(nb.slot,10), eh = sh + nb.dur;
+    if(!this.rangeFree(this.state.selIso, nb.field, sh, nb.dur)) return;
+    const parts = name.split(/\s+/);
+    const id = 'n'+Date.now();
+    const b = {
+      id, iso:this.state.selIso, name,
+      field: f.name+' · '+f.meta,
+      date: this.isoLabel(this.state.selIso),
+      time: nb.slot+' – '+String(Math.floor(eh)).padStart(2,'0')+':'+(eh%1?'30':'00'),
+      price: (f.price*nb.dur)+'₺', color: f.color,
+      initials: (parts[0][0]+(parts[1]?parts[1][0]:'')).toUpperCase(),
+    };
+    this.setState(s => ({
+      bookings:[b, ...s.bookings],
+      status:{ ...s.status, [id]:'accepted' },
+      bkFilter:'accepted', nbOpen:false,
+      nb:{ name:'', phone:'', field:'A', slot:'19:00', dur:1, note:'' },
+    }));
+  }
+
+  setTab(t){ this.setState({ tab:t }); }
+  resolve(id, val){ this.setState(s => ({ status:{ ...s.status, [id]:val } })); }
+  toggle(k){ this.setState(s => ({ toggles:{ ...s.toggles, [k]:!s.toggles[k] } })); }
+
+  navBtn(id, label, icon, badge, active){
+    const base = 'display:flex;align-items:center;gap:12px;width:100%;padding:11px 13px;border-radius:12px;border:none;font-family:Manrope,sans-serif;font-size:13.5px;font-weight:700;cursor:pointer;white-space:nowrap;transition:transform .18s cubic-bezier(.22,1,.36,1),background .18s ease,color .18s ease,box-shadow .18s ease,filter .18s ease;';
+    return {
+      label, icon, badge, onClick:()=>this.setTab(id),
+      style: active ? base+'background:#e8ff3a;color:#0a1410;' : base+'background:transparent;color:rgba(243,246,242,.68);',
+      badgeStyle: active
+        ? 'min-width:20px;height:19px;padding:0 6px;border-radius:100px;background:rgba(10,20,16,.22);color:#0a1410;font-size:11px;font-weight:800;display:inline-flex;align-items:center;justify-content:center'
+        : 'min-width:20px;height:19px;padding:0 6px;border-radius:100px;background:rgba(232,255,58,.16);color:#e8ff3a;font-size:11px;font-weight:800;display:inline-flex;align-items:center;justify-content:center',
+    };
+  }
+
+  renderVals(){
+    const tab = this.state.tab;
+    const pending = this.state.bookings.filter(b => !this.state.status[b.id]);
+    const pendingCount = pending.length;
+
+    const titles = {
+      overview:{ eb:'Owner Console', t:'Dashboard', icon:IC.grid, action:'Export report', ai:IC.download, ph:'Search anything…' },
+      bookings:{ eb:'Reservations', t:'Bookings', icon:IC.cal, action:'Add booking', ai:IC.plus, ph:'Search by name or field…' },
+      analytics:{ eb:'Insights', t:'Analytics', icon:IC.chart, action:'Last 30 days', ai:IC.cal, ph:'Search metrics…' },
+      settings:{ eb:'Configuration', t:'Settings', icon:IC.cog, action:'', ai:'', ph:'' },
+    };
+
+    const navTop = [
+      this.navBtn('overview','Overview',svgEl(IC.grid),null,tab==='overview'),
+      this.navBtn('bookings','Bookings',svgEl(IC.cal),pendingCount||null,tab==='bookings'),
+      this.navBtn('analytics','Analytics',svgEl(IC.chart),null,tab==='analytics'),
+    ];
+    const settingsNav = this.navBtn('settings','Settings',svgEl(IC.cog),null,tab==='settings');
+
+    const trendUp = 'font-size:11px;font-weight:800;color:#e8ff3a';
+    const TODAY_ISO = '2026-08-05';
+    const HOURS = [14,15,16,17,18,19,20,21,22,23];
+    const FL = Component.FIELDS;
+    const hh = n => String(n).padStart(2,'0')+':00';
+    const todaysBookings = this.state.bookings.filter(b => b.iso===TODAY_ISO);
+    const cellFor = (key, h) => {
+      const hit = todaysBookings.find(b => {
+        if(b.field.indexOf('Field '+key)!==0) return false;
+        const sh = parseInt(b.time.slice(0,2),10);
+        const eh = parseInt(b.time.split('–')[1].trim().slice(0,2),10);
+        return h>=sh && h<eh;
+      });
+      if(!hit) return { free:true };
+      return { free:false, hit, pending:!this.state.status[hit.id] };
+    };
+    const cellBase = 'height:38px;border-radius:9px;font-family:Manrope,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:.02em;display:flex;align-items:center;justify-content:center;transition:transform .18s cubic-bezier(.22,1,.36,1),background .18s ease,border-color .18s ease,box-shadow .18s ease,color .18s ease,filter .18s ease;padding:0 2px;overflow:hidden;';
+    const schedule = Object.keys(FL).map(key => ({
+      name: FL[key].name,
+      meta: FL[key].meta,
+      cells: HOURS.map(h => {
+        const c = cellFor(key, h);
+        if(c.free) return {
+          label:'', onClick:()=>this.setState(s=>({ selIso:TODAY_ISO, nbOpen:true, nb:{ ...s.nb, field:key, slot:hh(h), dur:1 } })),
+          style: cellBase+'border:1px dashed rgba(255,255,255,.14);background:transparent;color:rgba(243,246,242,.4);cursor:pointer;',
+        };
+        if(c.pending) return {
+          label:c.hit.initials, onClick:()=>this.setTab('bookings'),
+          style: cellBase+'border:1px solid rgba(232,255,58,.55);background:rgba(232,255,58,.1);color:#e8ff3a;cursor:pointer;',
+        };
+        return {
+          label:c.hit.initials, onClick:()=>this.setTab('bookings'),
+          style: cellBase+'border:none;background:#e8ff3a;color:#0a1410;cursor:pointer;',
+        };
+      }),
+    }));
+    const totalCells = schedule.length*HOURS.length;
+    const freeCells = schedule.reduce((n,r)=>n+r.cells.filter(c=>!c.label).length,0);
+    const occToday = Math.round(((totalCells-freeCells)/totalCells)*100);
+    const legend = [
+      { label:'Booked', swatch:'width:11px;height:11px;border-radius:3px;background:#e8ff3a' },
+      { label:'Awaiting approval', swatch:'width:11px;height:11px;border-radius:3px;background:rgba(232,255,58,.12);border:1px solid rgba(232,255,58,.55)' },
+      { label:'Free — click to book', swatch:'width:11px;height:11px;border-radius:3px;border:1px dashed rgba(255,255,255,.35)' },
+    ];
+
+    const unsoldSlots = [];
+    HOURS.filter(h=>h>=18).forEach(h => {
+      Object.keys(FL).forEach(key => {
+        if(cellFor(key,h).free && unsoldSlots.length<3) {
+          const id = key+h, done = !!this.state.discounted[id];
+          unsoldSlots.push({
+            slot: hh(h)+' – '+hh(h+1), field: FL[key].name+' · '+FL[key].meta,
+            btnLabel: done ? 'Promoted' : 'Offer −20%',
+            onDiscount: ()=>this.setState(s=>({ discounted:{ ...s.discounted, [id]:true } })),
+            btnStyle: 'flex:none;white-space:nowrap;padding:8px 13px;border-radius:10px;font-family:Manrope,sans-serif;font-size:11.5px;font-weight:800;cursor:pointer;transition:transform .18s cubic-bezier(.22,1,.36,1),box-shadow .18s ease,background .18s ease;'
+              + (done ? 'border:1px solid rgba(232,255,58,.4);background:transparent;color:#e8ff3a;' : 'border:none;background:#e8ff3a;color:#0a1410;'),
+          });
+        }
+      });
+    });
+    const unsoldWeek = 14;
+
+    const CAMS = [
+      { field:'Field A · 5-a-side', online:2, total:2 },
+      { field:'Field B · 7-a-side', online:3, total:3 },
+      { field:'Field C · Futsal', online:1, total:2 },
+    ];
+    const camOnline = CAMS.reduce((n,c)=>n+c.online,0), camTotal = CAMS.reduce((n,c)=>n+c.total,0);
+    const cameras = CAMS.map(c => {
+      const ok = c.online===c.total;
+      return {
+        field:c.field,
+        dotStyle:'flex:none;width:9px;height:9px;border-radius:50%;background:'+(ok?'#e8ff3a':'#ff8f8f')+';box-shadow:0 0 10px '+(ok?'rgba(232,255,58,.6)':'rgba(255,143,143,.6)'),
+        state: ok ? c.online+' / '+c.total+' online' : (c.total-c.online)+' offline',
+        stateStyle:'font-size:11.5px;font-weight:800;color:'+(ok?'rgba(243,246,242,.6)':'#ff8f8f'),
+      };
+    });
+
+    const kpis = [
+      { icon:svgEl(IC.dollar), value:'4,820₺', label:'Revenue this month', trend:'▲ 18%', trendStyle:trendUp },
+      { icon:svgEl(IC.cal), value:'128', label:'Bookings this month', trend:'▲ 9%', trendStyle:trendUp },
+      { icon:svgEl(IC.chart), value:occToday+'%', label:'Occupancy today', trend:'▲ 6%', trendStyle:trendUp },
+      { icon:svgEl(IC.star), value:'4.8', label:'Average rating', trend:'▲ 0.2', trendStyle:trendUp },
+    ];
+
+    const wk = [12,18,9,22,26,31,24];
+    const wkMax = Math.max(...wk);
+    const dayNames = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
+    const sel = this.state.selDay;
+    const week = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].map((day,i)=>{
+      const on = i===sel;
+      return {
+        day, count:wk[i],
+        onClick:()=>this.setState({ selDay:i }),
+        barStyle:'width:100%;border-radius:8px 8px 3px 3px;transition:height .45s cubic-bezier(.22,1,.36,1),background .25s ease,box-shadow .25s ease;height:'+Math.round(wk[i]/wkMax*100)+'%;background:'+(on?'#e8ff3a':'rgba(232,255,58,.16)')+';'+(on?'box-shadow:0 6px 20px rgba(232,255,58,.35)':''),
+        barHover: on?'':'background:rgba(232,255,58,.36)',
+        dayStyle:'font-size:11px;font-weight:700;transition:all .2s ease;'+(on?'color:#e8ff3a;opacity:1':'opacity:.5'),
+      };
+    });
+    const selCount = wk[sel];
+    const selDayLabel = dayNames[sel];
+    const pendingPreview = pending.slice(0,3);
+
+    const filt = this.state.bkFilter;
+    const bkScope = this.state.bkScope, selIso = this.state.selIso, TODAY = '2026-08-05';
+    const view = this.state.bookings.filter(b => bkScope==='all' || b.iso===selIso).filter(b=>{
+      const st = this.state.status[b.id];
+      if(filt==='pending') return !st;
+      if(filt==='accepted') return st==='accepted';
+      if(filt==='declined') return st==='declined';
+      return true;
+    });
+    const stStyles = {
+      accepted:'display:inline-flex;align-items:center;gap:6px;padding:9px 15px;border-radius:11px;background:rgba(232,255,58,.13);color:#e8ff3a;font-size:12.5px;font-weight:800',
+      declined:'display:inline-flex;align-items:center;gap:6px;padding:9px 15px;border-radius:11px;background:rgba(255,92,92,.13);color:#ff8f8f;font-size:12.5px;font-weight:800',
+    };
+    const stIcon = {
+      accepted:'<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>',
+      declined:'<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>',
+    };
+    const bookings = view.map(b=>{
+      const st = this.state.status[b.id];
+      return {
+        ...b,
+        pending: !st,
+        resolved: !!st,
+        statusLabel: st==='accepted'?'Accepted':'Declined',
+        statusStyle: stStyles[st]||'',
+        statusIcon: st ? svgEl(stIcon[st]) : null,
+        onAccept:()=>this.resolve(b.id,'accepted'),
+        onDecline:()=>this.resolve(b.id,'declined'),
+      };
+    });
+
+    const fbase='display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:100px;border:none;font-family:Manrope,sans-serif;font-size:13px;font-weight:700;cursor:pointer;';
+    const cnt = { pending:pendingCount, accepted:this.state.bookings.filter(b=>this.state.status[b.id]==='accepted').length, declined:this.state.bookings.filter(b=>this.state.status[b.id]==='declined').length };
+    const bkFilters = [['pending','Pending'],['accepted','Accepted'],['declined','Declined']].map(([id,label])=>{
+      const on = filt===id;
+      return {
+        label, onClick:()=>this.setState({ bkFilter:id }),
+        style: on?fbase+'background:#e8ff3a;color:#0a1410;':fbase+'background:transparent;color:rgba(243,246,242,.65);',
+        count: cnt[id],
+        countStyle: on?'min-width:20px;padding:0 6px;border-radius:100px;background:rgba(10,20,16,.2);font-size:11px;font-weight:800':'min-width:20px;padding:0 6px;border-radius:100px;background:rgba(255,255,255,.08);font-size:11px;font-weight:800',
+      };
+    });
+
+    const anStats = [
+      { label:'Total revenue', value:'284k₺', trend:'▲ 22% vs last qtr', trendStyle:trendUp },
+      { label:'Occupancy rate', value:'74%', trend:'▲ 6%', trendStyle:trendUp },
+      { label:'Repeat players', value:'61%', trend:'▲ 4%', trendStyle:trendUp },
+      { label:'Cancellations', value:'3.2%', trend:'▼ 1.1%', trendStyle:trendUp },
+    ];
+    const mv = [3.1,3.8,3.4,4.2,4.6,4.82];
+    const mMax = Math.max(...mv);
+    const months = ['Mar','Apr','May','Jun','Jul','Aug'].map((label,i)=>({
+      label, amt:mv[i].toFixed(1)+'k₺',
+      barStyle:'width:100%;border-radius:8px 8px 3px 3px;transition:filter .2s ease,transform .2s ease;transform-origin:bottom;height:'+Math.round(mv[i]/mMax*100)+'%;background:'+(i===5?'#e8ff3a':'linear-gradient(180deg,rgba(41,197,246,.75),rgba(41,197,246,.2))'),
+      barHover:'filter:brightness(1.25);transform:scaleY(1.04)',
+    }));
+    // ---- Revenue & trend chart ----
+    const REV = {
+      '6M': { caption:'Last 6 months (₺)', bars:[
+          {label:'Apr',v:42,trend:26},{label:'May',v:62,trend:54},{label:'Jun',v:31,trend:25},
+          {label:'Jul',v:55,trend:47},{label:'Aug',v:78,trend:63},{label:'Sep',v:50,trend:45}],
+        balance:[
+          {name:'September',inflow:'11,896₺',refunds:'12,526₺',net:'−630₺',margin:'48%'},
+          {name:'August',inflow:'12,440₺',refunds:'8,563₺',net:'+3,877₺',margin:'68%'},
+          {name:'July',inflow:'9,204₺',refunds:'4,110₺',net:'+5,094₺',margin:'61%'},
+          {name:'June',inflow:'7,860₺',refunds:'5,402₺',net:'+2,457₺',margin:'54%'}] },
+      '1Y': { caption:'Last 12 months (₺)', bars:[
+          {label:'Q1·25',v:38,trend:30},{label:'Q2·25',v:45,trend:41},{label:'Q3·25',v:61,trend:52},
+          {label:'Q4·25',v:72,trend:66},{label:'Q1·26',v:58,trend:63},{label:'Q2·26',v:78,trend:70}],
+        balance:[
+          {name:'Q2 · 2026',inflow:'34,120₺',refunds:'21,004₺',net:'+13,115₺',margin:'64%'},
+          {name:'Q1 · 2026',inflow:'28,940₺',refunds:'18,220₺',net:'+10,719₺',margin:'59%'},
+          {name:'Q4 · 2025',inflow:'31,708₺',refunds:'14,880₺',net:'+16,828₺',margin:'71%'},
+          {name:'Q3 · 2025',inflow:'25,410₺',refunds:'16,003₺',net:'+9,407₺',margin:'52%'}] }
+    };
+    const rRange = this.state.revRange || '6M';
+    const rSet = REV[rRange];
+    const rIdx = this.state.revActive == null ? 4 : this.state.revActive;
+    const PH = 200, RMAX = 80;
+    const revBars = rSet.bars.map((b,i)=>{
+      const on = i===rIdx, h = (b.v/RMAX)*PH;
+      return {
+        label:b.label, active:on, badge:b.v+'K₺',
+        onClick:()=>this.setState({revActive:i}),
+        barStyle:'width:100%;max-width:42px;border-radius:11px 11px 4px 4px;transform-origin:bottom;transition:background .2s ease,box-shadow .25s ease,filter .2s ease;height:'+h.toFixed(1)+'px;'
+          + (on ? 'background:#e8ff3a;box-shadow:0 0 26px rgba(232,255,58,.35),0 0 0 1px #e8ff3a;'
+                : 'background:rgba(232,255,58,.16);'),
+        barHover: on ? 'box-shadow:0 0 34px rgba(232,255,58,.5),0 0 0 1px #e8ff3a;' : 'background:rgba(232,255,58,.3);',
+        badgeStyle:'position:absolute;bottom:'+(h+14).toFixed(1)+'px;left:50%;transform:translateX(-50%);padding:5px 10px;border-radius:8px;background:#e8ff3a;color:#0a1410;font-size:11.5px;font-weight:800;white-space:nowrap;box-shadow:0 8px 20px rgba(0,0,0,.45)',
+        dotStyle:'position:absolute;bottom:'+((b.trend/RMAX)*PH-4).toFixed(1)+'px;left:50%;transform:translateX(-50%);width:8px;height:8px;border-radius:50%;background:#0a1410;border:2px solid #e8ff3a',
+        labelStyle:'height:26px;display:flex;align-items:center;font-size:11.5px;font-weight:'+(on?'800':'700')+';line-height:1;color:'+(on?'#e8ff3a':'rgba(232,255,58,.6)')
+      };
+    });
+    const rn = rSet.bars.length, RW = 600;
+    const rpts = rSet.bars.map((b,i)=>[((i+0.5)/rn)*RW, PH-(b.trend/RMAX)*PH]);
+    let rPath = 'M'+rpts[0][0].toFixed(1)+','+rpts[0][1].toFixed(1);
+    for(let i=1;i<rpts.length;i++){ const p=rpts[i-1],c=rpts[i],mx=(p[0]+c[0])/2;
+      rPath += ' C'+mx.toFixed(1)+','+p[1].toFixed(1)+' '+mx.toFixed(1)+','+c[1].toFixed(1)+' '+c[0].toFixed(1)+','+c[1].toFixed(1); }
+    const revRangeOptions = [['6M','6 Months'],['1Y','1 Year']].map(([id,label])=>({
+      label, onClick:()=>this.setState({revRange:id,revMenu:false,revActive:null}),
+      style:'display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;padding:10px 12px;border-radius:10px;border:none;background:transparent;cursor:pointer;font-family:Manrope,sans-serif;font-size:12.5px;font-weight:700;text-align:left;color:'+(rRange===id?'#e8ff3a':'rgba(243,246,242,.8)'),
+      tickStyle:'color:#e8ff3a;font-size:11px;opacity:'+(rRange===id?'1':'0')
+    }));
+    const balance = rSet.balance.map(m=>Object.assign({},m,{
+      marginStyle:'padding:5px 9px;border-radius:100px;font-size:11px;font-weight:800;white-space:nowrap;'
+        + (parseInt(m.margin,10)>=60 ? 'background:rgba(232,255,58,.13);color:#e8ff3a' : 'background:rgba(243,246,242,.09);color:rgba(243,246,242,.6)')
+    }));
+    const rNet = rSet.bars[rIdx];
+
+    const peaks = [
+      { slot:'18:00 – 20:00', pct:38 },
+      { slot:'20:00 – 22:00', pct:31 },
+      { slot:'16:00 – 18:00', pct:19 },
+      { slot:'Daytime', pct:12 },
+    ].map(p=>({ ...p, fillStyle:'height:100%;width:'+p.pct+'%;border-radius:100px;background:#e8ff3a' }));
+    const tf = [
+      { name:'Field A · 5-a-side', bookings:48 },
+      { name:'Field B · 7-a-side', bookings:37 },
+      { name:'Field C · Futsal', bookings:29 },
+      { name:'Field D · Training', bookings:14 },
+    ];
+    const tfMax = Math.max(...tf.map(t=>t.bookings));
+    const topFields = tf.map((t,i)=>({ ...t, rank:i+1, bookings:t.bookings+' bkgs', fillStyle:'height:100%;width:'+Math.round(t.bookings/tfMax*100)+'%;border-radius:100px;background:linear-gradient(90deg,#29c5f6,#e8ff3a)' }));
+
+    const tg = this.state.toggles;
+    const track = on => 'width:46px;height:27px;border-radius:100px;border:none;cursor:pointer;padding:3px;display:flex;transition:all .2s ease;background:'+(on?'#e8ff3a':'rgba(255,255,255,.14)')+';justify-content:'+(on?'flex-end':'flex-start');
+    const knob = 'width:21px;height:21px;border-radius:50%;background:#0a1410;display:block';
+    const knobOff = 'width:21px;height:21px;border-radius:50%;background:#fff;display:block';
+    const toggles = [
+      { key:'instant', title:'Instant booking', desc:'Auto-accept reservations without manual review' },
+      { key:'notify', title:'Email notifications', desc:'Get notified when a new request comes in' },
+      { key:'deposit', title:'Require deposit', desc:'Players pay 50% upfront to reserve a slot' },
+    ].map(t=>({ ...t, onToggle:()=>this.toggle(t.key), trackStyle:track(tg[t.key]), knobStyle:tg[t.key]?knob:knobOff }));
+
+    // ---- Calendar rail ----
+    const cm = this.state.calMonth, cy = this.state.calYear;
+    const iso2 = n => String(n).padStart(2,'0');
+    const isoOf = (y,m,d) => y+'-'+iso2(m+1)+'-'+iso2(d);
+    const counts = {};
+    this.state.bookings.forEach(b => { counts[b.iso] = (counts[b.iso]||0)+1; });
+    const startOff = (new Date(cy,cm,1).getDay()+6)%7;
+    const dim = new Date(cy,cm+1,0).getDate();
+    const dimPrev = new Date(cy,cm,0).getDate();
+    const total = Math.ceil((startOff+dim)/7)*7;
+    const calDays = Array.from({length:total},(_,i)=>{
+      const dn = i-startOff+1;
+      const muted = dn<1 || dn>dim;
+      let y=cy, m=cm, d=dn;
+      if(dn<1){ m=cm-1; d=dimPrev+dn; if(m<0){m=11;y=cy-1;} }
+      else if(dn>dim){ m=cm+1; d=dn-dim; if(m>11){m=0;y=cy+1;} }
+      const iso = isoOf(y,m,d);
+      const on = iso===selIso, isToday = iso===TODAY, has = !!counts[iso];
+      return {
+        num:d, onClick:()=>this.setState({ selIso:iso, bkScope:'day' }),
+        style:'position:relative;height:36px;border:none;border-radius:11px;font-family:Manrope,sans-serif;font-size:12.5px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s ease;'
+          + (on ? 'background:#e8ff3a;color:#0a1410;box-shadow:0 6px 16px rgba(232,255,58,.28);'
+                : 'background:transparent;color:#f3f6f2;'+(muted?'opacity:.22;':'opacity:.85;')
+                  + (isToday?'box-shadow:inset 0 0 0 1px rgba(232,255,58,.55);':'')),
+        dotStyle:'position:absolute;bottom:4px;left:50%;transform:translateX(-50%);width:4px;height:4px;border-radius:50%;background:'+(on?'#0a1410':'#29c5f6')+';opacity:'+(has?(muted?'.35':'1'):'0'),
+      };
+    });
+    const upAll = this.state.bookings.filter(b=>b.iso>=TODAY).sort((a,b)=>a.iso<b.iso?-1:1).slice(0,4);
+    const upcoming = upAll.map(b=>({
+      name:b.name, time:this.isoLabel(b.iso,{weekday:'short'})+' · '+b.time,
+      day:String(Number(b.iso.slice(8))), mon:this.isoLabel(b.iso,{month:'short'}).toUpperCase(),
+    }));
+    const sbase = 'padding:8px 18px;border-radius:100px;border:none;font-family:Manrope,sans-serif;font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:all .15s ease;';
+    const scopes = [['day','Day'],['all','All']].map(([id,label])=>({
+      label, onClick:()=>this.setState({ bkScope:id }),
+      style: bkScope===id ? sbase+'background:#e8ff3a;color:#0a1410;' : sbase+'background:transparent;color:rgba(243,246,242,.6);',
+    }));
+    const selLong = this.isoLabel(selIso,{weekday:'long',month:'long',day:'numeric'});
+    const dayTotal = this.state.bookings.filter(b=>b.iso===selIso).length;
+
+    // ---- New booking sheet ----
+    const nb = this.state.nb, F = Component.FIELDS, fld = F[nb.field];
+    const chip = 'display:inline-flex;flex-direction:column;gap:2px;align-items:flex-start;padding:11px 16px;border-radius:13px;font-family:Manrope,sans-serif;font-size:12.5px;cursor:pointer;transition:all .15s ease;text-align:left;';
+    const nbFields = Object.keys(F).map(k=>{
+      const on = nb.field===k;
+      return { name:F[k].name, meta:F[k].meta+' · '+F[k].price+'₺/h', onClick:()=>this.nbSet('field',k),
+        style: chip + (on ? 'border:1px solid #e8ff3a;background:rgba(232,255,58,.12);color:#e8ff3a;' : 'border:1px solid rgba(255,255,255,.12);background:transparent;color:rgba(243,246,242,.8);') };
+    });
+    const nbSlots = Component.SLOTS.map(s=>{
+      const taken = !this.rangeFree(selIso, nb.field, parseInt(s,10), nb.dur), on = nb.slot===s && !taken;
+      return { label:s, onClick: taken?()=>{}:()=>this.nbSet('slot',s),
+        style:'padding:11px 6px;border-radius:12px;font-family:Manrope,sans-serif;font-size:12.5px;font-weight:700;transition:all .15s ease;'
+          + (taken ? 'border:1px dashed rgba(255,255,255,.12);background:transparent;color:rgba(243,246,242,.25);cursor:not-allowed;text-decoration:line-through;'
+            : on ? 'border:1px solid #e8ff3a;background:#e8ff3a;color:#0a1410;cursor:pointer;'
+                 : 'border:1px solid rgba(255,255,255,.12);background:transparent;color:rgba(243,246,242,.8);cursor:pointer;') };
+    });
+    const nbDurations = [1,1.5,2].map(d=>{
+      const on = nb.dur===d;
+      return { label:(d===1?'1 hr':d+' hrs'), onClick:()=>this.nbSet('dur',d),
+        style:'flex:1;padding:11px 6px;border-radius:12px;font-family:Manrope,sans-serif;font-size:12.5px;font-weight:700;cursor:pointer;transition:all .15s ease;'
+          + (on ? 'border:1px solid #e8ff3a;background:rgba(232,255,58,.12);color:#e8ff3a;' : 'border:1px solid rgba(255,255,255,.12);background:transparent;color:rgba(243,246,242,.8);') };
+    });
+    const endH = parseInt(nb.slot,10)+nb.dur;
+    const endLabel = (Number.isInteger(endH)?iso2(endH)+':00':iso2(Math.floor(endH))+':30');
+    const slotFree = this.rangeFree(selIso, nb.field, parseInt(nb.slot,10), nb.dur);
+    const nbValid = !!nb.name.trim() && slotFree;
+    const cbase = 'display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:12px;border:none;font-family:Manrope,sans-serif;font-size:13.5px;font-weight:800;transition:all .18s ease;';
+
+    const ti = titles[tab];
+    return {
+      calDays, calDow:['MO','TU','WE','TH','FR','SA','SU'],
+      calTitle: Component.MONTHS[cm]+' '+cy,
+      calPrev:()=>this.setState(s=>({ calMonth:s.calMonth===0?11:s.calMonth-1, calYear:s.calMonth===0?s.calYear-1:s.calYear })),
+      calNext:()=>this.setState(s=>({ calMonth:s.calMonth===11?0:s.calMonth+1, calYear:s.calMonth===11?s.calYear+1:s.calYear })),
+      calToday:()=>this.setState({ calMonth:7, calYear:2026, selIso:TODAY, bkScope:'day' }),
+      upcoming, upcomingEmpty: upcoming.length===0,
+      scopes, scopeCaption: bkScope==='day' ? selLong+' · '+dayTotal+(dayTotal===1?' booking':' bookings') : this.state.bookings.length+' bookings across all dates',
+      emptyTitle: bkScope==='day' ? 'No '+(filt==='pending'?'pending ':filt==='accepted'?'accepted ':filt==='declined'?'declined ':'')+'bookings on this day' : 'Nothing in this view',
+      emptyBody: bkScope==='day' ? 'Pick another date on the calendar, or add a reservation for '+selLong+'.' : 'Switch the status filter or create a new reservation.',
+      openNew:()=>this.openSheet(),
+      closeNew:()=>this.setState({ nbOpen:false }),
+      actionClick:()=>{ if(tab==='bookings') this.openSheet(); },
+      nbOpen:this.state.nbOpen, nb, nbFields, nbSlots, nbDurations,
+      nbDateLabel:selLong,
+      nbSetName:e=>this.nbSet('name',e.target.value),
+      nbSetPhone:e=>this.nbSet('phone',e.target.value),
+      nbSetNote:e=>this.nbSet('note',e.target.value),
+      nbSummary: fld.name+' · '+fld.meta+' · '+nb.slot+' – '+endLabel,
+      nbSubSummary: slotFree
+        ? (nb.dur===1?'1 hour':nb.dur+' hours')+' at $'+fld.price+'/h · confirmed instantly'
+        : 'That slot is already booked on '+fld.name+' — pick another time',
+      nbPrice:(fld.price*nb.dur).toFixed(0)+'₺',
+      nbCreateLabel: !slotFree ? 'Slot unavailable' : (nbValid ? 'Create booking' : 'Add a player name'),
+      nbCreateStyle: cbase + (nbValid
+        ? 'background:#e8ff3a;color:#0a1410;cursor:pointer;box-shadow:0 8px 20px rgba(232,255,58,.24);'
+        : 'background:rgba(255,255,255,.07);color:rgba(243,246,242,.35);cursor:not-allowed;'),
+      nbCreate:()=>this.createBooking(),
+      navTop, settingsNav,
+      themeIcon: svgEl(IC.moon), toggleTheme:()=>{}, logout:()=>{},
+      crumbIcon: svgEl(ti.icon),
+      eyebrow: ti.eb, pageTitle: ti.t,
+      showHeaderBar: tab!=='settings',
+      actionLabel: ti.action, actionIcon: ti.ai?svgEl(ti.ai):null, searchPlaceholder: ti.ph,
+      isOverview: tab==='overview', isBookings: tab==='bookings', isAnalytics: tab==='analytics', isSettings: tab==='settings',
+      kpis, week, selCount, selDayLabel, goBookings:()=>this.setTab('bookings'),
+      showSearch: tab==='bookings' || tab==='analytics',
+      todayLabel: this.isoLabel(TODAY_ISO,{weekday:'long',month:'long',day:'numeric'}),
+      hours: HOURS.map(h=>hh(h)), hourCount: HOURS.length, schedule, legend,
+      unsoldHours: unsoldWeek, unsoldValue: (unsoldWeek*720).toLocaleString('en-US')+'₺',
+      unsoldCaption:'Empty slots across all pitches this week.',
+      unsoldSlots,
+      cameras, camSummary: camOnline+' / '+camTotal+' online',
+      camPillStyle:'white-space:nowrap;padding:5px 11px;border-radius:100px;font-size:10.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;'
+        + (camOnline===camTotal ? 'background:rgba(232,255,58,.13);color:#e8ff3a' : 'background:rgba(255,92,92,.13);color:#ff8f8f'),
+      pendingPreview: pendingPreview.map(p=>({ ...p, onAccept:()=>this.resolve(p.id,'accepted'), onDecline:()=>this.resolve(p.id,'declined') })),
+      noPending: pendingPreview.length===0,
+      bkFilters, bookings, bookingsEmpty: bookings.length===0,
+      anStats, months, peaks, topFields,
+      revBars, revTrendPath:rPath, revRangeOptions, balance,
+      revCaption:rSet.caption, revRangeLabel:rRange==='1Y'?'1 Year':'6 Months',
+      revMenuOpen:!!this.state.revMenu, revToggleMenu:()=>this.setState(s=>({revMenu:!s.revMenu})),
+      revTicks:['0','20K','40K','60K','80K'],
+      netValue:'+ '+(rNet.v*108).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}),
+      netDelta:'+18% vs last month',
+      netCaption:rNet.label+' · after refunds and platform fees',
+      netMini:[{label:'Bookings',value:String(rNet.v*4)},{label:'Avg. slot',value:(600+(rNet.v%9)*10)+'₺'}],
+      toggles,
+    };
+  }
+}
+</script>
+</body>
+</html>

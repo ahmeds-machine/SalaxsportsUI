@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Arsenal:wght@400;700&family=Manrope:wght@400;500;600;700;800&family=Permanent+Marker&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:'Manrope',system-ui,sans-serif;background:#070d0a;color:#f3f6f2}
+  a{color:inherit;text-decoration:none}
+  a:hover{color:#e8ff3a}
+  ::selection{background:#e8ff3a;color:#0a1410}
+  .vlogo{font-family:'Permanent Marker',cursive;text-transform:uppercase}
+  .vhead{font-family:'Arsenal';font-weight:700;text-transform:uppercase}
+  .vchip{display:inline-flex;align-items:center;gap:6px;border-radius:100px;font-weight:800;letter-spacing:.04em;text-transform:uppercase}
+  .vrow-hover:hover{background:rgba(232,255,58,.05)!important}
+  .vcard-hover{transition:transform .2s ease,box-shadow .2s ease}
+  .vcard-hover:hover{transform:translateY(-4px);box-shadow:0 18px 44px rgba(0,0,0,.5)}
+  .vmosaic{position:relative;overflow:hidden;border-radius:14px;background:#05090c}
+  .vmosaic .vactions{opacity:0;transition:opacity .2s ease}
+  .vmosaic:hover .vactions{opacity:1}
+</style>
+</helmet>
+
+<div style="padding:60px clamp(24px,5vw,80px) 120px;max-width:1400px;margin:0 auto">
+  <div style="margin-bottom:14px"><span class="vlogo" style="font-size:22px">SALA<span style="color:#29c5f6">X</span>SPORTS</span></div>
+  <h1 class="vhead" style="font-size:clamp(30px,4vw,44px);letter-spacing:-.02em;margin:0 0 10px">My Library — Redesign Directions</h1>
+  <p style="max-width:640px;font-size:15px;line-height:1.55;opacity:.6;margin:0">Three ways to rethink the library page. Reference each by its badge in chat (e.g. <b style="color:#e8ff3a">1b</b>) and I'll build out the full interactive version.</p>
+
+  <!-- TURN 1 -->
+  <div style="display:flex;flex-wrap:wrap;gap:40px;margin-top:48px;align-items:flex-start">
+
+    <!-- ===================== 1a — CINEMATIC REEL ===================== -->
+    <div id="1a" style="flex:1;min-width:640px;max-width:720px">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+        <span class="vhead" style="background:#e8ff3a;color:#0a1410;font-size:14px;padding:4px 12px;border-radius:8px">1a</span>
+        <div><div class="vhead" style="font-size:19px;letter-spacing:-.01em">Cinematic Reel</div><div style="font-size:12.5px;opacity:.55">Video-first. One big featured highlight, the rest as a filmstrip.</div></div>
+      </div>
+
+      <div style="background:#0a1410;border:1px solid rgba(255,255,255,.1);border-radius:20px;overflow:hidden">
+        <!-- slim profile bar -->
+        <div style="display:flex;align-items:center;gap:12px;padding:16px 22px;border-bottom:1px solid rgba(255,255,255,.08)">
+          <div style="width:38px;height:38px;border-radius:11px;background:#e8ff3a;color:#0a1410;display:flex;align-items:center;justify-content:center;font-family:'Arsenal';font-weight:700;font-size:18px">A</div>
+          <div style="flex:1;min-width:0"><div class="vhead" style="font-size:16px">Ahmed Izmail</div><div style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;opacity:.45">3 clips · 35 views</div></div>
+          <span class="vchip" style="padding:7px 14px;border:1px solid rgba(232,255,58,.4);color:#e8ff3a;font-size:11px">+ Upload</span>
+        </div>
+
+        <!-- featured hero clip -->
+        <div style="position:relative;aspect-ratio:21/9;background:#05090c">
+          <image-slot id="v1a-hero" shape="rect" placeholder="Featured highlight"></image-slot>
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,9,12,.05) 40%,rgba(5,9,12,.9));pointer-events:none;z-index:2"></div>
+          <span style="position:absolute;left:22px;top:22px;z-index:3" class="vchip"><span style="padding:5px 12px;border-radius:100px;background:#e8ff3a;color:#0a1410;font-size:10.5px;font-weight:800">★ Top clip</span></span>
+          <span style="position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);width:60px;height:60px;border-radius:50%;background:rgba(232,255,58,.92);display:flex;align-items:center;justify-content:center;z-index:3"><span style="width:0;height:0;border-top:11px solid transparent;border-bottom:11px solid transparent;border-left:17px solid #0a1410;margin-left:5px"></span></span>
+          <div style="position:absolute;left:22px;right:22px;bottom:20px;z-index:3;display:flex;align-items:flex-end;justify-content:space-between;gap:16px">
+            <div><div class="vhead" style="font-size:26px;letter-spacing:-.01em">Last-minute winner</div><div style="font-size:12.5px;font-weight:600;opacity:.7;margin-top:2px">Jul 21, 2026 · 0:09</div></div>
+            <div style="display:flex;gap:9px">
+              <span style="width:42px;height:42px;border-radius:100px;border:1px solid rgba(255,255,255,.35);background:rgba(10,20,16,.5);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg></span>
+              <span style="width:42px;height:42px;border-radius:100px;background:#e8ff3a;color:#0a1410;display:flex;align-items:center;justify-content:center"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M4 21h16"/></svg></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- filmstrip -->
+        <div style="padding:18px 22px 22px">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px"><div class="vhead" style="font-size:15px;opacity:.8">More highlights</div><div style="font-size:12px;opacity:.45">Jul 2026</div></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+            <div style="display:flex;gap:12px;padding:10px;border:1px solid rgba(255,255,255,.08);border-radius:14px" class="vcard-hover">
+              <div style="width:96px;aspect-ratio:16/10;border-radius:10px;overflow:hidden;flex:none;background:#05090c;position:relative"><image-slot id="v1a-t1" shape="rect" placeholder="clip"></image-slot><span style="position:absolute;right:5px;bottom:5px;background:rgba(5,9,12,.75);color:#fff;font-size:9.5px;font-weight:700;padding:2px 5px;border-radius:4px;z-index:2">0:18</span></div>
+              <div style="min-width:0"><div class="vhead" style="font-size:14.5px;line-height:1.15">Solo run & finish</div><div style="font-size:11px;opacity:.5;margin-top:3px">34 views</div><span class="vchip" style="margin-top:8px;padding:2px 8px;border:1px solid rgba(232,255,58,.45);color:#e8ff3a;font-size:9.5px">Public</span></div>
+            </div>
+            <div style="display:flex;gap:12px;padding:10px;border:1px solid rgba(255,255,255,.08);border-radius:14px" class="vcard-hover">
+              <div style="width:96px;aspect-ratio:16/10;border-radius:10px;overflow:hidden;flex:none;background:#05090c;position:relative"><image-slot id="v1a-t2" shape="rect" placeholder="clip"></image-slot><span style="position:absolute;right:5px;bottom:5px;background:rgba(5,9,12,.75);color:#fff;font-size:9.5px;font-weight:700;padding:2px 5px;border-radius:4px;z-index:2">0:12</span></div>
+              <div style="min-width:0"><div class="vhead" style="font-size:14.5px;line-height:1.15">Highlight 3s - 6s</div><div style="font-size:11px;opacity:.5;margin-top:3px">1 view</div><span class="vchip" style="margin-top:8px;padding:2px 8px;border:1px solid rgba(255,255,255,.2);color:rgba(243,246,242,.6);font-size:9.5px">Private</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== 1b — MANAGER TABLE ===================== -->
+    <div id="1b" style="flex:1;min-width:640px;max-width:720px">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+        <span class="vhead" style="background:#e8ff3a;color:#0a1410;font-size:14px;padding:4px 12px;border-radius:8px">1b</span>
+        <div><div class="vhead" style="font-size:19px;letter-spacing:-.01em">Creator Manager</div><div style="font-size:12.5px;opacity:.55">Dashboard with a sidebar and a dense, sortable clip table.</div></div>
+      </div>
+
+      <div style="display:flex;background:#0a1410;border:1px solid rgba(255,255,255,.1);border-radius:20px;overflow:hidden;min-height:460px">
+        <!-- sidebar -->
+        <div style="width:210px;flex:none;border-right:1px solid rgba(255,255,255,.08);padding:22px 18px;background:#0d1712">
+          <div style="width:52px;height:52px;border-radius:14px;background:#e8ff3a;color:#0a1410;display:flex;align-items:center;justify-content:center;font-family:'Arsenal';font-weight:700;font-size:24px;margin-bottom:12px">A</div>
+          <div class="vhead" style="font-size:17px">Ahmed Izmail</div>
+          <div style="font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;opacity:.45;margin-top:2px">ahmedkheyr97</div>
+          <div style="display:flex;gap:10px;margin:18px 0 22px">
+            <div style="flex:1;background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px"><div class="vhead" style="font-size:20px;color:#e8ff3a">3</div><div style="font-size:9.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;opacity:.5">Clips</div></div>
+            <div style="flex:1;background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px"><div class="vhead" style="font-size:20px;color:#e8ff3a">35</div><div style="font-size:9.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;opacity:.5">Views</div></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:4px">
+            <div style="padding:9px 12px;border-radius:9px;background:rgba(232,255,58,.12);color:#e8ff3a;font-size:13px;font-weight:700">All clips</div>
+            <div style="padding:9px 12px;border-radius:9px;font-size:13px;font-weight:600;opacity:.6">Public</div>
+            <div style="padding:9px 12px;border-radius:9px;font-size:13px;font-weight:600;opacity:.6">Private</div>
+            <div style="padding:9px 12px;border-radius:9px;font-size:13px;font-weight:600;opacity:.6">Bookings</div>
+          </div>
+          <button class="vhead" style="margin-top:22px;width:100%;padding:11px;border:none;border-radius:10px;background:#e8ff3a;color:#0a1410;font-size:13px;letter-spacing:.03em;cursor:pointer">+ Upload clip</button>
+        </div>
+
+        <!-- table -->
+        <div style="flex:1;min-width:0;padding:20px 22px">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px">
+            <div class="vhead" style="font-size:19px">All clips</div>
+            <div style="position:relative"><input placeholder="Search…" style="width:200px;padding:9px 14px 9px 34px;border-radius:100px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);color:#f3f6f2;font-family:'Manrope';font-size:13px"><span style="position:absolute;left:13px;top:50%;transform:translateY(-50%);opacity:.4;display:flex"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg></span></div>
+          </div>
+          <!-- head -->
+          <div style="display:grid;grid-template-columns:2.4fr 1fr .8fr 1.4fr;gap:12px;padding:0 12px 10px;border-bottom:1px solid rgba(255,255,255,.1);font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;opacity:.45"><div>Clip</div><div>Status</div><div>Views</div><div style="text-align:right">Actions</div></div>
+          <!-- rows -->
+          <div class="vrow-hover" style="display:grid;grid-template-columns:2.4fr 1fr .8fr 1.4fr;gap:12px;align-items:center;padding:12px;border-bottom:1px solid rgba(255,255,255,.06);border-radius:8px">
+            <div style="display:flex;align-items:center;gap:11px;min-width:0"><div style="width:58px;aspect-ratio:16/10;border-radius:7px;overflow:hidden;flex:none;background:#05090c"><image-slot id="v1b-1" shape="rect" placeholder=""></image-slot></div><div style="min-width:0"><div class="vhead" style="font-size:14px;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Last-minute winner</div><div style="font-size:10.5px;opacity:.45;margin-top:2px">Jul 21 · 0:09</div></div></div>
+            <div><span class="vchip" style="padding:3px 9px;border:1px solid rgba(255,255,255,.2);color:rgba(243,246,242,.6);font-size:9.5px">Private</span></div>
+            <div style="font-size:13px;font-weight:700">0</div>
+            <div style="display:flex;gap:6px;justify-content:flex-end">
+              <span style="width:30px;height:30px;border-radius:8px;border:1px solid rgba(232,255,58,.4);color:#e8ff3a;display:flex;align-items:center;justify-content:center"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M4 21h16"/></svg></span>
+              <span style="width:30px;height:30px;border-radius:8px;border:1px solid rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#f3f6f2" stroke-width="2" stroke-linecap="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg></span>
+              <span style="width:30px;height:30px;border-radius:8px;background:#ef4a4a;color:#fff;display:flex;align-items:center;justify-content:center"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18"/><path d="M6 6l1 14a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-14"/><path d="M10 11v6M14 11v6"/></svg></span>
+            </div>
+          </div>
+          <div class="vrow-hover" style="display:grid;grid-template-columns:2.4fr 1fr .8fr 1.4fr;gap:12px;align-items:center;padding:12px;border-bottom:1px solid rgba(255,255,255,.06);border-radius:8px">
+            <div style="display:flex;align-items:center;gap:11px;min-width:0"><div style="width:58px;aspect-ratio:16/10;border-radius:7px;overflow:hidden;flex:none;background:#05090c"><image-slot id="v1b-2" shape="rect" placeholder=""></image-slot></div><div style="min-width:0"><div class="vhead" style="font-size:14px;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Solo run & finish</div><div style="font-size:10.5px;opacity:.45;margin-top:2px">Jul 25 · 0:18</div></div></div>
+            <div><span class="vchip" style="padding:3px 9px;border:1px solid rgba(232,255,58,.45);color:#e8ff3a;font-size:9.5px">Public</span></div>
+            <div style="font-size:13px;font-weight:700">34</div>
+            <div style="display:flex;gap:6px;justify-content:flex-end">
+              <span style="width:30px;height:30px;border-radius:8px;border:1px solid rgba(232,255,58,.4);color:#e8ff3a;display:flex;align-items:center;justify-content:center"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M4 21h16"/></svg></span>
+              <span style="width:30px;height:30px;border-radius:8px;border:1px solid rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#f3f6f2" stroke-width="2" stroke-linecap="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg></span>
+              <span style="width:30px;height:30px;border-radius:8px;background:#ef4a4a;color:#fff;display:flex;align-items:center;justify-content:center"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18"/><path d="M6 6l1 14a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-14"/><path d="M10 11v6M14 11v6"/></svg></span>
+            </div>
+          </div>
+          <div class="vrow-hover" style="display:grid;grid-template-columns:2.4fr 1fr .8fr 1.4fr;gap:12px;align-items:center;padding:12px;border-radius:8px">
+            <div style="display:flex;align-items:center;gap:11px;min-width:0"><div style="width:58px;aspect-ratio:16/10;border-radius:7px;overflow:hidden;flex:none;background:#05090c"><image-slot id="v1b-3" shape="rect" placeholder=""></image-slot></div><div style="min-width:0"><div class="vhead" style="font-size:14px;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Highlight 3s - 6s</div><div style="font-size:10.5px;opacity:.45;margin-top:2px">Jul 28 · 0:12</div></div></div>
+            <div><span class="vchip" style="padding:3px 9px;border:1px solid rgba(232,255,58,.45);color:#e8ff3a;font-size:9.5px">Public</span></div>
+            <div style="font-size:13px;font-weight:700">1</div>
+            <div style="display:flex;gap:6px;justify-content:flex-end">
+              <span style="width:30px;height:30px;border-radius:8px;border:1px solid rgba(232,255,58,.4);color:#e8ff3a;display:flex;align-items:center;justify-content:center"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M4 21h16"/></svg></span>
+              <span style="width:30px;height:30px;border-radius:8px;border:1px solid rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#f3f6f2" stroke-width="2" stroke-linecap="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg></span>
+              <span style="width:30px;height:30px;border-radius:8px;background:#ef4a4a;color:#fff;display:flex;align-items:center;justify-content:center"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18"/><path d="M6 6l1 14a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-14"/><path d="M10 11v6M14 11v6"/></svg></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== 1c — GALLERY MOSAIC ===================== -->
+    <div id="1c" style="flex:1;min-width:640px;max-width:720px">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+        <span class="vhead" style="background:#e8ff3a;color:#0a1410;font-size:14px;padding:4px 12px;border-radius:8px">1c</span>
+        <div><div class="vhead" style="font-size:19px;letter-spacing:-.01em">Gallery Profile</div><div style="font-size:12.5px;opacity:.55">Cover banner + a hover-reveal mosaic, social-profile feel.</div></div>
+      </div>
+
+      <div style="background:#0a1410;border:1px solid rgba(255,255,255,.1);border-radius:20px;overflow:hidden">
+        <!-- cover banner -->
+        <div style="position:relative;height:130px;background:#05090c">
+          <image-slot id="v1c-cover" shape="rect" placeholder="Cover image"></image-slot>
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,20,16,.2),rgba(10,20,16,.95));z-index:2"></div>
+        </div>
+        <div style="padding:0 24px 22px;margin-top:-38px;position:relative;z-index:3">
+          <div style="display:flex;align-items:flex-end;gap:16px">
+            <div style="width:76px;height:76px;border-radius:20px;background:#e8ff3a;color:#0a1410;display:flex;align-items:center;justify-content:center;font-family:'Arsenal';font-weight:700;font-size:34px;border:3px solid #0a1410;box-shadow:0 8px 24px rgba(0,0,0,.4)">A</div>
+            <div style="flex:1;padding-bottom:4px"><div class="vhead" style="font-size:24px;letter-spacing:-.01em">Ahmed Izmail</div><div style="font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;opacity:.5;margin-top:2px">3 Clips · 35 Views</div></div>
+            <span class="vchip" style="padding:9px 16px;background:#e8ff3a;color:#0a1410;font-size:12px">+ Upload</span>
+          </div>
+          <!-- filter pills -->
+          <div style="display:flex;gap:8px;margin-top:20px">
+            <span class="vchip" style="padding:7px 16px;background:rgba(232,255,58,.14);color:#e8ff3a;font-size:11.5px">All</span>
+            <span class="vchip" style="padding:7px 16px;border:1px solid rgba(255,255,255,.14);color:rgba(243,246,242,.6);font-size:11.5px">Public</span>
+            <span class="vchip" style="padding:7px 16px;border:1px solid rgba(255,255,255,.14);color:rgba(243,246,242,.6);font-size:11.5px">Private</span>
+          </div>
+
+          <!-- mosaic -->
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;grid-auto-rows:118px;gap:12px;margin-top:18px">
+            <div class="vmosaic" style="grid-column:span 2;grid-row:span 2">
+              <image-slot id="v1c-1" shape="rect" placeholder="Featured"></image-slot>
+              <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(5,9,12,.9));z-index:2;pointer-events:none"></div>
+              <span class="vchip" style="position:absolute;left:12px;top:12px;z-index:3;padding:3px 10px;background:#e8ff3a;color:#0a1410;font-size:9.5px">★ Top</span>
+              <div style="position:absolute;left:14px;bottom:12px;z-index:3"><div class="vhead" style="font-size:18px">Last-minute winner</div><div style="font-size:11px;opacity:.7">0:09 · 0 views</div></div>
+              <div class="vactions" style="position:absolute;right:12px;bottom:12px;z-index:4;display:flex;gap:7px"><span style="width:34px;height:34px;border-radius:9px;background:rgba(10,20,16,.7);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg></span><span style="width:34px;height:34px;border-radius:9px;background:#e8ff3a;color:#0a1410;display:flex;align-items:center;justify-content:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M4 21h16"/></svg></span></div>
+            </div>
+            <div class="vmosaic">
+              <image-slot id="v1c-2" shape="rect" placeholder=""></image-slot>
+              <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(5,9,12,.85));z-index:2;pointer-events:none"></div>
+              <div style="position:absolute;left:10px;bottom:9px;z-index:3"><div class="vhead" style="font-size:12.5px;line-height:1.1">Solo run</div><div style="font-size:9.5px;opacity:.7">34 views</div></div>
+              <span class="vchip" style="position:absolute;right:8px;top:8px;z-index:3;padding:2px 7px;border:1px solid rgba(232,255,58,.5);color:#e8ff3a;font-size:8.5px">Pub</span>
+            </div>
+            <div class="vmosaic">
+              <image-slot id="v1c-3" shape="rect" placeholder=""></image-slot>
+              <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(5,9,12,.85));z-index:2;pointer-events:none"></div>
+              <div style="position:absolute;left:10px;bottom:9px;z-index:3"><div class="vhead" style="font-size:12.5px;line-height:1.1">Highlight 3-6s</div><div style="font-size:9.5px;opacity:.7">1 view</div></div>
+              <span class="vchip" style="position:absolute;right:8px;top:8px;z-index:3;padding:2px 7px;border:1px solid rgba(255,255,255,.25);color:rgba(243,246,242,.65);font-size:8.5px">Priv</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+</body>
+</html>
