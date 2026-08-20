@@ -70,8 +70,8 @@
         <span style="display:flex;color:#0b6e3e">{{ crumbIcon }}</span>
         <span style="font-size:16px;font-weight:700">{{ pageTitle }}</span>
         <div style="display:flex;align-items:center;gap:12px;margin-left:auto">
-          <button style="width:40px;height:40px;border-radius:50%;border:1px solid rgba(18,33,26,.14);background:rgba(18,33,26,.035);color:#12211a;display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;transition:border-color .18s ease,transform .18s cubic-bezier(.22,1,.36,1),background .18s ease" style-hover="border-color:rgba(11,110,62,.55);background:rgba(11,110,62,.07);transform:translateY(-2px)"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg><span style="position:absolute;top:9px;right:11px;width:7px;height:7px;border-radius:50%;background:#0b6e3e;border:1.5px solid #ffffff"></span></button>
-          <button style="display:flex;align-items:center;gap:8px;padding:5px 10px 5px 5px;border-radius:100px;border:1px solid rgba(18,33,26,.14);background:rgba(18,33,26,.035);color:#12211a;cursor:pointer;transition:border-color .18s ease,transform .18s cubic-bezier(.22,1,.36,1)" style-hover="border-color:rgba(11,110,62,.55);transform:translateY(-2px)"><span style="width:30px;height:30px;border-radius:50%;background:#29c5f6;color:#04121a;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px">S</span><span style="font-size:9px;opacity:.6">▼</span></button>
+          <button style="width:40px;height:40px;border-radius:50%;border:1px solid rgba(18,33,26,.14);background:rgba(18,33,26,.035);color:#12211a;display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;transition:border-color .18s ease,transform .18s cubic-bezier(.22,1,.36,1),background .18s ease" style-hover="border-color:rgba(232,255,58,.5);background:rgba(232,255,58,.08);transform:translateY(-2px)"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg><span style="position:absolute;top:9px;right:11px;width:7px;height:7px;border-radius:50%;background:#e8ff3a;border:1.5px solid #0d1712"></span></button>
+          <button style="display:flex;align-items:center;gap:8px;padding:5px 10px 5px 5px;border-radius:100px;border:1px solid rgba(18,33,26,.14);background:rgba(18,33,26,.035);color:#12211a;cursor:pointer;transition:border-color .18s ease,transform .18s cubic-bezier(.22,1,.36,1)" style-hover="border-color:rgba(232,255,58,.5);transform:translateY(-2px)"><span style="width:30px;height:30px;border-radius:50%;background:#29c5f6;color:#04121a;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px">S</span><span style="font-size:9px;opacity:.6">▼</span></button>
         </div>
       </div>
 
@@ -92,7 +92,7 @@
               <input class="dsh-inp" placeholder="{{ searchPlaceholder }}" style="width:280px;max-width:100%;padding-left:40px;border-radius:12px;background:#ffffff">
             </div>
             </sc-if>
-            <button onClick="{{ actionClick }}" style="display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border-radius:12px;border:none;background:#0b6e3e;color:#ffffff;font-family:Manrope,sans-serif;font-size:13.5px;font-weight:800;cursor:pointer;white-space:nowrap;box-shadow:0 8px 20px rgba(11,110,62,.24)" style-hover="transform:translateY(-2px);filter:brightness(1.1);box-shadow:0 10px 24px rgba(11,110,62,.3)">{{ actionLabel }}<span style="display:flex">{{ actionIcon }}</span></button>
+            <button onClick="{{ actionClick }}" style="display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border-radius:12px;border:none;background:#14241c;color:#ffffff;font-family:Manrope,sans-serif;font-size:13.5px;font-weight:800;cursor:pointer;white-space:nowrap;box-shadow:0 8px 20px rgba(232,255,58,.24)" style-hover="transform:translateY(-2px)">{{ actionLabel }}<span style="display:flex">{{ actionIcon }}</span></button>
           </div>
           </sc-if>
         </div>
@@ -102,7 +102,7 @@
         <div class="dsh-fade">
           <div class="dsh-kpis" style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:16px">
             <sc-for list="{{ kpis }}" as="k" hint-placeholder-count="4">
-              <div style="background:#ffffff;border:1px solid rgba(18,33,26,.12);border-radius:18px;padding:18px;transition:transform .2s ease,border-color .2s ease" style-hover="transform:translateY(-3px);border-color:rgba(11,110,62,.4)">
+              <div style="background:#ffffff;border:1px solid rgba(18,33,26,.12);border-radius:18px;padding:18px;transition:transform .2s ease,border-color .2s ease" style-hover="transform:translateY(-3px);border-color:rgba(232,255,58,.28)">
                 <div style="display:flex;align-items:center;justify-content:space-between"><span style="width:36px;height:36px;border-radius:10px;background:rgba(11,110,62,.1);color:#0b6e3e;display:flex;align-items:center;justify-content:center">{{ k.icon }}</span><span style="{{ k.trendStyle }}">{{ k.trend }}</span></div>
                 <div style="font-family:'Arsenal';font-weight:700;font-size:30px;margin:14px 0 2px;line-height:1">{{ k.value }}</div>
                 <div style="font-size:12px;font-weight:500;opacity:.55">{{ k.label }}</div>
@@ -111,7 +111,7 @@
           </div>
 
           <!-- Today's pitch schedule -->
-          <div style="background:#ffffff;border:1px solid rgba(18,33,26,.12);border-radius:18px;padding:22px;margin-bottom:16px;transition:border-color .25s ease,box-shadow .25s ease" style-hover="border-color:rgba(11,110,62,.4);box-shadow:0 18px 44px rgba(18,33,26,.12)">
+          <div style="background:#ffffff;border:1px solid rgba(18,33,26,.12);border-radius:18px;padding:22px;margin-bottom:16px;transition:border-color .25s ease,box-shadow .25s ease" style-hover="border-color:rgba(232,255,58,.28);box-shadow:0 18px 44px rgba(0,0,0,.35)">
             <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:18px">
               <div>
                 <div style="font-size:10.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#0b6e3e;margin-bottom:7px">Today · {{ todayLabel }}</div>
@@ -139,7 +139,7 @@
                         <span style="font-size:9.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;opacity:.4">{{ r.meta }}</span>
                       </span>
                       <sc-for list="{{ r.cells }}" as="c" hint-placeholder-count="10">
-                        <button onClick="{{ c.onClick }}" style="{{ c.style }}" style-hover="transform:translateY(-3px) scale(1.06);filter:brightness(1.04);box-shadow:0 10px 22px rgba(11,110,62,.22);border-color:rgba(11,110,62,.6)">{{ c.label }}</button>
+                        <button onClick="{{ c.onClick }}" style="{{ c.style }}" style-hover="transform:translateY(-3px) scale(1.06);filter:brightness(1.04);box-shadow:0 10px 22px rgba(11,110,62,.22);border-color:rgba(232,255,58,.7)">{{ c.label }}</button>
                       </sc-for>
                     </div>
                   </sc-for>
@@ -150,16 +150,16 @@
 
           <div class="dsh-split" style="display:grid;grid-template-columns:1.45fr 1fr;gap:16px;align-items:start">
             <div style="background:#ffffff;border:1px solid rgba(18,33,26,.12);border-radius:18px;padding:22px;display:flex;flex-direction:column">
-              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px"><div style="font-family:'Arsenal';font-weight:700;font-size:18px">Pending requests</div><button onClick="{{ goBookings }}" style="font-size:12px;font-weight:700;color:#0b6e3e;background:none;border:none;cursor:pointer;font-family:Manrope,sans-serif" style-hover="text-decoration:underline;filter:brightness(1.15)">View all</button></div>
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px"><div style="font-family:'Arsenal';font-weight:700;font-size:18px">Pending requests</div><button onClick="{{ goBookings }}" style="font-size:12px;font-weight:700;color:#0b6e3e;background:none;border:none;cursor:pointer;font-family:Manrope,sans-serif">View all</button></div>
               <div style="display:flex;flex-direction:column;gap:10px">
                 <sc-for list="{{ pendingPreview }}" as="p" hint-placeholder-count="3">
-                  <div style="display:flex;align-items:center;gap:12px;padding:12px;border-radius:12px;background:rgba(18,33,26,.035);border:1px solid rgba(18,33,26,.09);flex-wrap:wrap;transition:background .2s ease,border-color .2s ease,transform .2s cubic-bezier(.22,1,.36,1)" style-hover="background:rgba(18,33,26,.06);border-color:rgba(11,110,62,.4);transform:translateX(3px)">
+                  <div style="display:flex;align-items:center;gap:12px;padding:12px;border-radius:12px;background:rgba(18,33,26,.035);border:1px solid rgba(18,33,26,.09);flex-wrap:wrap;transition:background .2s ease,border-color .2s ease,transform .2s cubic-bezier(.22,1,.36,1)" style-hover="background:rgba(255,255,255,.055);border-color:rgba(232,255,58,.28);transform:translateX(3px)">
                     <span style="width:34px;height:34px;flex:none;border-radius:9px;background:{{ p.color }};color:#04121a;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px">{{ p.initials }}</span>
                     <div style="min-width:0;flex:1"><div style="font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ p.name }}</div><div style="font-size:11px;font-weight:500;opacity:.5">{{ p.date }} · {{ p.time }} · {{ p.field }}</div></div>
                     <span style="font-family:'Arsenal';font-weight:700;font-size:15px;color:#0b6e3e">{{ p.price }}</span>
                     <span style="display:flex;gap:8px;flex:none">
                       <button onClick="{{ p.onDecline }}" style="display:inline-flex;align-items:center;gap:6px;padding:8px 13px;border-radius:10px;border:1px solid rgba(18,33,26,.16);background:transparent;color:rgba(18,33,26,.72);font-family:Manrope,sans-serif;font-size:12px;font-weight:700;cursor:pointer;transition:all .18s ease" style-hover="border-color:rgba(255,92,92,.6);background:rgba(255,92,92,.1);color:#ff8f8f"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>Decline</button>
-                      <button onClick="{{ p.onAccept }}" style="display:inline-flex;align-items:center;gap:6px;padding:8px 15px;border-radius:10px;border:none;background:#0b6e3e;color:#ffffff;font-family:Manrope,sans-serif;font-size:12px;font-weight:800;cursor:pointer;box-shadow:0 6px 16px rgba(11,110,62,.24);transition:transform .18s ease" style-hover="transform:translateY(-2px);filter:brightness(1.1);box-shadow:0 10px 24px rgba(11,110,62,.3)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Accept</button>
+                      <button onClick="{{ p.onAccept }}" style="display:inline-flex;align-items:center;gap:6px;padding:8px 15px;border-radius:10px;border:none;background:#14241c;color:#ffffff;font-family:Manrope,sans-serif;font-size:12px;font-weight:800;cursor:pointer;box-shadow:0 6px 16px rgba(232,255,58,.24);transition:transform .18s ease" style-hover="transform:translateY(-2px)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Accept</button>
                     </span>
                   </div>
                 </sc-for>
@@ -179,12 +179,12 @@
                 </div>
                 <div style="display:flex;flex-direction:column;gap:8px">
                   <sc-for list="{{ unsoldSlots }}" as="u" hint-placeholder-count="3">
-                    <div style="display:flex;align-items:center;gap:11px;padding:11px 13px;border-radius:12px;background:rgba(18,33,26,.035);border:1px solid rgba(18,33,26,.09);transition:background .2s ease,border-color .2s ease,transform .2s cubic-bezier(.22,1,.36,1)" style-hover="background:rgba(18,33,26,.06);border-color:rgba(11,110,62,.4);transform:translateX(3px)">
+                    <div style="display:flex;align-items:center;gap:11px;padding:11px 13px;border-radius:12px;background:rgba(18,33,26,.035);border:1px solid rgba(18,33,26,.09);transition:background .2s ease,border-color .2s ease,transform .2s cubic-bezier(.22,1,.36,1)" style-hover="background:rgba(255,255,255,.055);border-color:rgba(232,255,58,.28);transform:translateX(3px)">
                       <span style="min-width:0;flex:1;display:flex;flex-direction:column;gap:2px">
                         <span style="font-size:12.5px;font-weight:700">{{ u.slot }}</span>
                         <span style="font-size:11px;font-weight:600;opacity:.45">{{ u.field }}</span>
                       </span>
-                      <button onClick="{{ u.onDiscount }}" style="{{ u.btnStyle }}" style-hover="transform:translateY(-2px);box-shadow:0 8px 18px rgba(11,110,62,.28)">{{ u.btnLabel }}</button>
+                      <button onClick="{{ u.onDiscount }}" style="{{ u.btnStyle }}" style-hover="transform:translateY(-2px);box-shadow:0 8px 18px rgba(18,33,26,.3)">{{ u.btnLabel }}</button>
                     </div>
                   </sc-for>
                 </div>
@@ -219,9 +219,9 @@
           <div style="display:flex;flex-direction:column;gap:16px">
             <div style="background:#ffffff;border:1px solid rgba(18,33,26,.12);border-radius:18px;padding:18px">
               <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
-                <button onClick="{{ calPrev }}" style="width:28px;height:28px;border-radius:9px;border:1px solid rgba(18,33,26,.14);background:transparent;color:#12211a;opacity:.65;cursor:pointer;display:flex;align-items:center;justify-content:center" style-hover="opacity:1;border-color:rgba(11,110,62,.55);background:rgba(11,110,62,.1);color:#0b6e3e"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+                <button onClick="{{ calPrev }}" style="width:28px;height:28px;border-radius:9px;border:1px solid rgba(18,33,26,.14);background:transparent;color:#12211a;opacity:.65;cursor:pointer;display:flex;align-items:center;justify-content:center" style-hover="opacity:1;border-color:rgba(232,255,58,.5)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
                 <div style="font-family:'Arsenal';font-weight:700;font-size:15.5px;letter-spacing:.01em">{{ calTitle }}</div>
-                <button onClick="{{ calNext }}" style="width:28px;height:28px;border-radius:9px;border:1px solid rgba(18,33,26,.14);background:transparent;color:#12211a;opacity:.65;cursor:pointer;display:flex;align-items:center;justify-content:center" style-hover="opacity:1;border-color:rgba(11,110,62,.55);background:rgba(11,110,62,.1);color:#0b6e3e"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+                <button onClick="{{ calNext }}" style="width:28px;height:28px;border-radius:9px;border:1px solid rgba(18,33,26,.14);background:transparent;color:#12211a;opacity:.65;cursor:pointer;display:flex;align-items:center;justify-content:center" style-hover="opacity:1;border-color:rgba(232,255,58,.5)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
               </div>
               <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px;margin-bottom:6px">
                 <sc-for list="{{ calDow }}" as="w" hint-placeholder-count="7">
@@ -230,10 +230,10 @@
               </div>
               <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px">
                 <sc-for list="{{ calDays }}" as="d" hint-placeholder-count="35">
-                  <button onClick="{{ d.onClick }}" style="{{ d.style }}" style-hover="transform:translateY(-2px);box-shadow:0 6px 16px rgba(11,110,62,.18);border-color:#0b6e3e">{{ d.num }}<span style="{{ d.dotStyle }}"></span></button>
+                  <button onClick="{{ d.onClick }}" style="{{ d.style }}">{{ d.num }}<span style="{{ d.dotStyle }}"></span></button>
                 </sc-for>
               </div>
-              <button onClick="{{ calToday }}" style="width:100%;margin-top:14px;padding:9px;border-radius:11px;border:1px solid rgba(18,33,26,.14);background:transparent;color:rgba(18,33,26,.7);font-family:Manrope,sans-serif;font-size:12px;font-weight:700;cursor:pointer" style-hover="border-color:rgba(11,110,62,.55);color:#0b6e3e">Go to today</button>
+              <button onClick="{{ calToday }}" style="width:100%;margin-top:14px;padding:9px;border-radius:11px;border:1px solid rgba(18,33,26,.14);background:transparent;color:rgba(18,33,26,.7);font-family:Manrope,sans-serif;font-size:12px;font-weight:700;cursor:pointer" style-hover="border-color:rgba(232,255,58,.5);color:#0b6e3e">Go to today</button>
             </div>
             <div style="background:#ffffff;border:1px solid rgba(18,33,26,.12);border-radius:18px;padding:18px">
               <div style="font-size:10.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;opacity:.45;margin-bottom:12px">Upcoming</div>
@@ -254,12 +254,12 @@
           <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px">
             <div style="display:flex;align-items:center;gap:4px;padding:4px;border-radius:100px;background:#ffffff;border:1px solid rgba(18,33,26,.12)">
               <sc-for list="{{ scopes }}" as="s" hint-placeholder-count="2">
-                <button onClick="{{ s.onClick }}" style="{{ s.style }}" style-hover="transform:translateY(-2px);box-shadow:0 6px 16px rgba(11,110,62,.18);border-color:#0b6e3e">{{ s.label }}</button>
+                <button onClick="{{ s.onClick }}" style="{{ s.style }}">{{ s.label }}</button>
               </sc-for>
             </div>
             <div style="display:flex;align-items:center;gap:6px;padding:5px;border-radius:100px;background:#ffffff;border:1px solid rgba(18,33,26,.12);width:max-content">
               <sc-for list="{{ bkFilters }}" as="f" hint-placeholder-count="3">
-                <button onClick="{{ f.onClick }}" style="{{ f.style }}" style-hover="transform:translateY(-2px);box-shadow:0 6px 16px rgba(11,110,62,.18);border-color:#0b6e3e">{{ f.label }}<span style="{{ f.countStyle }}">{{ f.count }}</span></button>
+                <button onClick="{{ f.onClick }}" style="{{ f.style }}">{{ f.label }}<span style="{{ f.countStyle }}">{{ f.count }}</span></button>
               </sc-for>
             </div>
             <div style="margin-left:auto;font-size:12px;font-weight:600;opacity:.5;white-space:nowrap">{{ scopeCaption }}</div>
@@ -270,7 +270,7 @@
               <span>Requester</span><span class="dsh-col-sched">Schedule</span><span class="dsh-col-amt">Amount</span><span style="text-align:right">Action</span>
             </div>
             <sc-for list="{{ bookings }}" as="b" hint-placeholder-count="5">
-              <div class="dsh-tr" style="display:grid;grid-template-columns:1.5fr 1fr 0.6fr 220px;gap:16px;align-items:center;padding:14px 22px;border-top:1px solid rgba(18,33,26,.06);transition:background .18s ease" style-hover="background:rgba(18,33,26,.025)">
+              <div class="dsh-tr" style="display:grid;grid-template-columns:1.5fr 1fr 0.6fr 220px;gap:16px;align-items:center;padding:14px 22px;border-top:1px solid rgba(18,33,26,.06);transition:background .18s ease" style-hover="background:rgba(255,255,255,.025)">
                 <div style="display:flex;align-items:center;gap:13px;min-width:0">
                   <span style="width:42px;height:42px;flex:none;border-radius:12px;background:{{ b.color }};color:#04121a;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px">{{ b.initials }}</span>
                   <div style="min-width:0"><div style="font-size:14.5px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ b.name }}</div><div style="font-size:12px;font-weight:500;opacity:.5;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ b.field }}</div></div>
@@ -280,7 +280,7 @@
                 <div style="display:flex;align-items:center;gap:9px;justify-content:flex-end">
                   <sc-if value="{{ b.pending }}" hint-placeholder-val="{{ true }}">
                     <button onClick="{{ b.onDecline }}" style="display:inline-flex;align-items:center;gap:6px;padding:9px 14px;border-radius:11px;border:1px solid rgba(18,33,26,.16);background:transparent;color:rgba(18,33,26,.72);font-family:Manrope,sans-serif;font-size:12.5px;font-weight:700;cursor:pointer;transition:all .18s ease" style-hover="border-color:rgba(255,92,92,.6);background:rgba(255,92,92,.1);color:#ff8f8f"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>Decline</button>
-                    <button onClick="{{ b.onAccept }}" style="display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border-radius:11px;border:none;background:#0b6e3e;color:#ffffff;font-family:Manrope,sans-serif;font-size:12.5px;font-weight:800;cursor:pointer;box-shadow:0 6px 16px rgba(11,110,62,.24);transition:transform .18s ease,box-shadow .18s ease" style-hover="transform:translateY(-2px);box-shadow:0 10px 22px rgba(11,110,62,.3)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Accept</button>
+                    <button onClick="{{ b.onAccept }}" style="display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border-radius:11px;border:none;background:#14241c;color:#ffffff;font-family:Manrope,sans-serif;font-size:12.5px;font-weight:800;cursor:pointer;box-shadow:0 6px 16px rgba(232,255,58,.24);transition:transform .18s ease,box-shadow .18s ease" style-hover="transform:translateY(-2px);box-shadow:0 10px 22px rgba(232,255,58,.36)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Accept</button>
                   </sc-if>
                   <sc-if value="{{ b.resolved }}" hint-placeholder-val="{{ false }}"><span style="{{ b.statusStyle }}">{{ b.statusIcon }}{{ b.statusLabel }}</span></sc-if>
                 </div>
@@ -291,7 +291,7 @@
                 <span style="width:54px;height:54px;margin:0 auto 18px;border-radius:16px;background:rgba(11,110,62,.1);color:#0b6e3e;display:flex;align-items:center;justify-content:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>
                 <div style="font-family:'Arsenal';font-weight:700;font-size:20px;margin-bottom:6px">{{ emptyTitle }}</div>
                 <div style="font-size:13px;font-weight:500;opacity:.5;max-width:320px;margin:0 auto 20px">{{ emptyBody }}</div>
-                <button onClick="{{ openNew }}" style="display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:12px;border:none;background:#0b6e3e;color:#ffffff;font-family:Manrope,sans-serif;font-size:13.5px;font-weight:800;cursor:pointer;box-shadow:0 8px 20px rgba(11,110,62,.24)" style-hover="transform:translateY(-2px);filter:brightness(1.1);box-shadow:0 10px 24px rgba(11,110,62,.3)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>New booking</button>
+                <button onClick="{{ openNew }}" style="display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:12px;border:none;background:#14241c;color:#ffffff;font-family:Manrope,sans-serif;font-size:13.5px;font-weight:800;cursor:pointer;box-shadow:0 8px 20px rgba(232,255,58,.24)" style-hover="transform:translateY(-2px)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>New booking</button>
               </div>
             </sc-if>
           </div>
@@ -305,7 +305,7 @@
         <div class="dsh-fade">
           <div class="dsh-kpis" style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:22px">
             <sc-for list="{{ anStats }}" as="k" hint-placeholder-count="4">
-              <div style="background:#ffffff;border:1px solid rgba(18,33,26,.12);border-radius:18px;padding:18px;transition:transform .2s ease,border-color .2s ease" style-hover="transform:translateY(-3px);border-color:rgba(11,110,62,.4)">
+              <div style="background:#ffffff;border:1px solid rgba(18,33,26,.12);border-radius:18px;padding:18px;transition:transform .2s ease,border-color .2s ease" style-hover="transform:translateY(-3px);border-color:rgba(232,255,58,.28)">
                 <div style="font-size:12px;font-weight:600;opacity:.55">{{ k.label }}</div>
                 <div style="font-family:'Arsenal';font-weight:700;font-size:28px;margin:8px 0 2px;line-height:1">{{ k.value }}</div>
                 <span style="{{ k.trendStyle }}">{{ k.trend }}</span>
@@ -321,11 +321,11 @@
                 </div>
                 <div style="position:relative;display:flex;align-items:center;gap:8px">
                   <span style="font-size:11.5px;font-weight:700;opacity:.5;white-space:nowrap">{{ revRangeLabel }}</span>
-                  <button onClick="{{ revToggleMenu }}" style="width:32px;height:32px;flex:none;border-radius:10px;border:1px solid rgba(18,33,26,.14);background:rgba(18,33,26,.035);color:#12211a;opacity:.6;cursor:pointer;display:flex;align-items:center;justify-content:center" style-hover="opacity:1;border-color:rgba(11,110,62,.55);background:rgba(11,110,62,.1);color:#0b6e3e"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="1.9"/><circle cx="12" cy="12" r="1.9"/><circle cx="12" cy="19" r="1.9"/></svg></button>
+                  <button onClick="{{ revToggleMenu }}" style="width:32px;height:32px;flex:none;border-radius:10px;border:1px solid rgba(18,33,26,.14);background:rgba(18,33,26,.035);color:#12211a;opacity:.6;cursor:pointer;display:flex;align-items:center;justify-content:center" style-hover="opacity:1;border-color:rgba(232,255,58,.5)"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="1.9"/><circle cx="12" cy="12" r="1.9"/><circle cx="12" cy="19" r="1.9"/></svg></button>
                   <sc-if value="{{ revMenuOpen }}" hint-placeholder-val="{{ false }}">
-                    <div style="position:absolute;top:40px;right:0;z-index:20;min-width:158px;background:#ffffff;border:1px solid rgba(18,33,26,.14);border-radius:14px;padding:6px;box-shadow:0 18px 40px rgba(18,33,26,.18)">
+                    <div style="position:absolute;top:40px;right:0;z-index:20;min-width:158px;background:#ffffff;border:1px solid rgba(18,33,26,.14);border-radius:14px;padding:6px;box-shadow:0 18px 40px rgba(0,0,0,.55)">
                       <sc-for list="{{ revRangeOptions }}" as="o" hint-placeholder-count="2">
-                        <button onClick="{{ o.onClick }}" style="{{ o.style }}" style-hover="background:rgba(11,110,62,.1);color:#0b6e3e">{{ o.label }}<span style="{{ o.tickStyle }}">✓</span></button>
+                        <button onClick="{{ o.onClick }}" style="{{ o.style }}" style-hover="background:rgba(18,33,26,.06)">{{ o.label }}<span style="{{ o.tickStyle }}">✓</span></button>
                       </sc-for>
                     </div>
                   </sc-if>
@@ -348,10 +348,10 @@
                   </svg>
                   <div style="position:absolute;inset:0;display:flex;align-items:flex-end;gap:10px">
                     <sc-for list="{{ revBars }}" as="b" hint-placeholder-count="6">
-                      <button onClick="{{ b.onClick }}" style-hover="filter:brightness(1.06)" style="flex:1;min-width:0;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:0;background:none;border:none;padding:0;cursor:pointer">
+                      <button onClick="{{ b.onClick }}" style="flex:1;min-width:0;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:0;background:none;border:none;padding:0;cursor:pointer">
                         <div style="position:relative;width:100%;display:flex;align-items:flex-end;justify-content:center;height:200px">
                           <sc-if value="{{ b.active }}" hint-placeholder-val="{{ false }}"><span style="{{ b.badgeStyle }}">{{ b.badge }}</span></sc-if>
-                          <div style="{{ b.barStyle }}" style-hover="filter:brightness(1.3);box-shadow:0 0 30px rgba(11,110,62,.3)"></div>
+                          <div style="{{ b.barStyle }}" style-hover="filter:brightness(1.3);box-shadow:0 0 30px rgba(232,255,58,.45)"></div>
                           <span style="{{ b.dotStyle }}"></span>
                         </div>
                         <span style="{{ b.labelStyle }}">{{ b.label }}</span>
@@ -416,14 +416,14 @@
               <sc-for list="{{ toggles }}" as="t" hint-placeholder-count="3">
                 <div style="display:flex;align-items:center;gap:14px;padding:14px 0;border-top:1px solid rgba(18,33,26,.06)">
                   <div style="flex:1"><div style="font-size:14px;font-weight:700">{{ t.title }}</div><div style="font-size:12px;font-weight:500;opacity:.5;margin-top:2px">{{ t.desc }}</div></div>
-                  <button onClick="{{ t.onToggle }}" style="{{ t.trackStyle }}" style-hover="filter:brightness(1.08);transform:scale(1.04)"><span style="{{ t.knobStyle }}"></span></button>
+                  <button onClick="{{ t.onToggle }}" style="{{ t.trackStyle }}"><span style="{{ t.knobStyle }}"></span></button>
                 </div>
               </sc-for>
             </div>
           </div>
           <div style="display:flex;align-items:center;gap:12px">
-            <button style="display:inline-flex;align-items:center;gap:9px;padding:13px 24px;border-radius:100px;border:none;background:#0b6e3e;color:#ffffff;font-family:Manrope,sans-serif;font-size:14px;font-weight:800;cursor:pointer;box-shadow:0 8px 22px rgba(11,110,62,.24)" style-hover="transform:translateY(-2px);filter:brightness(1.1);box-shadow:0 10px 24px rgba(11,110,62,.3)">Save changes</button>
-            <button style="padding:13px 22px;border-radius:100px;border:1px solid rgba(18,33,26,.18);background:transparent;color:rgba(18,33,26,.75);font-family:Manrope,sans-serif;font-size:14px;font-weight:700;cursor:pointer" style-hover="border-color:rgba(11,110,62,.4)">Discard</button>
+            <button style="display:inline-flex;align-items:center;gap:9px;padding:13px 24px;border-radius:100px;border:none;background:#14241c;color:#ffffff;font-family:Manrope,sans-serif;font-size:14px;font-weight:800;cursor:pointer;box-shadow:0 8px 22px rgba(232,255,58,.24)" style-hover="transform:translateY(-2px)">Save changes</button>
+            <button style="padding:13px 22px;border-radius:100px;border:1px solid rgba(18,33,26,.18);background:transparent;color:rgba(18,33,26,.75);font-family:Manrope,sans-serif;font-size:14px;font-weight:700;cursor:pointer" style-hover="border-color:rgba(255,255,255,.35)">Discard</button>
           </div>
         </div>
         </sc-if>
@@ -450,7 +450,7 @@
         <div style="font-size:11px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;opacity:.5;margin-bottom:9px">Field</div>
         <div style="display:flex;gap:9px;flex-wrap:wrap">
           <sc-for list="{{ nbFields }}" as="f" hint-placeholder-count="3">
-            <button onClick="{{ f.onClick }}" style="{{ f.style }}" style-hover="transform:translateY(-2px);box-shadow:0 6px 16px rgba(11,110,62,.18);border-color:#0b6e3e"><span style="font-weight:800">{{ f.name }}</span><span style="opacity:.6;font-weight:600">{{ f.meta }}</span></button>
+            <button onClick="{{ f.onClick }}" style="{{ f.style }}"><span style="font-weight:800">{{ f.name }}</span><span style="opacity:.6;font-weight:600">{{ f.meta }}</span></button>
           </sc-for>
         </div>
       </div>
@@ -461,7 +461,7 @@
         </div>
         <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(74px,1fr));gap:8px">
           <sc-for list="{{ nbSlots }}" as="s" hint-placeholder-count="8">
-            <button onClick="{{ s.onClick }}" style="{{ s.style }}" style-hover="transform:translateY(-2px);box-shadow:0 6px 16px rgba(11,110,62,.18);border-color:#0b6e3e">{{ s.label }}</button>
+            <button onClick="{{ s.onClick }}" style="{{ s.style }}">{{ s.label }}</button>
           </sc-for>
         </div>
       </div>
@@ -470,7 +470,7 @@
           <div style="font-size:11px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;opacity:.5;margin-bottom:9px">Duration</div>
           <div style="display:flex;gap:8px">
             <sc-for list="{{ nbDurations }}" as="d" hint-placeholder-count="3">
-              <button onClick="{{ d.onClick }}" style="{{ d.style }}" style-hover="transform:translateY(-2px);box-shadow:0 6px 16px rgba(11,110,62,.18);border-color:#0b6e3e">{{ d.label }}</button>
+              <button onClick="{{ d.onClick }}" style="{{ d.style }}">{{ d.label }}</button>
             </sc-for>
           </div>
         </div>
@@ -484,8 +484,8 @@
         <div style="font-family:'Arsenal';font-weight:700;font-size:26px;color:#0b6e3e;line-height:1">{{ nbPrice }}</div>
       </div>
       <div style="display:flex;align-items:center;gap:12px;justify-content:flex-end">
-        <button onClick="{{ closeNew }}" style="padding:12px 20px;border-radius:12px;border:1px solid rgba(18,33,26,.16);background:transparent;color:rgba(18,33,26,.72);font-family:Manrope,sans-serif;font-size:13.5px;font-weight:700;cursor:pointer" style-hover="border-color:rgba(11,110,62,.4);color:#12211a">Cancel</button>
-        <button onClick="{{ nbCreate }}" style="{{ nbCreateStyle }}" style-hover="transform:translateY(-2px);filter:brightness(1.08);box-shadow:0 10px 24px rgba(11,110,62,.3)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>{{ nbCreateLabel }}</button>
+        <button onClick="{{ closeNew }}" style="padding:12px 20px;border-radius:12px;border:1px solid rgba(18,33,26,.16);background:transparent;color:rgba(18,33,26,.72);font-family:Manrope,sans-serif;font-size:13.5px;font-weight:700;cursor:pointer" style-hover="border-color:rgba(255,255,255,.3);color:#12211a">Cancel</button>
+        <button onClick="{{ nbCreate }}" style="{{ nbCreateStyle }}"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>{{ nbCreateLabel }}</button>
       </div>
     </div>
   </div>
@@ -612,7 +612,7 @@ class Component extends DCLogic {
     const base = 'display:flex;align-items:center;gap:12px;width:100%;padding:11px 13px;border-radius:12px;border:none;font-family:Manrope,sans-serif;font-size:13.5px;font-weight:700;cursor:pointer;white-space:nowrap;transition:transform .18s cubic-bezier(.22,1,.36,1),background .18s ease,color .18s ease,box-shadow .18s ease,filter .18s ease;';
     return {
       label, icon, badge, onClick:()=>this.setTab(id),
-      style: active ? base+'background:#0b6e3e;color:#ffffff;' : base+'background:transparent;color:rgba(18,33,26,.68);',
+      style: active ? base+'background:#14241c;color:#ffffff;' : base+'background:transparent;color:rgba(18,33,26,.68);',
       badgeStyle: active
         ? 'min-width:20px;height:19px;padding:0 6px;border-radius:100px;background:rgba(255,255,255,.25);color:#ffffff;font-size:11px;font-weight:800;display:inline-flex;align-items:center;justify-content:center'
         : 'min-width:20px;height:19px;padding:0 6px;border-radius:100px;background:rgba(11,110,62,.12);color:#0b6e3e;font-size:11px;font-weight:800;display:inline-flex;align-items:center;justify-content:center',
@@ -662,15 +662,15 @@ class Component extends DCLogic {
         const c = cellFor(key, h);
         if(c.free) return {
           label:'', onClick:()=>this.setState(s=>({ selIso:TODAY_ISO, nbOpen:true, nb:{ ...s.nb, field:key, slot:hh(h), dur:1 } })),
-          style: cellBase+'border:1.5px dashed rgba(18,33,26,.4);background:rgba(18,33,26,.02);color:rgba(18,33,26,.5);cursor:pointer;',
+          style: cellBase+'border:1.5px dashed rgba(18,33,26,.42);background:rgba(18,33,26,.03);color:rgba(18,33,26,.55);cursor:pointer;',
         };
         if(c.pending) return {
           label:c.hit.initials, onClick:()=>this.setTab('bookings'),
-          style: cellBase+'border:1px dashed rgba(11,110,62,.55);background:rgba(11,110,62,.12);color:#0b6e3e;cursor:pointer;',
+          style: cellBase+'border:1px solid rgba(214,138,20,.5);background:rgba(240,167,50,.2);color:#8a5300;cursor:pointer;',
         };
         return {
           label:c.hit.initials, onClick:()=>this.setTab('bookings'),
-          style: cellBase+'border:1px solid #0b6e3e;background:#0b6e3e;color:#ffffff;cursor:pointer;',
+          style: cellBase+'border:1px solid #cfe600;background:#e8ff3a;color:#12211a;cursor:pointer;',
         };
       }),
     }));
@@ -678,9 +678,9 @@ class Component extends DCLogic {
     const freeCells = schedule.reduce((n,r)=>n+r.cells.filter(c=>!c.label).length,0);
     const occToday = Math.round(((totalCells-freeCells)/totalCells)*100);
     const legend = [
-      { label:'Booked', swatch:'width:11px;height:11px;border-radius:3px;background:#0b6e3e' },
-      { label:'Awaiting approval', swatch:'width:11px;height:11px;border-radius:3px;background:rgba(11,110,62,.12);border:1px dashed rgba(11,110,62,.55)' },
-      { label:'Free — click to book', swatch:'width:11px;height:11px;border-radius:3px;border:1.5px dashed rgba(18,33,26,.4)' },
+      { label:'Booked', swatch:'width:11px;height:11px;border-radius:3px;background:#e8ff3a' },
+      { label:'Awaiting approval', swatch:'width:11px;height:11px;border-radius:3px;background:rgba(240,167,50,.2);border:1px solid rgba(214,138,20,.5)' },
+      { label:'Free — click to book', swatch:'width:11px;height:11px;border-radius:3px;border:1.5px dashed rgba(18,33,26,.45)' },
     ];
 
     const unsoldSlots = [];
@@ -693,7 +693,7 @@ class Component extends DCLogic {
             btnLabel: done ? 'Promoted' : 'Offer −20%',
             onDiscount: ()=>this.setState(s=>({ discounted:{ ...s.discounted, [id]:true } })),
             btnStyle: 'flex:none;white-space:nowrap;padding:8px 13px;border-radius:10px;font-family:Manrope,sans-serif;font-size:11.5px;font-weight:800;cursor:pointer;transition:transform .18s cubic-bezier(.22,1,.36,1),box-shadow .18s ease,background .18s ease;'
-              + (done ? 'border:1px solid rgba(11,110,62,.35);background:transparent;color:#0b6e3e;' : 'border:none;background:#0b6e3e;color:#ffffff;'),
+              + (done ? 'border:1px solid rgba(11,110,62,.35);background:transparent;color:#0b6e3e;' : 'border:none;background:#14241c;color:#ffffff;'),
           });
         }
       });
@@ -732,7 +732,7 @@ class Component extends DCLogic {
       return {
         day, count:wk[i],
         onClick:()=>this.setState({ selDay:i }),
-        barStyle:'width:100%;border-radius:8px 8px 3px 3px;transition:height .45s cubic-bezier(.22,1,.36,1),background .25s ease,box-shadow .25s ease;height:'+Math.round(wk[i]/wkMax*100)+'%;background:'+(on?'#0b6e3e':'rgba(11,110,62,.16)')+';'+(on?'box-shadow:0 6px 20px rgba(11,110,62,.25)':''),
+        barStyle:'width:100%;border-radius:8px 8px 3px 3px;transition:height .45s cubic-bezier(.22,1,.36,1),background .25s ease,box-shadow .25s ease;height:'+Math.round(wk[i]/wkMax*100)+'%;background:'+(on?'#e8ff3a':'rgba(232,255,58,.16)')+';'+(on?'box-shadow:0 6px 20px rgba(11,110,62,.1)':''),
         barHover: on?'':'background:rgba(11,110,62,.3)',
         dayStyle:'font-size:11px;font-weight:700;transition:all .2s ease;'+(on?'color:#0b6e3e;opacity:1':'opacity:.5'),
       };
@@ -778,7 +778,7 @@ class Component extends DCLogic {
       const on = filt===id;
       return {
         label, onClick:()=>this.setState({ bkFilter:id }),
-        style: on?fbase+'background:#0b6e3e;color:#ffffff;':fbase+'background:transparent;color:rgba(18,33,26,.65);',
+        style: on?fbase+'background:#14241c;color:#ffffff;':fbase+'background:transparent;color:rgba(18,33,26,.65);',
         count: cnt[id],
         countStyle: on?'min-width:20px;padding:0 6px;border-radius:100px;background:rgba(10,20,16,.2);font-size:11px;font-weight:800':'min-width:20px;padding:0 6px;border-radius:100px;background:rgba(18,33,26,.10);font-size:11px;font-weight:800',
       };
@@ -794,7 +794,7 @@ class Component extends DCLogic {
     const mMax = Math.max(...mv);
     const months = ['Mar','Apr','May','Jun','Jul','Aug'].map((label,i)=>({
       label, amt:mv[i].toFixed(1)+'k₺',
-      barStyle:'width:100%;border-radius:8px 8px 3px 3px;transition:filter .2s ease,transform .2s ease;transform-origin:bottom;height:'+Math.round(mv[i]/mMax*100)+'%;background:'+(i===5?'#0b6e3e':'linear-gradient(180deg,rgba(11,110,62,.7),rgba(11,110,62,.18))'),
+      barStyle:'width:100%;border-radius:8px 8px 3px 3px;transition:filter .2s ease,transform .2s ease;transform-origin:bottom;height:'+Math.round(mv[i]/mMax*100)+'%;background:'+(i===5?'#e8ff3a':'linear-gradient(180deg,rgba(11,110,62,.7),rgba(11,110,62,.18))'),
       barHover:'filter:brightness(1.25);transform:scaleY(1.04)',
     }));
     // ---- Revenue & trend chart ----
@@ -826,12 +826,12 @@ class Component extends DCLogic {
         label:b.label, active:on, badge:b.v+'K₺',
         onClick:()=>this.setState({revActive:i}),
         barStyle:'width:100%;max-width:42px;border-radius:11px 11px 4px 4px;transform-origin:bottom;transition:background .2s ease,box-shadow .25s ease,filter .2s ease;height:'+h.toFixed(1)+'px;'
-          + (on ? 'background:#0b6e3e;box-shadow:0 0 26px rgba(11,110,62,.28),0 0 0 1px #0b6e3e;'
+          + (on ? 'background:#e8ff3a;box-shadow:0 0 26px rgba(11,110,62,.1),0 0 0 1px #e8ff3a;'
                 : 'background:rgba(11,110,62,.16);'),
-        barHover: on ? 'box-shadow:0 0 34px rgba(11,110,62,.4),0 0 0 1px #0b6e3e;' : 'background:rgba(11,110,62,.3);',
-        badgeStyle:'position:absolute;bottom:'+(h+14).toFixed(1)+'px;left:50%;transform:translateX(-50%);padding:5px 10px;border-radius:8px;background:#0b6e3e;color:#ffffff;font-size:11.5px;font-weight:800;white-space:nowrap;box-shadow:0 8px 20px rgba(0,0,0,.45)',
+        barHover: on ? 'box-shadow:0 0 34px rgba(232,255,58,.5),0 0 0 1px #e8ff3a;' : 'background:rgba(11,110,62,.3);',
+        badgeStyle:'position:absolute;bottom:'+(h+14).toFixed(1)+'px;left:50%;transform:translateX(-50%);padding:5px 10px;border-radius:8px;background:#14241c;color:#ffffff;font-size:11.5px;font-weight:800;white-space:nowrap;box-shadow:0 8px 20px rgba(0,0,0,.45)',
         dotStyle:'position:absolute;bottom:'+((b.trend/RMAX)*PH-4).toFixed(1)+'px;left:50%;transform:translateX(-50%);width:8px;height:8px;border-radius:50%;background:#0b6e3e;border:2px solid #ffffff',
-        labelStyle:'height:26px;display:flex;align-items:center;font-size:11.5px;font-weight:'+(on?'800':'700')+';line-height:1;color:'+(on?'#0b6e3e':'rgba(11,110,62,.55)')
+        labelStyle:'height:26px;display:flex;align-items:center;font-size:11.5px;font-weight:'+(on?'800':'700')+';line-height:1;color:'+(on?'#0b6e3e':'rgba(92,125,0,.55)')
       };
     });
     const rn = rSet.bars.length, RW = 600;
@@ -841,7 +841,7 @@ class Component extends DCLogic {
       rPath += ' C'+mx.toFixed(1)+','+p[1].toFixed(1)+' '+mx.toFixed(1)+','+c[1].toFixed(1)+' '+c[0].toFixed(1)+','+c[1].toFixed(1); }
     const revRangeOptions = [['6M','6 Months'],['1Y','1 Year']].map(([id,label])=>({
       label, onClick:()=>this.setState({revRange:id,revMenu:false,revActive:null}),
-      style:'display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;padding:10px 12px;border-radius:10px;border:none;background:transparent;cursor:pointer;font-family:Manrope,sans-serif;font-size:12.5px;font-weight:700;text-align:left;color:'+(rRange===id?'#0b6e3e':'rgba(18,33,26,.8)'),
+      style:'display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;padding:10px 12px;border-radius:10px;border:none;background:transparent;cursor:pointer;font-family:Manrope,sans-serif;font-size:12.5px;font-weight:700;text-align:left;color:'+(rRange===id?'#e8ff3a':'rgba(18,33,26,.8)'),
       tickStyle:'color:#0b6e3e;font-size:11px;opacity:'+(rRange===id?'1':'0')
     }));
     const balance = rSet.balance.map(m=>Object.assign({},m,{
@@ -896,7 +896,7 @@ class Component extends DCLogic {
       return {
         num:d, onClick:()=>this.setState({ selIso:iso, bkScope:'day' }),
         style:'position:relative;height:36px;border:none;border-radius:11px;font-family:Manrope,sans-serif;font-size:12.5px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s ease;'
-          + (on ? 'background:#0b6e3e;color:#ffffff;box-shadow:0 6px 16px rgba(11,110,62,.4);'
+          + (on ? 'background:#14241c;color:#ffffff;box-shadow:0 6px 16px rgba(232,255,58,.28);'
                 : 'background:transparent;color:#12211a;'+(muted?'opacity:.22;':'opacity:.85;')
                   + (isToday?'box-shadow:inset 0 0 0 1px rgba(11,110,62,.5);':'')),
         dotStyle:'position:absolute;bottom:4px;left:50%;transform:translateX(-50%);width:4px;height:4px;border-radius:50%;background:'+(on?'#ffffff':'#0b6e3e')+';opacity:'+(has?(muted?'.35':'1'):'0'),
@@ -910,7 +910,7 @@ class Component extends DCLogic {
     const sbase = 'padding:8px 18px;border-radius:100px;border:none;font-family:Manrope,sans-serif;font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:all .15s ease;';
     const scopes = [['day','Day'],['all','All']].map(([id,label])=>({
       label, onClick:()=>this.setState({ bkScope:id }),
-      style: bkScope===id ? sbase+'background:#0b6e3e;color:#ffffff;' : sbase+'background:transparent;color:rgba(18,33,26,.6);',
+      style: bkScope===id ? sbase+'background:#14241c;color:#ffffff;' : sbase+'background:transparent;color:rgba(18,33,26,.6);',
     }));
     const selLong = this.isoLabel(selIso,{weekday:'long',month:'long',day:'numeric'});
     const dayTotal = this.state.bookings.filter(b=>b.iso===selIso).length;
@@ -921,21 +921,21 @@ class Component extends DCLogic {
     const nbFields = Object.keys(F).map(k=>{
       const on = nb.field===k;
       return { name:F[k].name, meta:F[k].meta+' · '+F[k].price+'₺/h', onClick:()=>this.nbSet('field',k),
-        style: chip + (on ? 'border:1px solid #0b6e3e;background:rgba(11,110,62,.1);color:#0b6e3e;' : 'border:1px solid rgba(18,33,26,.14);background:transparent;color:rgba(18,33,26,.8);') };
+        style: chip + (on ? 'border:1px solid #e8ff3a;background:rgba(11,110,62,.1);color:#0b6e3e;' : 'border:1px solid rgba(18,33,26,.14);background:transparent;color:rgba(18,33,26,.8);') };
     });
     const nbSlots = Component.SLOTS.map(s=>{
       const taken = !this.rangeFree(selIso, nb.field, parseInt(s,10), nb.dur), on = nb.slot===s && !taken;
       return { label:s, onClick: taken?()=>{}:()=>this.nbSet('slot',s),
         style:'padding:11px 6px;border-radius:12px;font-family:Manrope,sans-serif;font-size:12.5px;font-weight:700;transition:all .15s ease;'
           + (taken ? 'border:1px dashed rgba(18,33,26,.14);background:transparent;color:rgba(18,33,26,.25);cursor:not-allowed;text-decoration:line-through;'
-            : on ? 'border:1px solid #0b6e3e;background:#0b6e3e;color:#ffffff;cursor:pointer;'
+            : on ? 'border:1px solid #14241c;background:#14241c;color:#ffffff;cursor:pointer;'
                  : 'border:1px solid rgba(18,33,26,.14);background:transparent;color:rgba(18,33,26,.8);cursor:pointer;') };
     });
     const nbDurations = [1,1.5,2].map(d=>{
       const on = nb.dur===d;
       return { label:(d===1?'1 hr':d+' hrs'), onClick:()=>this.nbSet('dur',d),
         style:'flex:1;padding:11px 6px;border-radius:12px;font-family:Manrope,sans-serif;font-size:12.5px;font-weight:700;cursor:pointer;transition:all .15s ease;'
-          + (on ? 'border:1px solid #0b6e3e;background:rgba(11,110,62,.1);color:#0b6e3e;' : 'border:1px solid rgba(18,33,26,.14);background:transparent;color:rgba(18,33,26,.8);') };
+          + (on ? 'border:1px solid #e8ff3a;background:rgba(11,110,62,.1);color:#0b6e3e;' : 'border:1px solid rgba(18,33,26,.14);background:transparent;color:rgba(18,33,26,.8);') };
     });
     const endH = parseInt(nb.slot,10)+nb.dur;
     const endLabel = (Number.isInteger(endH)?iso2(endH)+':00':iso2(Math.floor(endH))+':30');
@@ -969,7 +969,7 @@ class Component extends DCLogic {
       nbPrice:(fld.price*nb.dur).toFixed(0)+'₺',
       nbCreateLabel: !slotFree ? 'Slot unavailable' : (nbValid ? 'Create booking' : 'Add a player name'),
       nbCreateStyle: cbase + (nbValid
-        ? 'background:#0b6e3e;color:#ffffff;cursor:pointer;box-shadow:0 8px 20px rgba(11,110,62,.24);'
+        ? 'background:#14241c;color:#ffffff;cursor:pointer;box-shadow:0 8px 20px rgba(232,255,58,.24);'
         : 'background:rgba(18,33,26,.09);color:rgba(18,33,26,.35);cursor:not-allowed;'),
       nbCreate:()=>this.createBooking(),
       navTop, settingsNav,
