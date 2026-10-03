@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Arsenal:wght@400;700&family=Manrope:wght@400;500;600;700;800&family=Permanent+Marker&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:'Manrope',system-ui,sans-serif;background:#060d09;color:#f3f6f2}
+  a{color:#e8ff3a;text-decoration:none}
+  a:hover{color:#f2ff7a}
+  input,button,select{font-family:inherit}
+  input::placeholder{color:rgba(243,246,242,.32)}
+  ::selection{background:#e8ff3a;color:#0a1410}
+  @media(max-width:1000px){.pp-shell{grid-template-columns:1fr!important}.pp-nav{flex-direction:row!important;overflow-x:auto}.pp-body{grid-template-columns:1fr!important}}
+  @media(max-width:640px){.pp-stats{gap:22px!important}.pp-auth{padding:26px 22px!important}}
+</style>
+<script src="./image-slot.js"></script>
+</helmet>
+
+<sc-if value="{{ isSignup }}" hint-placeholder-val="{{ true }}">
+  <div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px 20px;background:radial-gradient(120% 90% at 50% 0%,#12261a 0%,#060d09 62%)">
+    <div style="width:100%;max-width:420px">
+      <div style="text-align:center;margin-bottom:28px">
+        <a href="Salaxsports Hero.dc.html" style="font-family:'Permanent Marker',cursive;font-size:24px;text-transform:uppercase;color:#f3f6f2" style-hover="color:#e8ff3a">SALA<span style="color:#29c5f6">X</span>SPORTS</a>
+      </div>
+      <div class="pp-auth" style="background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.11);border-radius:20px;padding:34px 32px;box-shadow:0 30px 80px rgba(0,0,0,.55)">
+        <h1 style="font-family:'Arsenal';font-weight:700;font-size:30px;text-transform:uppercase;letter-spacing:-.01em;margin:0 0 6px">{{ authTitle }}</h1>
+        <p style="margin:0 0 26px;font-size:13px;font-weight:500;opacity:.55">{{ authSub }}</p>
+
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <label style="display:flex;flex-direction:column;gap:7px">
+            <span style="font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#e8ff3a">Email</span>
+            <input type="email" value="{{ email }}" onChange="{{ onEmail }}" placeholder="you@example.com" style="width:100%;padding:13px 15px;border-radius:11px;border:1px solid rgba(255,255,255,.14);background:rgba(6,13,9,.7);color:#f3f6f2;font-size:14px;font-weight:600;outline:none" style-focus="border-color:rgba(232,255,58,.6)">
+          </label>
+          <label style="display:flex;flex-direction:column;gap:7px">
+            <span style="font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#e8ff3a">Password</span>
+            <input type="password" value="{{ pw }}" onChange="{{ onPw }}" placeholder="At least 8 characters" style="width:100%;padding:13px 15px;border-radius:11px;border:1px solid rgba(255,255,255,.14);background:rgba(6,13,9,.7);color:#f3f6f2;font-size:14px;font-weight:600;outline:none" style-focus="border-color:rgba(232,255,58,.6)">
+          </label>
+          <sc-if value="{{ needsConfirm }}" hint-placeholder-val="{{ true }}">
+            <label style="display:flex;flex-direction:column;gap:7px">
+              <span style="font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#e8ff3a">Confirm password</span>
+              <input type="password" value="{{ pw2 }}" onChange="{{ onPw2 }}" placeholder="Repeat it" style="width:100%;padding:13px 15px;border-radius:11px;border:1px solid rgba(255,255,255,.14);background:rgba(6,13,9,.7);color:#f3f6f2;font-size:14px;font-weight:600;outline:none" style-focus="border-color:rgba(232,255,58,.6)">
+            </label>
+          </sc-if>
+          <sc-if value="{{ error }}" hint-placeholder-val="{{ false }}">
+            <div style="font-size:12.5px;font-weight:600;color:#ff8b6b;background:rgba(255,139,107,.1);border:1px solid rgba(255,139,107,.28);border-radius:10px;padding:10px 13px">{{ error }}</div>
+          </sc-if>
+          <button onClick="{{ onSubmitAuth }}" style="margin-top:4px;width:100%;padding:14px;border-radius:100px;border:none;background:#e8ff3a;color:#0a1410;font-family:'Arsenal';font-weight:700;font-size:15px;text-transform:uppercase;letter-spacing:.03em;cursor:pointer" style-hover="background:#d8f000">{{ authCta }}</button>
+        </div>
+
+        <div style="margin-top:22px;text-align:center;font-size:12.5px;font-weight:600;opacity:.6">{{ switchNote }} <button onClick="{{ onSwitchMode }}" style="background:none;border:none;padding:0;color:#e8ff3a;font-size:12.5px;font-weight:800;cursor:pointer;text-decoration:underline">{{ switchCta }}</button></div>
+      </div>
+    </div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ isApp }}" hint-placeholder-val="{{ false }}">
+  <div class="pp-shell" style="min-height:100vh;display:grid;grid-template-columns:236px 1fr;gap:0;background:#060d09">
+    <aside style="border-right:1px solid rgba(255,255,255,.08);padding:26px 18px;display:flex;flex-direction:column;gap:26px">
+      <a href="Salaxsports Hero.dc.html" style="font-family:'Permanent Marker',cursive;font-size:18px;text-transform:uppercase;padding-left:8px;color:#f3f6f2" style-hover="color:#e8ff3a">SALA<span style="color:#29c5f6">X</span>SPORTS</a>
+      <nav class="pp-nav" style="display:flex;flex-direction:column;gap:4px">
+        <sc-for list="{{ navItems }}" as="n" hint-placeholder-count="3">
+          <button onClick="{{ n.onClick }}" style="{{ n.style }}" style-hover="background:rgba(255,255,255,.06)">{{ n.label }}</button>
+        </sc-for>
+      </nav>
+      <button onClick="{{ onLogout }}" style="margin-top:auto;text-align:left;padding:11px 14px;border-radius:11px;border:1px solid rgba(255,255,255,.1);background:none;color:rgba(243,246,242,.7);font-size:13.5px;font-weight:700;cursor:pointer" style-hover="border-color:rgba(255,139,107,.45);color:#ff8b6b">Log out</button>
+    </aside>
+
+    <main style="padding:clamp(20px,3vw,34px) clamp(20px,3.4vw,44px) 60px;max-width:1180px">
+      <sc-if value="{{ onProfile }}" hint-placeholder-val="{{ true }}">
+        <div>
+          <div style="position:relative;border-radius:20px;overflow:hidden;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03)">
+            <div style="position:relative;height:190px;background:#0d1a12"><image-slot id="pp-cover" shape="rect" placeholder="Drop a cover photo"></image-slot></div>
+            <div style="padding:0 clamp(18px,3vw,32px) 26px">
+              <div style="display:flex;align-items:flex-end;gap:20px;margin-top:-52px;flex-wrap:wrap">
+                <div style="width:118px;height:118px;border-radius:50%;overflow:hidden;border:3px solid #060d09;background:#16241b;flex:none"><image-slot id="pp-avatar" shape="circle" placeholder="Photo"></image-slot></div>
+                <div style="flex:1;min-width:200px;padding-bottom:6px">
+                  <div style="font-family:'Arsenal';font-weight:700;font-size:clamp(24px,3vw,34px);line-height:1.05;letter-spacing:-.01em">{{ displayName }}</div>
+                  <div style="font-size:13px;font-weight:500;opacity:.55;margin-top:4px">{{ subLine }}</div>
+                </div>
+                <button onClick="{{ onToggleEdit }}" style="padding:11px 22px;border-radius:100px;border:1px solid rgba(232,255,58,.55);background:rgba(232,255,58,.1);color:#e8ff3a;font-family:'Arsenal';font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.04em;cursor:pointer;margin-bottom:6px" style-hover="background:rgba(232,255,58,.2)">{{ editCta }}</button>
+              </div>
+              <div class="pp-stats" style="display:flex;gap:46px;margin-top:26px;padding-top:22px;border-top:1px solid rgba(255,255,255,.08);flex-wrap:wrap">
+                <div style="display:flex;flex-direction:column;align-items:flex-start;gap:9px">
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(243,246,242,.45)" stroke-width="1.5"><rect x="2" y="5" width="20" height="14" rx="1.5"/><path d="M12 5v14"/><circle cx="12" cy="12" r="2.6"/><path d="M2 9.2h3.4v5.6H2M22 9.2h-3.4v5.6H22"/></svg>
+                  <div style="font-family:'Arsenal';font-weight:700;font-size:30px;line-height:1;color:#e8ff3a">0</div>
+                  <div style="font-size:11px;font-weight:800;letter-spacing:.11em;text-transform:uppercase;opacity:.5">Matches</div>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:flex-start;gap:9px">
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(243,246,242,.45)" stroke-width="1.5"><circle cx="12" cy="12" r="9.2"/><path d="M12 7.1l3.7 2.7-1.4 4.4H9.7L8.3 9.8z"/><path d="M12 2.8v4.3M19.9 9.1l-4.2.7M17 20.1l-2.7-5.9M7 20.1l2.7-5.9M4.1 9.1l4.2.7"/></svg>
+                  <div style="font-family:'Arsenal';font-weight:700;font-size:30px;line-height:1;color:#e8ff3a">0</div>
+                  <div style="font-size:11px;font-weight:800;letter-spacing:.11em;text-transform:uppercase;opacity:.5">Goals</div>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:flex-start;gap:9px">
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(243,246,242,.45)" stroke-width="1.5" stroke-linecap="round"><circle cx="9.5" cy="8" r="3.4"/><path d="M3.4 20v-.9a5.2 5.2 0 0 1 5.2-5.2h1.8a5.2 5.2 0 0 1 5.2 5.2v.9"/><path d="M16.4 5.1a3.4 3.4 0 0 1 0 6.4M18 14.1a5.2 5.2 0 0 1 3.1 4.8v1.1"/></svg>
+                  <div style="font-family:'Arsenal';font-weight:700;font-size:30px;line-height:1;color:#e8ff3a">0</div>
+                  <div style="font-size:11px;font-weight:800;letter-spacing:.11em;text-transform:uppercase;opacity:.5">Followers</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pp-body" style="display:grid;grid-template-columns:340px 1fr;gap:18px;margin-top:18px;align-items:start">
+            <section style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:24px">
+              <h2 style="font-family:'Arsenal';font-weight:700;font-size:18px;text-transform:uppercase;letter-spacing:-.01em;margin:0 0 18px">Player details</h2>
+              <sc-if value="{{ viewing }}" hint-placeholder-val="{{ true }}">
+                <div style="display:flex;flex-direction:column;gap:14px">
+                  <sc-for list="{{ details }}" as="d" hint-placeholder-count="6">
+                    <div style="display:flex;align-items:baseline;justify-content:space-between;gap:14px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.06)">
+                      <span style="font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;opacity:.45;flex:none">{{ d.label }}</span>
+                      <span style="{{ d.valueStyle }}">{{ d.display }}</span>
+                    </div>
+                  </sc-for>
+                </div>
+              </sc-if>
+              <sc-if value="{{ editing }}" hint-placeholder-val="{{ false }}">
+                <div style="display:flex;flex-direction:column;gap:14px">
+                  <sc-for list="{{ details }}" as="d" hint-placeholder-count="6">
+                    <label style="display:flex;flex-direction:column;gap:6px">
+                      <span style="font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:#e8ff3a">{{ d.label }}</span>
+                      <sc-if value="{{ d.isChips }}" hint-placeholder-val="{{ false }}">
+                        <span style="display:flex;gap:7px;flex-wrap:wrap">
+                          <sc-for list="{{ d.chips }}" as="c" hint-placeholder-count="4">
+                            <button onClick="{{ c.onClick }}" style="{{ c.style }}">{{ c.label }}</button>
+                          </sc-for>
+                        </span>
+                      </sc-if>
+                      <sc-if value="{{ d.isText }}" hint-placeholder-val="{{ true }}">
+                        <input value="{{ d.value }}" onChange="{{ d.onChange }}" placeholder="{{ d.placeholder }}" style="width:100%;padding:11px 13px;border-radius:10px;border:1px solid rgba(255,255,255,.14);background:rgba(6,13,9,.7);color:#f3f6f2;font-size:13.5px;font-weight:600;outline:none" style-focus="border-color:rgba(232,255,58,.6)">
+                      </sc-if>
+                    </label>
+                  </sc-for>
+                  <button onClick="{{ onSaveDetails }}" style="margin-top:6px;padding:12px;border-radius:100px;border:none;background:#e8ff3a;color:#0a1410;font-family:'Arsenal';font-weight:700;font-size:13.5px;text-transform:uppercase;letter-spacing:.04em;cursor:pointer" style-hover="background:#d8f000">Save changes</button>
+                </div>
+              </sc-if>
+            </section>
+
+            <section style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:24px">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:18px">
+                <h2 style="font-family:'Arsenal';font-weight:700;font-size:18px;text-transform:uppercase;letter-spacing:-.01em;margin:0">Goal clips</h2>
+                <span style="font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;opacity:.45">0 uploaded</span>
+              </div>
+              <div style="border:1px dashed rgba(255,255,255,.18);border-radius:14px;padding:44px 26px;text-align:center">
+                <div style="font-family:'Arsenal';font-weight:700;font-size:19px;text-transform:uppercase;letter-spacing:-.01em">No clips yet</div>
+                <p style="margin:9px auto 20px;max-width:44ch;font-size:13px;font-weight:500;opacity:.55;line-height:1.55">Upload a goal from any Salaxsports pitch and it enters that week's Goal of the Week ranking. Your clips and points collect here.</p>
+                <a href="Goal of the Week.dc.html" style="display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border-radius:100px;background:#e8ff3a;color:#0a1410;font-family:'Arsenal';font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.04em" style-hover="background:#d8f000">Upload a goal</a>
+              </div>
+            </section>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ onSettings }}" hint-placeholder-val="{{ false }}">
+        <div style="max-width:620px">
+          <h1 style="font-family:'Arsenal';font-weight:700;font-size:clamp(26px,3vw,34px);text-transform:uppercase;letter-spacing:-.01em;margin:0 0 6px">Account</h1>
+          <p style="margin:0 0 26px;font-size:13px;font-weight:500;opacity:.55">Signed in as {{ email }}</p>
+          <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1);border-radius:18px;overflow:hidden">
+            <sc-for list="{{ settingsItems }}" as="s" hint-placeholder-count="4">
+              <button onClick="{{ s.onClick }}" style="{{ s.style }}" style-hover="background:rgba(255,255,255,.05)">
+                <span style="display:flex;flex-direction:column;gap:3px;text-align:left"><span style="font-size:14.5px;font-weight:700">{{ s.label }}</span><span style="font-size:12px;font-weight:500;opacity:.5">{{ s.hint }}</span></span>
+                <span style="opacity:.4;font-size:16px">›</span>
+              </button>
+            </sc-for>
+          </div>
+          <sc-if value="{{ confirmDelete }}" hint-placeholder-val="{{ false }}">
+            <div style="margin-top:18px;border:1px solid rgba(255,139,107,.4);background:rgba(255,139,107,.08);border-radius:16px;padding:22px">
+              <div style="font-family:'Arsenal';font-weight:700;font-size:18px;text-transform:uppercase;color:#ff8b6b">Delete this account?</div>
+              <p style="margin:8px 0 18px;font-size:13px;font-weight:500;opacity:.75;line-height:1.55">Your profile, clips and Goal of the Week points are removed permanently. This cannot be undone.</p>
+              <div style="display:flex;gap:10px;flex-wrap:wrap">
+                <button onClick="{{ onConfirmDelete }}" style="padding:11px 22px;border-radius:100px;border:none;background:#ff8b6b;color:#200d06;font-family:'Arsenal';font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.04em;cursor:pointer">Yes, delete</button>
+                <button onClick="{{ onCancelDelete }}" style="padding:11px 22px;border-radius:100px;border:1px solid rgba(255,255,255,.2);background:none;color:#f3f6f2;font-family:'Arsenal';font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.04em;cursor:pointer">Keep it</button>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+      </sc-if>
+    </main>
+  </div>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:860}}">
+class Component extends DCLogic {
+  state = {
+    screen: 'signup', mode: 'signup', email: '', pw: '', pw2: '', error: '',
+    tab: 'profile', editing: false, confirmDelete: false,
+    d: { name: '', dob: '', city: '', pos: '', phone: '', ig: '' },
+  };
+
+  set(k, v) { this.setState({ [k]: v }); }
+
+  submitAuth = () => {
+    const { email, pw, pw2, mode } = this.state;
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return this.set('error', 'Enter a valid email address.');
+    if (pw.length < 8) return this.set('error', 'Password must be at least 8 characters.');
+    if (mode === 'signup' && pw !== pw2) return this.set('error', 'The two passwords do not match.');
+    this.setState({ error: '', screen: 'app', tab: 'profile' });
+  };
+
+  renderVals() {
+    const s = this.state;
+    const signup = s.mode === 'signup';
+    const nav = [['profile', 'Profile'], ['settings', 'Account']];
+    const navItems = nav.map(([k, label]) => ({
+      label, onClick: () => this.setState({ tab: k, confirmDelete: false }),
+      style: 'text-align:left;padding:11px 14px;border-radius:11px;border:none;cursor:pointer;font-size:13.5px;font-weight:700;background:' + (s.tab === k ? 'rgba(232,255,58,.12)' : 'transparent') + ';color:' + (s.tab === k ? '#e8ff3a' : 'rgba(243,246,242,.72)'),
+    }));
+
+    const F = [
+      ['name', 'Name-Surname', 'Ahmed Mohamed'],
+      ['dob', 'Date of birth', '30/08/2000'],
+      ['city', 'City', 'Ankara'],
+      ['pos', 'Position', ''],
+      ['phone', 'Phone', '+90 5xx xxx xx xx'],
+      ['ig', 'Instagram', '@username'],
+    ];
+    const POS = ['GK', 'DEF', 'MID', 'FWD'];
+    const details = F.map(([k, label, ph]) => {
+      const v = s.d[k];
+      const base = {
+        label, value: v, placeholder: ph, display: v || 'Not set',
+        valueStyle: 'font-size:13.5px;font-weight:700;text-align:right;color:' + (v ? '#f3f6f2' : 'rgba(243,246,242,.3)'),
+        isChips: k === 'pos', isText: k !== 'pos',
+        onChange: (e) => this.setState((st) => ({ d: { ...st.d, [k]: e.target.value } })),
+      };
+      if (k === 'pos') base.chips = POS.map((p) => ({
+        label: p,
+        onClick: () => this.setState((st) => ({ d: { ...st.d, pos: st.d.pos === p ? '' : p } })),
+        style: 'padding:8px 15px;border-radius:100px;cursor:pointer;font-size:12px;font-weight:800;letter-spacing:.04em;font-family:Manrope,sans-serif;background:' + (v === p ? '#e8ff3a' : 'rgba(255,255,255,.05)') + ';color:' + (v === p ? '#0a1410' : '#f3f6f2') + ';border:1px solid ' + (v === p ? '#e8ff3a' : 'rgba(255,255,255,.14)'),
+      }));
+      return base;
+    });
+
+    const SET = [
+      ['Update email', s.email || 'Not set'],
+      ['Update password', 'Last changed just now'],
+      ['Privacy settings', 'Who can see your profile and clips'],
+      ['Delete my account', 'Remove everything permanently'],
+    ];
+    const settingsItems = SET.map(([label, hint], i) => ({
+      label, hint,
+      onClick: () => this.setState({ confirmDelete: i === 3 }),
+      style: 'display:flex;align-items:center;justify-content:space-between;gap:14px;width:100%;padding:17px 20px;background:none;border:none;border-bottom:' + (i === SET.length - 1 ? 'none' : '1px solid rgba(255,255,255,.07)') + ';color:' + (i === 3 ? '#ff8b6b' : '#f3f6f2') + ';cursor:pointer;font-family:Manrope,sans-serif',
+    }));
+
+    const local = s.email ? s.email.split('@')[0] : '';
+    const parts = [s.d.pos, s.d.city].filter(Boolean);
+
+    return {
+      isSignup: s.screen === 'signup', isApp: s.screen === 'app',
+      onProfile: s.tab === 'profile', onSettings: s.tab === 'settings',
+      viewing: !s.editing, editing: s.editing,
+      email: s.email, pw: s.pw, pw2: s.pw2, error: s.error,
+      needsConfirm: signup,
+      authTitle: signup ? 'Create account' : 'Welcome back',
+      authSub: signup ? 'One account for booking pitches, tracking matches and entering Goal of the Week.' : 'Sign in to your Salaxsports profile.',
+      authCta: signup ? 'Create account' : 'Sign in',
+      switchNote: signup ? 'Already have an account?' : 'New to Salaxsports?',
+      switchCta: signup ? 'Sign in' : 'Create one',
+      onSwitchMode: () => this.setState({ mode: signup ? 'signin' : 'signup', error: '', pw2: '' }),
+      onEmail: (e) => this.set('email', e.target.value),
+      onPw: (e) => this.set('pw', e.target.value),
+      onPw2: (e) => this.set('pw2', e.target.value),
+      onSubmitAuth: this.submitAuth,
+      onLogout: () => this.setState({ screen: 'signup', mode: 'signin', pw: '', pw2: '', error: '', editing: false }),
+      displayName: s.d.name || local || 'Your name',
+      subLine: parts.length ? parts.join(' · ') : 'Add your details to complete the profile',
+      stats: [
+        { value: '0', label: 'Matches' },
+        { value: '0', label: 'Goals' },
+        { value: '0', label: 'Followers' },
+      ],
+      details, navItems, settingsItems,
+      editCta: s.editing ? 'Cancel' : 'Edit profile',
+      onToggleEdit: () => this.setState((st) => ({ editing: !st.editing })),
+      onSaveDetails: () => this.setState({ editing: false }),
+      confirmDelete: s.confirmDelete,
+      onConfirmDelete: () => this.setState({ screen: 'signup', mode: 'signup', email: '', pw: '', pw2: '', confirmDelete: false, d: { name: '', dob: '', city: '', pos: '', phone: '', ig: '' } }),
+      onCancelDelete: () => this.setState({ confirmDelete: false }),
+    };
+  }
+}
+</script>
+</body>
+</html>

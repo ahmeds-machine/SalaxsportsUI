@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Arsenal:wght@400;700&family=Manrope:wght@400;500;600;700;800&family=Permanent+Marker&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:'Manrope',system-ui,sans-serif;background:#e5ebe2;color:#12211a}
+  a{color:#0b6e3e;text-decoration:none}
+  a:hover{color:#0a5c34}
+  input,button,textarea{font-family:inherit}
+  input::placeholder,textarea::placeholder{color:rgba(18,33,26,.4)}
+  ::selection{background:#0b6e3e;color:#fff}
+  @keyframes mcIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  @keyframes mcPop{0%{opacity:0;transform:translate(-50%,4px) scale(.7)}30%{opacity:1;transform:translate(-50%,-8px) scale(1.15)}100%{opacity:0;transform:translate(-50%,-26px) scale(1)}}
+  @keyframes mcThumb{0%,100%{transform:none}35%{transform:scale(1.35) rotate(-12deg)}}
+  @media(max-width:1000px){.mc-grid{grid-template-columns:1fr!important}.mc-rail{max-height:none!important}}
+</style>
+<script src="./image-slot.js"></script>
+</helmet>
+
+<div style="min-height:100vh;padding:0 0 60px">
+
+  <header style="display:flex;align-items:center;justify-content:space-between;gap:18px;padding:18px clamp(18px,4vw,44px);border-bottom:1px solid rgba(18,33,26,.1)">
+    <a href="Salaxsports Hero.dc.html" style="font-family:'Permanent Marker',cursive;font-size:19px;text-transform:uppercase;letter-spacing:.01em;color:#12211a">Sala<span style="color:#29c5f6">x</span>sports</a>
+    <a href="Turf Fields.dc.html" style="display:inline-flex;align-items:center;gap:11px;padding:13px 26px 13px 22px;border-radius:100px;border:1px solid rgba(18,33,26,.18);background:#e5ebe2;font-size:15px;font-weight:700;letter-spacing:.01em;color:#12211a;white-space:nowrap;transition:background .2s ease,border-color .2s ease,transform .2s cubic-bezier(.22,1,.36,1)" style-hover="background:#ffffff;border-color:rgba(18,33,26,.4);transform:translateY(-2px)"><span style="display:flex;font-size:13px;color:#12211a">‹</span>Back to fields</a>
+  </header>
+
+  <div class="mc-grid" style="display:grid;grid-template-columns:minmax(0,1fr) 396px;gap:22px;padding:24px clamp(18px,4vw,44px) 0;align-items:start">
+
+    <div style="min-width:0">
+      <div style="position:relative;aspect-ratio:16/9;border-radius:18px;overflow:hidden;background:#0d1a12;box-shadow:0 24px 60px -24px rgba(6,14,10,.55)">
+        <image-slot id="mc-clip-main" shape="rect" placeholder="Match clip — drop footage"></image-slot>
+        <span style="position:absolute;top:14px;left:14px;display:flex;align-items:center;gap:7px;padding:6px 12px;border-radius:100px;background:rgba(6,13,9,.72);color:#fff;font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase">{{ clipTag }}</span>
+        <button onClick="{{ togglePlay }}" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;border:none;background:transparent;cursor:pointer" style-hover="background:rgba(6,13,9,.18)"><span style="{{ playBtnStyle }}">{{ playGlyph }}</span></button>
+
+        <div style="position:absolute;left:0;right:0;bottom:0;padding:14px 16px 12px;background:linear-gradient(180deg,rgba(6,13,9,0),rgba(6,13,9,.82))">
+          <div style="position:relative;height:26px;margin-bottom:2px">
+            <div onClick="{{ onScrub }}" style="position:absolute;left:0;right:0;top:11px;height:4px;border-radius:100px;background:rgba(255,255,255,.25);cursor:pointer">
+              <div style="{{ progressStyle }}"></div>
+            </div>
+            <sc-for list="{{ markers }}" as="m" hint-placeholder-count="4">
+              <button onClick="{{ m.onSeek }}" title="{{ m.title }}" style="{{ m.style }}" style-hover="transform:translate(-50%,0) scale(1.5);background:#0b6e3e"></button>
+            </sc-for>
+          </div>
+          <div style="display:flex;align-items:center;gap:14px">
+            <button onClick="{{ togglePlay }}" style="width:30px;height:30px;flex:none;border-radius:9px;border:1px solid rgba(255,255,255,.28);background:rgba(6,13,9,.5);color:#fff;font-size:11px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .18s ease" style-hover="background:#0b6e3e;border-color:#0b6e3e">{{ playGlyph }}</button>
+            <span style="font-size:12px;font-weight:700;color:rgba(255,255,255,.9);letter-spacing:.02em">{{ timeLabel }} / {{ durLabel }}</span>
+            <span style="margin-left:auto;font-size:11px;font-weight:700;color:rgba(255,255,255,.6)">{{ markerHint }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:flex-start;gap:18px;flex-wrap:wrap;margin-top:20px">
+        <div style="min-width:0;flex:1">
+          <h1 style="font-family:'Arsenal';font-weight:700;font-size:clamp(22px,2.6vw,29px);line-height:1.15;margin:0 0 8px">{{ clipTitle }}</h1>
+          <div style="font-size:12px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:rgba(18,33,26,.55)">{{ clipMeta }}</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:9px">
+          <span style="position:relative;display:inline-flex">
+            <button onClick="{{ toggleClipLike }}" style="{{ clipLikeStyle }}" style-hover="border-color:rgba(11,110,62,.5);color:#0b6e3e"><span style="{{ thumbStyle }}">👍</span>{{ clipLikes }}</button>
+            <sc-if value="{{ pop }}" hint-placeholder-val="{{ false }}">
+            <span style="position:absolute;left:50%;top:-6px;transform:translateX(-50%);pointer-events:none;font-size:13px;font-weight:800;color:#0b6e3e;animation:mcPop .75s cubic-bezier(.22,1,.36,1) both">+1</span>
+            </sc-if>
+          </span>
+          <button onClick="{{ share }}" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:11px;border:none;background:#0b6e3e;color:#fff;font-size:12.5px;font-weight:800;cursor:pointer;transition:transform .18s ease,background .18s ease" style-hover="transform:translateY(-2px);background:#0a5c34">{{ shareLabel }}</button>
+        </div>
+      </div>
+    </div>
+
+    <aside class="mc-rail" style="min-width:0;background:#fff;border:1px solid rgba(18,33,26,.1);border-radius:18px;display:flex;flex-direction:column;max-height:calc(100vh - 112px);overflow:hidden">
+
+      <div style="display:flex;align-items:center;gap:10px;padding:18px 18px 14px;border-bottom:1px solid rgba(18,33,26,.09)">
+        <div style="font-family:'Arsenal';font-weight:700;font-size:18px">Comments</div>
+        <span style="padding:3px 9px;border-radius:100px;background:rgba(11,110,62,.12);color:#0b6e3e;font-size:11.5px;font-weight:800">{{ commentCount }}</span>
+        <div style="margin-left:auto;display:flex;gap:4px;padding:3px;border-radius:100px;background:rgba(18,33,26,.05)">
+          <sc-for list="{{ roles }}" as="r" hint-placeholder-count="2">
+            <button onClick="{{ r.onClick }}" style="{{ r.style }}" style-hover="color:#0b6e3e">{{ r.label }}</button>
+          </sc-for>
+        </div>
+      </div>
+
+      <sc-if value="{{ ownerBar }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;align-items:center;gap:10px;padding:11px 18px;background:rgba(11,110,62,.06);border-bottom:1px solid rgba(18,33,26,.09)">
+        <span style="font-size:11.5px;font-weight:700;color:rgba(18,33,26,.65)">{{ ownerNote }}</span>
+        <button onClick="{{ toggleComments }}" style="margin-left:auto;padding:7px 13px;border-radius:9px;border:1px solid rgba(18,33,26,.16);background:#fff;font-size:11.5px;font-weight:800;color:#12211a;cursor:pointer;white-space:nowrap;transition:border-color .18s ease,color .18s ease" style-hover="border-color:rgba(11,110,62,.5);color:#0b6e3e">{{ toggleLabel }}</button>
+      </div>
+      </sc-if>
+
+      <sc-if value="{{ commentsOff }}" hint-placeholder-val="{{ false }}">
+      <div style="padding:52px 26px 58px;text-align:center">
+        <div style="font-family:'Arsenal';font-weight:700;font-size:17px;margin-bottom:6px">Comments are off</div>
+        <div style="font-size:12.5px;font-weight:500;color:rgba(18,33,26,.55);line-height:1.5">The field owner turned off comments for this clip.</div>
+      </div>
+      </sc-if>
+
+      <sc-if value="{{ commentsOn }}" hint-placeholder-val="{{ true }}">
+      <div style="position:relative;padding:16px 18px 14px;border-bottom:1px solid rgba(18,33,26,.09)">
+        <div style="font-family:'Arsenal';font-weight:700;font-size:16px;margin-bottom:3px">Leave a comment</div>
+        <div style="font-size:12px;font-weight:500;color:rgba(18,33,26,.55);line-height:1.45;margin-bottom:12px">{{ composerHelp }}</div>
+
+        <div style="border:1px solid rgba(18,33,26,.14);border-radius:14px;background:#fff;padding:12px 13px 9px">
+          <div style="display:flex;gap:11px;align-items:flex-start">
+            <span style="{{ meAvatarStyle }}">{{ meInitials }}</span>
+            <input ref="{{ composerRef }}" value="{{ draft }}" onChange="{{ onDraft }}" onKeyDown="{{ onKey }}" placeholder="{{ composerPlaceholder }}" style="flex:1;min-width:0;border:none;outline:none;background:transparent;font-size:13.5px;font-weight:500;color:#12211a;padding:5px 0">
+            <button onClick="{{ seekToDraft }}" style="flex:none;padding:4px 10px;border-radius:100px;border:1px dashed rgba(11,110,62,.45);background:rgba(11,110,62,.07);color:#0b6e3e;font-size:10.5px;font-weight:800;cursor:pointer" style-hover="background:#0b6e3e;color:#fff;border-color:#0b6e3e">at {{ draftAt }}</button>
+          </div>
+
+          <sc-if value="{{ hasAtts }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 4px;padding-left:45px">
+            <sc-for list="{{ atts }}" as="a" hint-placeholder-count="2">
+              <span style="display:inline-flex;align-items:center;gap:8px;padding:7px 10px;border-radius:10px;border:1px solid rgba(18,33,26,.14);background:rgba(18,33,26,.03);font-size:11.5px;font-weight:700">
+                <span style="{{ a.iconStyle }}">{{ a.icon }}</span>{{ a.name }}
+                <button onClick="{{ a.onRemove }}" style="border:none;background:transparent;color:rgba(18,33,26,.45);font-size:12px;cursor:pointer;padding:0 0 0 2px;line-height:1" style-hover="color:#c03a3a">✕</button>
+              </span>
+            </sc-for>
+          </div>
+          </sc-if>
+
+          <div style="display:flex;align-items:center;gap:2px;margin-top:8px;padding-top:9px;border-top:1px solid rgba(18,33,26,.07)">
+            <sc-for list="{{ tools }}" as="t" hint-placeholder-count="5">
+              <button onClick="{{ t.onClick }}" title="{{ t.title }}" style="{{ t.style }}" style-hover="background:rgba(11,110,62,.1);color:#0b6e3e">{{ t.label }}</button>
+            </sc-for>
+            <span style="margin-left:auto"></span>
+            <button onClick="{{ post }}" style="{{ postStyle }}" style-hover="background:#0a5c34">Comment</button>
+          </div>
+
+          <sc-if value="{{ emojiOpen }}" hint-placeholder-val="{{ false }}">
+          <div style="margin-top:10px;padding:11px;border-radius:12px;border:1px solid rgba(18,33,26,.12);background:rgba(18,33,26,.02)">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:9px">
+              <span style="font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:rgba(18,33,26,.45)">Emoji</span>
+              <button onClick="{{ closeEmoji }}" style="margin-left:auto;border:none;background:transparent;color:rgba(18,33,26,.45);font-size:12px;cursor:pointer" style-hover="color:#c03a3a">✕</button>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(8,1fr);gap:5px">
+              <sc-for list="{{ emojis }}" as="e" hint-placeholder-count="16">
+                <button onClick="{{ e.onPick }}" style="aspect-ratio:1;border-radius:9px;border:none;background:transparent;font-size:17px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s ease,transform .15s ease" style-hover="background:rgba(11,110,62,.1);transform:scale(1.15)">{{ e.char }}</button>
+              </sc-for>
+            </div>
+          </div>
+          </sc-if>
+        </div>
+
+        <sc-if value="{{ mentionOpen }}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute;left:18px;right:18px;top:100%;z-index:30;margin-top:-6px;background:#fff;border:1px solid rgba(18,33,26,.12);border-radius:14px;padding:6px;box-shadow:0 22px 44px -12px rgba(6,14,10,.32);animation:mcIn .16s ease both">
+          <sc-for list="{{ people }}" as="p" hint-placeholder-count="4">
+            <button onClick="{{ p.onPick }}" style="{{ p.style }}" style-hover="background:rgba(11,110,62,.09)">
+              <span style="{{ p.avatarStyle }}">{{ p.initials }}</span>
+              <span style="display:flex;flex-direction:column;gap:2px;min-width:0;text-align:left">
+                <span style="font-size:13px;font-weight:800">{{ p.name }}</span>
+                <span style="font-size:11.5px;font-weight:600;color:rgba(18,33,26,.5)">{{ p.handle }}</span>
+              </span>
+            </button>
+          </sc-for>
+        </div>
+        </sc-if>
+      </div>
+
+      <div style="min-width:0;overflow-y:auto;padding:8px 18px 6px">
+
+        <sc-if value="{{ pinned }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:13px 14px;border-radius:13px;background:rgba(11,110,62,.07);border:1px solid rgba(11,110,62,.2);margin-bottom:14px">
+          <div style="display:flex;align-items:center;gap:7px;font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#0b6e3e;margin-bottom:7px">Pinned by owner</div>
+          <div style="display:flex;gap:11px">
+            <span style="{{ pinned.avatarStyle }}">{{ pinned.initials }}</span>
+            <div style="min-width:0">
+              <div style="font-size:12.5px;font-weight:800">{{ pinned.name }}</div>
+              <div style="font-size:13px;font-weight:500;line-height:1.5;margin-top:3px">{{ pinned.pre }}<span style="color:#0b6e3e;font-weight:800">{{ pinned.mention }}</span>{{ pinned.post }}</div>
+            </div>
+          </div>
+        </div>
+        </sc-if>
+
+        <sc-for list="{{ comments }}" as="c" hint-placeholder-count="5">
+          <div style="display:flex;gap:11px;padding:13px 0;border-top:1px solid rgba(18,33,26,.07)">
+            <span style="{{ c.avatarStyle }}">{{ c.initials }}</span>
+            <div style="min-width:0;flex:1">
+              <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+                <span style="font-size:12.5px;font-weight:800">{{ c.name }}</span>
+                <sc-if value="{{ c.isOwner }}" hint-placeholder-val="{{ false }}"><span style="padding:2px 7px;border-radius:100px;background:#0b6e3e;color:#fff;font-size:9px;font-weight:800;letter-spacing:.08em;text-transform:uppercase">Owner</span></sc-if>
+                <button onClick="{{ c.onSeek }}" style="padding:2px 8px;border-radius:100px;border:1px solid rgba(11,110,62,.28);background:rgba(11,110,62,.08);color:#0b6e3e;font-size:10.5px;font-weight:800;cursor:pointer;transition:background .18s ease" style-hover="background:#0b6e3e;color:#fff">{{ c.atLabel }}</button>
+                <span style="font-size:11px;font-weight:600;color:rgba(18,33,26,.45)">{{ c.ago }}</span>
+              </div>
+              <div style="font-size:13.5px;font-weight:500;line-height:1.55;margin-top:5px;text-wrap:pretty">{{ c.pre }}<span style="color:#0b6e3e;font-weight:800">{{ c.mention }}</span>{{ c.post }}</div>
+              <div style="display:flex;align-items:center;gap:6px;margin-top:9px;flex-wrap:wrap">
+                <button onClick="{{ c.onLike }}" style="{{ c.likeStyle }}" style-hover="color:#0b6e3e">♥ {{ c.likes }}</button>
+                <button onClick="{{ c.onReply }}" style="padding:5px 10px;border-radius:8px;border:none;background:transparent;color:rgba(18,33,26,.6);font-size:11.5px;font-weight:800;cursor:pointer;transition:color .18s ease,background .18s ease" style-hover="color:#0b6e3e;background:rgba(11,110,62,.08)">Reply</button>
+                <sc-if value="{{ c.canPin }}" hint-placeholder-val="{{ false }}"><button onClick="{{ c.onPin }}" style="{{ c.pinStyle }}" style-hover="color:#0b6e3e;background:rgba(11,110,62,.08)">{{ c.pinLabel }}</button></sc-if>
+              </div>
+
+              <sc-for list="{{ c.replies }}" as="r" hint-placeholder-count="1">
+                <div style="display:flex;gap:9px;margin-top:11px;padding-left:12px;border-left:2px solid rgba(18,33,26,.09)">
+                  <span style="{{ r.avatarStyle }}">{{ r.initials }}</span>
+                  <div style="min-width:0">
+                    <div style="display:flex;align-items:center;gap:7px;flex-wrap:wrap">
+                      <span style="font-size:12px;font-weight:800">{{ r.name }}</span>
+                      <sc-if value="{{ r.isOwner }}" hint-placeholder-val="{{ false }}"><span style="padding:2px 6px;border-radius:100px;background:#0b6e3e;color:#fff;font-size:8.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase">Owner</span></sc-if>
+                      <span style="font-size:10.5px;font-weight:600;color:rgba(18,33,26,.45)">{{ r.ago }}</span>
+                    </div>
+                    <div style="font-size:13px;font-weight:500;line-height:1.5;margin-top:3px">{{ r.pre }}<span style="color:#0b6e3e;font-weight:800">{{ r.mention }}</span>{{ r.post }}</div>
+                  </div>
+                </div>
+              </sc-for>
+
+              <sc-if value="{{ c.replyOpen }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;gap:8px;margin-top:11px;padding-left:12px">
+                <input value="{{ replyDraft }}" onChange="{{ onReplyDraft }}" placeholder="{{ c.replyPlaceholder }}" style="flex:1;min-width:0;padding:9px 12px;border-radius:10px;border:1px solid rgba(18,33,26,.16);background:#fff;font-size:12.5px;font-weight:500;color:#12211a">
+                <button onClick="{{ c.onSendReply }}" style="padding:9px 14px;border-radius:10px;border:none;background:#0b6e3e;color:#fff;font-size:12px;font-weight:800;cursor:pointer" style-hover="background:#0a5c34">Send</button>
+              </div>
+              </sc-if>
+            </div>
+          </div>
+        </sc-for>
+
+        <sc-if value="{{ isQuiet }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:30px 10px 34px;text-align:center;border-top:1px solid rgba(18,33,26,.07)">
+          <div style="font-family:'Arsenal';font-weight:700;font-size:16px;margin-bottom:5px">{{ quietTitle }}</div>
+          <div style="font-size:12.5px;font-weight:500;color:rgba(18,33,26,.55);line-height:1.5">{{ quietBody }}</div>
+        </div>
+        </sc-if>
+      </div>
+
+      </sc-if>
+
+    </aside>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1320,&quot;height&quot;:880},&quot;viewerRole&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;player&quot;,&quot;owner&quot;],&quot;default&quot;:&quot;player&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Comments&quot;},&quot;commentVolume&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;busy&quot;,&quot;quiet&quot;],&quot;default&quot;:&quot;busy&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Comments&quot;},&quot;commentsEnabled&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Comments&quot;}}">
+class Component extends DCLogic {
+  DUR = 72;
+
+  state = { playing:true, t:14, role:null, volume:null, off:null, pinnedId:'c2', draft:'', replyTo:null, replyDraft:'', likes:{}, clipLiked:false, added:[], addedReplies:{}, shared:false, atts:[{ kind:'img', name:'clip-0-14.png' }], mention:false, gifOpen:false };
+
+  PEOPLE = [
+    ['Emre Karanfil','emre','Yıldızlar FC','EK','#38bdf8'],
+    ['Mertcan Yıldız','mertcan','Yıldızlar FC','MY','#f0883e'],
+    ['Halil İbrahim','halil','Kartal SK','Hİ','#a78bfa'],
+    ['Waberi United','waberi','Team','WU','#34d399'],
+    ['Kerem Aksoy','kerem','Kartal SK','KA','#fb7185'],
+  ];
+
+  componentDidMount(){
+    this.iv = setInterval(()=>{
+      if(this.state.playing) this.setState(s=>({ t: (s.t + 0.25) % this.DUR }));
+    }, 250);
+  }
+  componentWillUnmount(){ clearInterval(this.iv); }
+
+  fmt(s){ const m = Math.floor(s/60), r = Math.floor(s%60); return m+':'+String(r).padStart(2,'0'); }
+
+  av(color, size){ return 'width:'+size+'px;height:'+size+'px;flex:none;border-radius:9px;background:'+color+';color:#04121a;display:flex;align-items:center;justify-content:center;font-size:'+(size>30?11.5:10.5)+'px;font-weight:800'; }
+
+  BUSY = [
+    { id:'c1', name:'Mertcan Yıldız', initials:'MY', color:'#f0883e', at:8, ago:'2h', likes:12, pre:'Look at the first touch here. ', mention:'@Emre Karanfil', post:' does this every week and nobody marks him.', replies:[
+      { name:'Emre Karanfil', initials:'EK', color:'#38bdf8', ago:'1h', pre:'', mention:'@Mertcan Yıldız', post:' you were the one who left the lane open 😄' } ] },
+    { id:'c2', name:'Halil İbrahim', initials:'Hİ', color:'#a78bfa', at:14, ago:'3h', likes:31, pre:'Best goal of the week on this pitch. Camera angle from behind the goal is worth the booking alone.', mention:'', post:'', replies:[] },
+    { id:'c3', name:'İmes Tuntaş Turf', initials:'İT', color:'#0b6e3e', at:22, ago:'3h', likes:6, isOwner:true, pre:'Clip is up in full on the field page. New camera on pitch B from Monday.', mention:'', post:'', replies:[] },
+    { id:'c4', name:'Waberi United', initials:'WU', color:'#34d399', at:36, ago:'5h', likes:9, pre:'Rematch Wednesday 19:00. ', mention:'@Coast Rangers', post:' bring your keeper this time.', replies:[
+      { name:'Coast Rangers', initials:'CR', color:'#fb7185', ago:'4h', pre:'Booked. ', mention:'', post:'Same pitch, same time.' } ] },
+    { id:'c5', name:'Kerem Aksoy', initials:'KA', color:'#fb7185', at:47, ago:'6h', likes:4, pre:'The offside call at 0:47 is wrong and I will die on this hill.', mention:'', post:'', replies:[] },
+    { id:'c6', name:'Ahmed Nur', initials:'AN', color:'#29c5f6', at:58, ago:'8h', likes:17, pre:'Slow it down at 0:58 — the ball is clearly in before the whistle.', mention:'', post:'', replies:[] },
+    { id:'c7', name:'Ibrahim Ethem', initials:'IE', color:'#facc15', at:64, ago:'11h', likes:2, pre:'Who edits these? The cut is clean.', mention:'', post:'', replies:[] },
+  ];
+
+  QUIET = [
+    { id:'q1', name:'Mertcan Yıldız', initials:'MY', color:'#f0883e', at:14, ago:'22m', likes:1, pre:'First comment. ', mention:'@Emre Karanfil', post:' watch the finish.', replies:[] },
+  ];
+
+  seek(v){ this.setState({ t: Math.max(0, Math.min(this.DUR - 0.5, v)) }); }
+
+  renderVals(){
+    const s = this.state;
+    const role = s.role ?? (this.props.viewerRole || 'player');
+    const volume = s.volume ?? (this.props.commentVolume || 'busy');
+    const off = s.off ?? (this.props.commentsEnabled === false);
+    const isOwner = role === 'owner';
+    const base = volume === 'busy' ? this.BUSY : this.QUIET;
+    const all = s.added.concat(base);
+    const pinnedId = s.pinnedId;
+    const list = all.slice().sort((a,b)=> (a.id===pinnedId?-1:0) - (b.id===pinnedId?-1:0));
+    const pin = all.find(c=>c.id===pinnedId) || null;
+    const total = all.reduce((n,c)=>n + 1 + (c.replies||[]).length + ((s.addedReplies[c.id]||[]).length), 0);
+
+    const pill = on => 'padding:5px 12px;border-radius:100px;border:none;cursor:pointer;font-size:11px;font-weight:800;letter-spacing:.03em;transition:background .18s ease,color .18s ease;'
+      + (on ? 'background:#0b6e3e;color:#fff;' : 'background:transparent;color:rgba(18,33,26,.6);');
+
+    const mk = (c, i) => {
+      const extra = s.addedReplies[c.id] || [];
+      const likeOn = !!s.likes[c.id];
+      return {
+        ...c,
+        atLabel: this.fmt(c.at),
+        avatarStyle: this.av(c.color, 34),
+        isOwner: !!c.isOwner,
+        likes: (c.likes||0) + (likeOn?1:0),
+        likeStyle: 'padding:5px 10px;border-radius:8px;border:none;background:'+(likeOn?'rgba(11,110,62,.1)':'transparent')+';color:'+(likeOn?'#0b6e3e':'rgba(18,33,26,.6)')+';font-size:11.5px;font-weight:800;cursor:pointer;transition:color .18s ease,background .18s ease',
+        onLike: ()=>this.setState(st=>({ likes:{ ...st.likes, [c.id]: !st.likes[c.id] } })),
+        onSeek: ()=>this.seek(c.at),
+        onReply: ()=>this.setState(st=>({ replyTo: st.replyTo===c.id?null:c.id, replyDraft:'' })),
+        replyOpen: s.replyTo === c.id,
+        replyPlaceholder: 'Reply to '+c.name.split(' ')[0]+'…',
+        onSendReply: ()=>{
+          const txt = s.replyDraft.trim(); if(!txt) return;
+          this.setState(st=>({ replyTo:null, replyDraft:'', addedReplies:{ ...st.addedReplies, [c.id]: (st.addedReplies[c.id]||[]).concat([{ name: isOwner?'İmes Tuntaş Turf':'You', initials: isOwner?'İT':'YO', color: isOwner?'#0b6e3e':'#12211a', ago:'now', pre:txt, mention:'', post:'', isOwner }]) } }));
+        },
+        replies: (c.replies||[]).concat(extra).map(r=>({ ...r, avatarStyle:this.av(r.color, 28), isOwner: !!r.isOwner })),
+        canPin: isOwner,
+        pinLabel: pinnedId===c.id ? 'Unpin' : 'Pin',
+        pinStyle: 'padding:5px 10px;border-radius:8px;border:none;background:'+(pinnedId===c.id?'rgba(11,110,62,.1)':'transparent')+';color:'+(pinnedId===c.id?'#0b6e3e':'rgba(18,33,26,.6)')+';font-size:11.5px;font-weight:800;cursor:pointer;transition:color .18s ease,background .18s ease',
+        onPin: ()=>this.setState(st=>({ pinnedId: st.pinnedId===c.id?null:c.id })),
+      };
+    };
+
+    const post = ()=>{
+      const txt = s.draft.trim(); if(!txt) return;
+      const m = txt.match(/@([\wçğıöşüİ\s]+?)(?:\s{2}|$)/i);
+      const men = m ? '@'+m[1].trim() : '';
+      const c = { id:'n'+Date.now(), name: isOwner?'İmes Tuntaş Turf':'You', initials: isOwner?'İT':'YO', color: isOwner?'#0b6e3e':'#12211a', at: Math.floor(s.t), ago:'now', likes:0, pre: men ? txt.split(men)[0] : txt, mention: men, post: men ? txt.split(men).slice(1).join(men) : '', isOwner, replies:[] };
+      this.setState(st=>({ added:[c].concat(st.added), draft:'', atts:[], mention:false }));
+    };
+
+    return {
+      clipTag: 'Goal · 2 days ago',
+      clipTitle: 'Yıldızlar FC 3 – 2 Kartal SK · Emre Karanfil, 71\'',
+      clipMeta: 'İmes Tuntaş Artificial Turf Field · Pitch B · 7-a-side',
+      playGlyph: s.playing ? '❚❚' : '▶',
+      playBtnStyle: 'width:64px;height:64px;border-radius:50%;background:rgba(6,13,9,.55);border:1px solid rgba(255,255,255,.4);color:#fff;display:flex;align-items:center;justify-content:center;font-size:'+(s.playing?'15':'18')+'px;padding-left:'+(s.playing?'0':'4')+'px;opacity:'+(s.playing?'0':'1')+';transition:opacity .2s ease',
+      togglePlay: ()=>this.setState(st=>({ playing: !st.playing })),
+      timeLabel: this.fmt(s.t),
+      durLabel: this.fmt(this.DUR),
+      progressStyle: 'height:100%;border-radius:100px;background:#0b6e3e;width:'+((s.t/this.DUR)*100).toFixed(2)+'%',
+      onScrub: e => { const r = e.currentTarget.getBoundingClientRect(); this.seek(((e.clientX - r.left)/r.width) * this.DUR); },
+      markers: (off ? [] : all).map(c=>({
+        title: c.name+' · '+this.fmt(c.at),
+        onSeek: ()=>this.seek(c.at),
+        style: 'position:absolute;top:7px;left:'+((c.at/this.DUR)*100).toFixed(2)+'%;transform:translate(-50%,0);width:9px;height:9px;padding:0;border-radius:50%;border:1.5px solid rgba(6,13,9,.6);background:#fff;cursor:pointer;transition:transform .18s cubic-bezier(.22,1,.36,1),background .18s ease',
+      })),
+      markerHint: off ? 'Comments off' : total + ' comments on the timeline',
+      clipLikes: s.clipLiked ? 143 : 142,
+      clipLikeStyle: 'display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:11px;border:1px solid '+(s.clipLiked?'rgba(11,110,62,.5)':'rgba(18,33,26,.16)')+';background:#fff;color:'+(s.clipLiked?'#0b6e3e':'#12211a')+';font-size:12.5px;font-weight:800;cursor:pointer;transition:border-color .18s ease,color .18s ease',
+      thumbStyle: 'display:inline-block;font-size:14px;line-height:1;' + (s.clipLiked ? 'animation:mcThumb .5s cubic-bezier(.22,1,.36,1) both' : 'filter:grayscale(.35);opacity:.8'),
+      pop: !!s.pop,
+      toggleClipLike: ()=>{
+        const liking = !this.state.clipLiked;
+        this.setState({ clipLiked: liking, pop: liking });
+        if(liking){ clearTimeout(this.popT); this.popT = setTimeout(()=>this.setState({ pop:false }), 760); }
+      },
+      countLabel: total,
+      shareLabel: s.shared ? 'Link copied' : 'Share clip',
+      share: ()=>{ this.setState({ shared:true }); setTimeout(()=>this.setState({ shared:false }), 1800); },
+      composerRef: el => { this.composerEl = el; },
+      focusComposer: ()=>{ if(this.composerEl){ this.composerEl.focus({ preventScroll:true }); } },
+
+      commentCount: total,
+      commentsOff: off,
+      commentsOn: !off,
+      isQuiet: !off && volume === 'quiet',
+      quietTitle: 'Be the second voice',
+      quietBody: 'Nobody has broken this clip down yet. Comment at a moment and it pins to the timeline.',
+      roles: [['player','Player'],['owner','Owner']].map(([id,label])=>({ label, onClick:()=>this.setState({ role:id, replyTo:null }), style: pill(role===id) })),
+      ownerBar: isOwner,
+      ownerNote: off ? 'Comments are hidden from players.' : 'You are viewing as the field owner.',
+      toggleLabel: off ? 'Turn comments on' : 'Turn comments off',
+      toggleComments: ()=>this.setState(st=>({ off: !(st.off ?? (this.props.commentsEnabled === false)) })),
+
+      pinned: pin ? { ...pin, avatarStyle:this.av(pin.color, 30) } : null,
+      comments: list.map(mk),
+
+      meName: isOwner ? 'İmes Tuntaş Turf' : 'You',
+      meInitials: isOwner ? 'İT' : 'YO',
+      meAvatarStyle: this.av(isOwner ? '#0b6e3e' : '#12211a', 28),
+      draft: s.draft,
+      onDraft: e => this.setState({ draft: e.target.value }),
+      replyDraft: s.replyDraft,
+      onReplyDraft: e => this.setState({ replyDraft: e.target.value }),
+      draftAt: this.fmt(s.t),
+      seekToDraft: ()=>this.setState(st=>({ playing:false })),
+      composerPlaceholder: isOwner ? 'Reply as the field owner…' : 'Comment on this moment…',
+      composerHelp: 'Type @ to mention a player. They are notified once you post.',
+      onKey: e => { if(e.key === 'Enter'){ e.preventDefault(); post(); } },
+      atts: s.atts.map((a,ai)=>({
+        name: a.name || a,
+        icon: (a.kind === 'cut') ? '✂' : '◫',
+        iconStyle: 'font-size:11px;font-weight:800;padding:2px 5px;border-radius:5px;background:'+((a.kind==='cut')?'rgba(11,110,62,.14);color:#0b6e3e':'rgba(18,33,26,.07);color:rgba(18,33,26,.55)'),
+        onRemove: ()=>this.setState(st=>({ atts: st.atts.filter((x,xi)=>xi!==ai) })),
+      })),
+      hasAtts: s.atts.length > 0,
+      tools: [
+        ['☺','Emoji','emoji','width:38px;font-size:20px'],
+        ['✂','Cut a clip from this moment','cut','width:38px;font-size:20px'],
+      ].map(([label,title,kind,extra])=>({
+        label, title,
+        onClick: kind === 'emoji'
+          ? ()=>this.setState(st=>({ gifOpen: !st.gifOpen }))
+          : ()=>this.setState(st=>({ atts: st.atts.concat([{ kind:'cut', name: 'cut-'+this.fmt(st.t).replace(':','-')+'.mp4' }]) })),
+        style:'height:38px;border-radius:9px;border:none;background:'+((kind==='emoji'&&s.gifOpen)?'rgba(11,110,62,.12);color:#0b6e3e':'transparent;color:rgba(18,33,26,.55)')+';cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .18s ease,color .18s ease;'+extra,
+      })),
+      emojiOpen: s.gifOpen,
+      closeEmoji: ()=>this.setState({ gifOpen:false }),
+      emojis: ['⚽','🥅','🧤','🔥','😤','😂','👏','💪','🎯','🙌','😱','🤝','⏱️','🟨','🟥','🏆'].map(char=>({
+        char,
+        onPick: ()=>this.setState(st=>({ draft: (st.draft ? st.draft.replace(/\s*$/,' ') : '') + char })),
+      })),
+      mentionOpen: s.draft.trim().endsWith('@') || /@[^\s@]*$/.test(s.draft),
+      people: this.PEOPLE.filter(p=>{
+        const q = (s.draft.split('@').pop()||'').trim().toLowerCase();
+        return !q || p[0].toLowerCase().includes(q) || p[1].includes(q);
+      }).map(p=>({
+        name:p[0], handle:'@'+p[1]+' · '+p[2], initials:p[3],
+        avatarStyle:this.av(p[4], 30),
+        style:'display:flex;align-items:center;gap:11px;width:100%;padding:9px 10px;border-radius:10px;border:none;background:transparent;cursor:pointer;font-family:Manrope,sans-serif;color:#12211a;transition:background .18s ease',
+        onPick: ()=>this.setState(st=>({ draft: st.draft.replace(/@[^@]*$/, '@'+p[0]+' '), mention:false })),
+      })),
+      postStyle: 'padding:11px 18px;border-radius:11px;border:none;background:#0b6e3e;color:#fff;font-size:12.5px;font-weight:800;cursor:pointer;opacity:'+(s.draft.trim()?'1':'.45')+';transition:background .18s ease,opacity .18s ease',
+      post,
+    };
+  }
+}
+
+</script>
+</body>
+</html>
